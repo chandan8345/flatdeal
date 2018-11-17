@@ -6,54 +6,10 @@
 <a href="category.html">
 <div class="box">
 <div class="icon">
-<img class="img-fluid" src="assets/img/category/img-1.png" alt="">
+<img class="img-fluid" src="assets/img/flatA.png" alt="">
 </div>
-<h4>Flat</h4>
+<h4>Flat | Apartment</h4>
 <strong>189 Ads</strong>
-</div>
-</a>
-</div>
-<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="category.html">
-<div class="box">
-<div class="icon">
-<img class="img-fluid" src="assets/img/category/img-2.png" alt="">
-</div>
-<h4>Luxary Houses</h4>
-<strong>255 Ads</strong>
-</div>
-</a>
-</div>
-<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="category.html">
-<div class="box">
-<div class="icon">
-<img class="img-fluid" src="assets/img/category/img-3.png" alt="">
-</div>
-<h4>Office</h4>
-<strong>127 Ads</strong>
-</div>
-</a>
-</div>
-<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="category.html">
-<div class="box">
- <div class="icon">
-<img class="img-fluid" src="assets/img/category/img-4.png" alt="">
-</div>
-<h4>Industry</h4>
-<strong>69 Ads</strong>
-</div>
-</a>
-</div>
-<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="category.html">
-<div class="box">
-<div class="icon">
-<img class="img-fluid" src="assets/img/category/img-5.png" alt="">
-</div>
-<h4>Shoping Moll</h4>
-<strong>172 Ads</strong>
 </div>
 </a>
 </div>
@@ -72,9 +28,42 @@
 <a href="category.html">
 <div class="box">
 <div class="icon">
-<img class="img-fluid" src="assets/img/category/img-7.png" alt="">
+<img class="img-fluid" src="assets/img/office.png" alt="">
 </div>
-<h4>Hotel</h4>
+<h4>Office Space</h4>
+<strong>127 Ads</strong>
+</div>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+<a href="category.html">
+<div class="box">
+ <div class="icon">
+<img class="img-fluid" src="assets/img/industry.png" alt="">
+</div>
+<h4>Industry | Factory</h4>
+<strong>69 Ads</strong>
+</div>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+<a href="category.html">
+<div class="box">
+<div class="icon">
+<img class="img-fluid" src="assets/img/moll.png" alt="">
+</div>
+<h4>Retail Space</h4>
+<strong>172 Ads</strong>
+</div>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+<a href="category.html">
+<div class="box">
+<div class="icon">
+<img class="img-fluid" src="assets/img/hote.png" alt="">
+</div>
+<h4>Plot | Land</h4>
 <strong>249 Ads</strong>
 </div>
 </a>
@@ -83,10 +72,21 @@
 <a href="category.html">
 <div class="box">
 <div class="icon">
-<img class="img-fluid" src="assets/img/category/img-8.png" alt="">
+<img class="img-fluid" src="assets/img/garag.png" alt="">
 </div>
 <h4>Garage</h4>
 <strong>14 9Ads</strong>
+</div>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+<a href="category.html">
+<div class="box">
+<div class="icon">
+<img class="img-fluid" src="assets/img/mess.png" alt="">
+</div>
+<h4>Rooms</h4>
+<strong>150 Ads</strong>
 </div>
 </a>
 </div>

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from preview.uideck.com/items/classially/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:20:36 GMT -->
-<head>
-
-<meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>ClassiAlly - Classified Ads Website Template</title>
 
@@ -339,5 +336,4 @@ Listings
 <script src="assets/js/summernote.js"></script>
 </body>
 
-<!-- Mirrored from preview.uideck.com/items/classially/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:20:36 GMT -->
 </html>

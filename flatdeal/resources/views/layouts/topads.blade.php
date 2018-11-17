@@ -8,7 +8,7 @@
 <div class="icon">
 <i class="lni-heart"></i>
 </div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img-12.jpg" alt=""></a>
+<a href="#"><img class="img-fluid" src="assets/img/pc1.jpg" alt=""></a>
 </figure>
 <div class="feature-content">
 <div class="tg-product">
@@ -46,7 +46,7 @@ View Details
 <div class="icon">
 <i class="lni-heart"></i>
 </div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img2.jpg" alt=""></a>
+<a href="#"><img class="img-fluid" src="assets/img/pc2.jpg" alt=""></a>
 </figure>
 <div class="feature-content">
  <div class="tg-product">
@@ -84,7 +84,7 @@ View Details
 <div class="icon">
 <i class="lni-heart"></i>
 </div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img-11.jpg" alt=""></a>
+<a href="#"><img class="img-fluid" src="assets/img/pc3.jpg" alt=""></a>
 </figure>
 <div class="feature-content">
 <div class="tg-product">
@@ -122,7 +122,7 @@ View Details
 <div class="icon">
 <i class="lni-heart"></i>
 </div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img1.jpg" alt=""></a>
+<a href="#"><img class="img-fluid" src="assets/img/featured/img-12.jpg" alt=""></a>
 </figure>
 <div class="feature-content">
 <div class="tg-product">

@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Home</title>
+<title>Easy Tolet</title>
 
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -156,6 +158,4 @@
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
 </body>
-
-<!-- Mirrored from preview.uideck.com/items/classially/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:19:46 GMT -->
 </html>

@@ -26,16 +26,7 @@ Home
 all ads
 </a>
 </li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Listings
-</a>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>
-<a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>
-<a class="dropdown-item" href="ads-details.html">Listing Detail</a>
-</div>
-</li>
+
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Pages
@@ -63,29 +54,50 @@ Blog
 </div>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="contact.html">
-Contact
+<a class="nav-link" href="/signup">
+Sign UP
 </a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+FAQ
+</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>
+<a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>
+<a class="dropdown-item" href="ads-details.html">Listing Detail</a>
+</div>
 </li>
 </ul>
 <ul class="sign-in">
 <li class="nav-item dropdown">
+@if(!empty(Session::get('user_name')))
+<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> {{ Session::get('user_name') }}</a>
+@else
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> My Account</a>
+@endif
 <div class="dropdown-menu">
+@if(!empty(Session::get('user_name')))
 <a class="dropdown-item" href="account-profile-setting.html"><i class="lni-home"></i> Account Home</a>
-<a class="dropdown-item" href="account-myads.html"><i class="lni-wallet"></i> My Ads</a>
-<a class="dropdown-item" href="account-favourite-ads.html"><i class="lni-heart"></i> Favourite ads</a>
-<a class="dropdown-item" href="account-archived-ads.html"><i class="lni-folder"></i> Archived</a>
-<a class="dropdown-item" href="login.html"><i class="lni-lock"></i> Log In</a>
-<a class="dropdown-item" href="signup.html"><i class="lni-user"></i> Signup</a>
+@endif
+@if(empty(Session::get('user_name')))
+<a class="dropdown-item" href="/signin"><i class="lni-lock"></i> Log In</a>
+@endif
+@if(empty(Session::get('user_name')))
+<a class="dropdown-item" href="/signup"><i class="lni-user"></i> Signup</a>
+@endif
 <a class="dropdown-item" href="forgot-password.html"><i class="lni-reload"></i> Forgot Password</a>
-<a class="dropdown-item" href="account-close.html"><i class="lni-close"></i>Account close</a>
+@if(!empty(Session::get('user_name')))
+<a class="dropdown-item" href="/logout"><i class="lni-close"></i>Log out</a>
+@endif
 </div>
 </li>
 </ul>
+@if(!empty(Session::get('user_name')))
 <a class="tg-btn" href="post-ads.html">
 <i class="lni-pencil-alt"></i> Post An Ad
 </a>
+@endif
 </div>
 </div>
 
@@ -169,13 +181,15 @@ Listings
 <i class="lni-map-marker"></i>
 <div class="tg-select">
 <select>
-<option value="none">Select City</option>
-<option value="none">Dhaka</option>
-<option value="none">California</option>
-<option value="none">Washington</option>
-<option value="none">Birmingham</option>
-<option value="none">Chicago</option>
-<option value="none">Phoenix</option>
+<option value="none">Select Divisions</option>
+<option value="none">Dhaka Division</option>
+<option value="none">Chattogram Division</option>
+<option value="none">Sylhet Division</option>
+<option value="none">Khulna Division</option>
+<option value="none">Rajshahi Division</option>
+<option value="none">Rangpur Division</option>
+<option value="none">Barishal Division</option>
+<option value="none">Mymensingh Division</option>
 </select>
 </div>
 </div>
@@ -183,14 +197,15 @@ Listings
 <i class="lni-layers"></i>
 <div class="tg-select">
 <select>
-<option value="none">Select Area</option>
-<option value="none">Mobiles</option>
-<option value="none">Electronics</option>
-<option value="none">Training</option>
-<option value="none">Real Estate</option>
-<option value="none">Services</option>
-<option value="none">Training</option>
-<option value="none">Vehicles</option>
+<option value="none">Select City</option>
+<option value="none">Dhaka</option>
+<option value="none">Sylhet</option>
+<option value="none">Chattogram</option>
+<option value="none">Khulna</option>
+<option value="none">Rajshahi</option>
+<option value="none">Rangpur</option>
+<option value="none">Barishal</option>
+<option value="none">Mymensingh</option>
 </select>
 </div>
 </div>
