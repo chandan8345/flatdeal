@@ -29,28 +29,23 @@ all ads
 
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Pages
+Categories
 </a>
 <div class="dropdown-menu">
-<a class="dropdown-item" href="about.html">About Us</a>
-<a class="dropdown-item" href="services.html">Services</a>
-<a class="dropdown-item" href="ads-details.html">Ads Details</a>
-<a class="dropdown-item" href="post-ads.html">Ads Post</a>
-<a class="dropdown-item" href="pricing.html">Packages</a>
-<a class="dropdown-item" href="testimonial.html">Testimonial</a>
-<a class="dropdown-item" href="faq.html">FAQ</a>
-<a class="dropdown-item" href="404.html">404</a>
+    @foreach($category as $row)
+    <a class="dropdown-item" href="{{ $row->name }}">{{ $row->name }}</a>
+    @endforeach
 </div>
 </li>
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Blog
+Area
 </a>
 <div class="dropdown-menu">
-<a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a>
-<a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a>
-<a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a>
-<a class="dropdown-item" href="single-post.html">Blog Details</a>
+<a class="dropdown-item" href="blog.html">Residential</a>
+<a class="dropdown-item" href="blog-left-sidebar.html">Commercial</a>
+<a class="dropdown-item" href="blog-grid-full-width.html">DOHS</a>
+<a class="dropdown-item" href="single-post.html">Local</a>
 </div>
 </li>
 <li class="nav-item">
@@ -181,15 +176,10 @@ Listings
 <i class="lni-map-marker"></i>
 <div class="tg-select">
 <select>
-<option value="none">Select Divisions</option>
-<option value="none">Dhaka Division</option>
-<option value="none">Chattogram Division</option>
-<option value="none">Sylhet Division</option>
-<option value="none">Khulna Division</option>
-<option value="none">Rajshahi Division</option>
-<option value="none">Rangpur Division</option>
-<option value="none">Barishal Division</option>
-<option value="none">Mymensingh Division</option>
+<option value="0">Select Divisions</option>
+@foreach($devision as $row)
+    <option value="{{ $row->id }}">{{ $row->name }}</option>
+    @endforeach
 </select>
 </div>
 </div>
@@ -197,15 +187,10 @@ Listings
 <i class="lni-layers"></i>
 <div class="tg-select">
 <select>
-<option value="none">Select City</option>
-<option value="none">Dhaka</option>
-<option value="none">Sylhet</option>
-<option value="none">Chattogram</option>
-<option value="none">Khulna</option>
-<option value="none">Rajshahi</option>
-<option value="none">Rangpur</option>
-<option value="none">Barishal</option>
-<option value="none">Mymensingh</option>
+<option value="0">Select City</option>
+@foreach($city as $row)
+    <option value="{{ $row->id }}">{{ $row->name }}</option>
+    @endforeach
 </select>
 </div>
 </div>
@@ -214,14 +199,10 @@ Listings
     <i class="lni-layers"></i>
     <div class="tg-select">
     <select>
-    <option value="none">Select Categories</option>
-    <option value="none">Mobiles</option>
-    <option value="none">Electronics</option>
-    <option value="none">Training</option>
-    <option value="none">Real Estate</option>
-    <option value="none">Services</option>
-    <option value="none">Training</option>
-    <option value="none">Vehicles</option>
+    <option value="0">Select Categories</option>
+    @foreach($category as $row)
+    <option value="{{ $row->id }}">{{ $row->name }}</option>
+    @endforeach
     </select>
     </div>
     </div>

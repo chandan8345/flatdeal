@@ -20,6 +20,36 @@ class userController extends Controller
         return view('signup');
     }
 
+    public function signup(Request $request){
+        $name=$request->input('name');
+        $mobile=$request->input('mobile');
+        $address=$request->input('address');
+        $email=$request->input('email');
+        $pass=$request->input('pass');
+        $repass=$request->input('repass');
+        if($pass == $repass){
+            if($request->file('image') !=null){
+                $image = $request->file('image')->getClientOriginalName();
+                $extention = $request->file('image')->getClientOriginalExtension();
+                $dp='image/'.$mobile.'.'.$extention;
+                $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'dateofjoin'=>date('d-m-Y'),'image'=>$mobile.'.'.$extention,'role'=>1,'status'=>1);
+                DB::table('users')->insert($data);
+                $sp=$request->file('image')->getPathName();
+                move_uploaded_file($sp,$dp);
+                Session::flash('msg','Account create successfully');
+                return redirect('/signup');
+            }else{
+                $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'role'=>1,'status'=>1);
+                DB::table('users')->insert($data);
+                return redirect('/signup');
+            }
+        }else{
+            Session::flash('msg','Sorry, password mismatch');
+            return redirect('/signup');
+        }
+        
+    }
+
     public function logincheck(Request $request){
         $mobile = $request->mobile;
         $pass = $request->pass;
@@ -63,11 +93,6 @@ class userController extends Controller
          Session::flush();
          return redirect('/');
     }
-
-    public function signup(Request $req){
-
-    }
-
 
     public function create()
     {

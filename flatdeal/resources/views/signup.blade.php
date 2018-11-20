@@ -7,6 +7,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Easy Tolet | Sign up</title>
+<style>
+.image-preview-input {
+    position: relative;
+	overflow: hidden;
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+</style>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -33,10 +59,14 @@
 <div class="row">
 <div class="col-md-12">
 <div class="breadcrumb-wrapper">
+@if (Session::has('msg'))
+<h2 class="product-title">{{ Session::get('msg') }}</h2>
+@else
 <h2 class="product-title">Join Us</h2>
+@endif
 <ol class="breadcrumb">
 <li><a href="/">Home /</a></li>
-<li class="current">Register</li>
+<li id="msg" class="current" >Register</li>
 </ol>
 </div>
 </div>
@@ -53,39 +83,68 @@
 <h3>
 Register
 </h3>
-<form class="login-form">
+
+<form enctype="multipart/form-data" method="post" action="/signupcheck" class="login-form">
+<input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-user"></i>
-<input type="text" id="Name" class="form-control" name="email" placeholder="Username">
+<input type="text" id="name" name="name" class="form-control" placeholder="Username" required>
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+<i class="lni-user"></i>
+<input type="number"id="mobile" name="mobile" class="form-control"  placeholder="Mobile No"  required>
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+<i class="lni-user"></i>
+<input type="text" id="address" name="address" class="form-control"  placeholder="Address" required>
 </div>
 </div>
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-envelope"></i>
-<input type="text" id="sender-email" class="form-control" name="email" placeholder="Email Address">
+<input type="text" id="email" name="email" class="form-control"  placeholder="Email Address" required>
 </div>
 </div>
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-lock"></i>
-<input type="password" class="form-control" placeholder="Password">
+<input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required>
 </div>
 </div>
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-lock"></i>
-<input type="password" class="form-control" placeholder="Retype Password">
+<input type="password" id="repass" name="repass" class="form-control" placeholder="Retype Password" required>
 </div>
 </div>
-<div class="form-group mb-3">
-<div class="checkbox">
-<input type="checkbox" name="rememberme" value="rememberme">
-<label>By registering, you accept our Terms & Conditions</label>
-</div>
-</div>
+<div class="row">    
+        <div class="col-xs-12 col-md-12">  
+            <!-- image-preview-filename input [CUT FROM HERE]-->
+            <div class="input-group image-preview">
+                <input type="text" class="form-control image-preview-filename" disabled="disabled" placeholder="Photo Upload"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+                    <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title" style="background-color:#00cc67;padding:12px;color:white;">Browse</span>
+                        <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif"/> <!-- rename it -->
+                    </div>
+                </span>
+            </div><!-- /input-group image-preview [TO HERE]--> 
+        </div>
+    </div>
+    </br>
 <div class="text-center">
-<button class="btn btn-common log-btn">Register</button>
+<button type="submit" class="btn btn-common log-btn btn-block signup" style="display:block;">Register</button>
 </div>
 </form>
 </div>
@@ -213,6 +272,89 @@ Register
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
+<script>
+$(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+           $('.image-preview').popover('show');
+        }, 
+         function () {
+           $('.image-preview').popover('hide');
+        }
+    );    
+});
+
+$(function() {
+    // Create the close button
+    var closebtn = $('<button/>', {
+        type:"button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    // Set the popover default content
+    $('.image-preview').popover({
+        trigger:'manual',
+        html:true,
+        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+        content: "There's no image",
+        placement:'bottom'
+    });
+    // Clear event
+    $('.image-preview-clear').click(function(){
+        $('.image-preview').attr("data-content","").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Browse"); 
+    }); 
+    // Create the preview image
+    $(".image-preview-input input:file").change(function (){     
+        var img = $('<img/>', {
+            id: 'dynamic',
+            width:250,
+            height:200
+        });      
+        var file = this.files[0];
+        var reader = new FileReader();
+        // Set preview image into the popover data-content
+        reader.onload = function (e) {
+            $(".image-preview-input-title").text("Change");
+            $(".image-preview-clear").show();
+            $(".image-preview-filename").val(file.name);            
+            img.attr('src', e.target.result);
+            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+        }        
+        reader.readAsDataURL(file);
+    });  
+});
+</script>
+<!--
+<script type="text/javascript">
+$(document).on("click",'.signup',function(e){
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: '{{ URL::to("/signupcheck") }}',
+      data:{
+            name:$("#name").val(),
+            mobile:$("#mobile").val(),
+            address:$("#address").val(),
+            email:$("#email").val(),
+            photo:$("#image").val(),
+            pass:$("#pass").val(),
+            repass:$("#repass").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+         console.log(response);
+     }
+   });
+});
+</script>-->
 </body>
 
 <!-- Mirrored from preview.uideck.com/items/classially/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:21:56 GMT -->
