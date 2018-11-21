@@ -17,7 +17,7 @@
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item active">
-<a class="nav-link" href="">
+<a class="nav-link" href="/">
 Home
 </a>
 </li>
@@ -73,7 +73,7 @@ FAQ
 @endif
 <div class="dropdown-menu">
 @if(!empty(Session::get('user_name')))
-<a class="dropdown-item" href="account-profile-setting.html"><i class="lni-home"></i> Account Home</a>
+<a class="dropdown-item" href="/dashbord"><i class="lni-home"></i> Account Home</a>
 @endif
 @if(empty(Session::get('user_name')))
 <a class="dropdown-item" href="/signin"><i class="lni-lock"></i> Log In</a>
@@ -89,7 +89,7 @@ FAQ
 </li>
 </ul>
 @if(!empty(Session::get('user_name')))
-<a class="tg-btn" href="post-ads.html">
+<a class="tg-btn" href="/ads-post">
 <i class="lni-pencil-alt"></i> Post An Ad
 </a>
 @endif

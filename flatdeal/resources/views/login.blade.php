@@ -52,15 +52,6 @@ Login Now
 <input type="password" id="pass" class="form-control" name="pass" placeholder="Password">
 </div>
 </div>
-<div class="form-group mb-3 tg-inputwithicon">
-        <div class="tg-select form-control">
-        <select id="role" name="role">
-        <option value="0">Select Role</option>
-        <option value="1">Admin</option>
-        <option value="2">User</option>
-        </select>
-        </div>
-        </div>
 <div class="form-group mb-3">
 <div class="checkbox">
 <input type="checkbox" name="rememberme" value="rememberme">

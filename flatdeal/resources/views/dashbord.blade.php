@@ -1,35 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Mirrored from preview.uideck.com/items/classially/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:23:21 GMT -->
 <head>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet | Ads-Post</title>
-<style>
-.image-preview-input {
-    position: relative;
-	overflow: hidden;
-	margin: 0px;    
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;    
-}
-.image-preview-input input[type=file] {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
-	font-size: 20px;
-	cursor: pointer;
-	opacity: 0;
-	filter: alpha(opacity=0);
-}
-.image-preview-input-title {
-    margin-left:2px;
-}
-</style>
+<title>Easy Tolet | Dashboard</title>
+
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
 <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
@@ -39,8 +17,6 @@
 <link rel="stylesheet" type="text/css" href="assets/css/color-switcher.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/nivo-lightbox.css">
-
-<link rel="stylesheet" type="text/css" href="assets/css/summernote.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
 
@@ -63,13 +39,12 @@
 <span class="lni-menu"></span>
 <span class="lni-menu"></span>
 <span class="lni-menu"></span>
-</button>
-<!--
+</button><!--
 <a href="index-2.html" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>-->
 </div>
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
-<li class="nav-item">
+<li class="nav-item active">
 <a class="nav-link" href="">
 Home
 </a>
@@ -141,8 +116,14 @@ FAQ
 </div>
 </li>
 </ul>
+@if(!empty(Session::get('user_name')))
+<a class="tg-btn" href="/ads-post">
+<i class="lni-pencil-alt"></i> Post An Ad
+</a>
+@endif
 </div>
 </div>
+
 <ul class="mobile-menu">
 <li>
 <a href="index-2.html">Home</a>
@@ -161,12 +142,12 @@ Listings
 </ul>
 </li>
 <li>
-<a class="active" href="#">Pages</a>
+<a href="#">Pages</a>
 <ul class="dropdown">
 <li><a href="about.html">About Us</a></li>
 <li><a href="services.html">Services</a></li>
 <li><a href="ads-details.html">Ads Details</a></li>
-<li><a class="active" href="post-ads.html">Ads Post</a></li>
+<li><a href="post-ads.html">Ads Post</a></li>
 <li><a href="pricing.html">Packages</a></li>
 <li><a href="testimonial.html">Testimonial</a></li>
 <li><a href="faq.html">FAQ</a></li>
@@ -210,10 +191,12 @@ Listings
 <div class="row">
 <div class="col-md-12">
 <div class="breadcrumb-wrapper">
-<h2 class="product-title">Post you Ads</h2>
+@if (Session::has('user_name'))
+<h2 class="product-title">Hi, {{ Session::get('user_name') }}</h2>
+@endif
 <ol class="breadcrumb">
 <li><a href="#">Home /</a></li>
-<li class="current">Post you Ads</li>
+<li class="current">Dashboard</li>
 </ol>
 </div>
 </div>
@@ -240,7 +223,7 @@ Listings
 <nav class="navdashboard">
 <ul>
 <li>
-<a href="dashboard.html">
+<a class="active" href="dashboard.html">
 <i class="lni-dashboard"></i>
 <span>Dashboard</span>
 </a>
@@ -258,7 +241,7 @@ Listings
 </a>
 </li>
 <li>
-<a href="#">
+<a href="offermessages.html">
 <i class="lni-envelope"></i>
 <span>Offers/Messages</span>
 </a>
@@ -276,7 +259,7 @@ Listings
 </a>
 </li>
 <li>
-<a href="account-profile-setting.html">
+<a href="privacy-setting.html">
 <i class="lni-star"></i>
 <span>Privacy Settings</span>
 </a>
@@ -286,7 +269,7 @@ Listings
 <i class="lni-enter"></i>
 <span>Logout</span>
 </a>
- </li>
+</li>
 </ul>
 </nav>
 </div>
@@ -299,228 +282,315 @@ Listings
 </aside>
 </div>
 <div class="col-sm-12 col-md-8 col-lg-9">
-<div class="row page-content">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+<div class="page-content">
 <div class="inner-box">
 <div class="dashboard-box">
-<h2 class="dashbord-title">Ad Detail</h2>
+<h2 class="dashbord-title">Dashboard</h2>
 </div>
 <div class="dashboard-wrapper">
-<div class="form-group mb-3">
-<label class="control-label">Tolet Title</label>
-<input class="form-control input-md" name="Title" placeholder="Title" type="text">
-</div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Tolet Categories</label>
-<div class="tg-select form-control">
-<select>
-<option value="0">Select Categories</option>
-@foreach($category as $row)
- <option value="{{ $row->name }}">{{ $row->name }}</option>
- @endforeach
-</select>
-</div>
-</div>
-<div class="form-group mb-3">
-<label class="control-label">Rent</label>
-<input class="form-control input-md" name="price" placeholder="Ad your Price" type="text">
-<div class="tg-checkbox">
-<input id="tg-priceoncall" type="checkbox" name="priceoncall" value="on">
-<label for="tg-priceoncall">Call for Rent</label>
-</div>
-</div>
-<div class="form-group mb-3">
-<label class="control-label">Area Size</label>
-<input class="form-control input-md" name="Title" placeholder="Ad your area size" type="text">
-</div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Area Type</label>
-<div class="tg-select form-control">
-<select>
-<option value="0">Select One</option>
- <option value="Family">Residential</option>
- <option value="Male">Commercial</option>
- <option value="FFemale">DOHS</option>
- <option value="Ask">Local Area</option>
-</select>
-</div>
-</div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Tolet For</label>
-<div class="tg-select form-control">
-<select>
-<option value="0">Select One</option>
- <option value="Family">Family</option>
- <option value="Male">Male</option>
- <option value="FFemale">Female</option>
- <option value="Ask">Ask</option>
-</select>
-</div>
-</div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Condition</label>
-<div class="tg-select form-control">
-<select>
-<option value="0">Select One</option>
-<option value="Plug & Play">Plug & Play</option>
-<option value="Semi Furnished">Semi Furnished</option>
-<option value="Non Furnished">Non Furnished</option>
-<option value="Non Paint">Non Paint</option>
-</select>
-</div>
-</div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Facing</label>
-<div class="tg-select form-control">
-<select>
-<option value="0">Select One</option>
-<option value="East">East</option>
-<option value="West">West</option>
-<option value="North">North</option>
-<option value="South">South</option>
-<option value="Road">Road</option>
-<option value="Ask">Ask</option>
-</select>
-</div>
-</div>
-<div class="form-group md-5">
-<label class="control-label">Details</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..."></textarea>
-</div>
-<!--<div class="form-group md-5">
-<label class="control-label">Location</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="5" placeholder="write full address here..."></textarea>
-</div>-->
-<!---->
+<div class="dashboard-sections">
+<div class="row">
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+<div class="dashboardbox">
+<div class="icon"><i class="lni-write"></i></div>
+<div class="contentbox">
+<h2><a href="#">Total Ad Posted</a></h2>
+<h3>480 Add Posted</h3>
 </div>
 </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-<div class="inner-box">
-<div class="tg-contactdetail"><!--
-<div class="dashboard-box">
-<h2 class="dashbord-title">Contact Detail</h2>
-</div>-->
-<div class="dashboard-wrapper">
-<div class="form-group mb-3">
-<strong>Inluded Utility bill on Rent</strong>
-<div class="tg-selectgroup">
-<span class="tg-radio">
-<input id="tg-sameuser"  type="checkbox" name="" value="same user">
-<label for="tg-sameuser">Maintanence</label>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+<div class="dashboardbox">
+<div class="icon"><i class="lni-add-files"></i></div>
+<div class="contentbox">
+<h2><a href="#">Featured Ads</a></h2>
+<h3>80 Add Posted</h3>
+</div>
+</div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+<div class="dashboardbox">
+<div class="icon"><i class="lni-support"></i></div>
+<div class="contentbox">
+<h2><a href="#">Offers / Messages</a></h2>
+<h3>2040 Messages</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+<table class="table dashboardtable tablemyads">
+<thead>
+<tr>
+<th>
+<span class="checkbox">
+<input id="checkedall" type="checkbox" name="myads" value="checkall">
+<label for="checkedall"></label>
 </span>
-<span class="tg-radio">
-<input id="Electricity" type="checkbox" name="" value="Electricity">
-<label for="Electricity">Electricity</label>
+</th>
+<th>Photo</th>
+<th>Title</th>
+<th>Category</th>
+<th>Ad Status</th>
+<th>Price</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr data-category="active">
+<td>
+<span class="checkbox">
+<input id="adone" type="checkbox" name="myads" value="myadone">
+<label for="adone"></label>
 </span>
-<span class="tg-radio">
-<input id="Gas" type="checkbox" name="" value="Gas">
-<label for="Gas">Gas</label>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img1.jpg" alt=""></td>
+<td data-title="Title">
+<h3>HP Laptop 6560b core i3 3nd generation</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category"><span class="adcategories">Laptops & PCs</span></td>
+<td data-title="Ad Status"><span class="adstatus adstatusactive">active</span></td>
+<td data-title="Price">
+<h3>139$</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
+</div>
+</td>
+</tr>
+<tr data-category="active">
+<td>
+<span class="checkbox">
+<input id="adtwo" type="checkbox" name="myads" value="myadtwo">
+<label for="adtwo"></label>
 </span>
-<span class="tg-radio">
-<input id="Water" type="checkbox" name="" value="Water">
-<label for="Water">Water</label>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img2.jpg" alt=""></td>
+<td data-title="Title">
+<h3>Jvc Haebr80b In-ear Sports Headphones</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Electronics</td>
+<td data-title="Ad Status"><span class="adstatus adstatusactive">Active</span></td>
+<td data-title="Price">
+<h3>$189</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
+</div>
+</td>
+</tr>
+<tr data-category="inactive">
+<td>
+<span class="checkbox">
+<input id="adthree" type="checkbox" name="myads" value="myadthree">
+<label for="adthree"></label>
 </span>
-<span class="tg-radio">
-<input id="Generator" type="checkbox" name="" value="Generator">
-<label for="Generator">Generator</label>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img3.jpg" alt=""></td>
+<td data-title="Title">
+<h3>Furniture Straps 4-Pack, TV Anti-Tip Metal Wall </h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Real Estate</td>
+<td>
+<span class="adstatus adstatusinactive">Inactive</span>
+</td>
+<td data-title="Price">
+<h3>$69</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
+</div>
+</td>
+</tr>
+<tr data-category="sold">
+<td>
+<span class="checkbox">
+<input id="adfour" type="checkbox" name="myads" value="myadfour">
+<label for="adfour"></label>
 </span>
-<span class="tg-radio">
-<input id="Parking" type="checkbox" name="" value="Parking">
-<label for="Parking">Lift</label>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img4.jpg" alt=""></td>
+<td data-title="Title">
+<h3>Apple iPhone X, Fully Unlocked 5.8", 64 GB - Black</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Mobile</td>
+<td data-title="Ad Status"><span class="adstatus adstatussold">Sold</span></td>
+<td data-title="Price">
+<h3>$89</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
+</div>
+</td>
+</tr>
+<tr data-category="active">
+<td>
+<span class="checkbox">
+<input id="adfive" type="checkbox" name="myads" value="myadfive">
+<label for="adfive"></label>
 </span>
-<span class="tg-radio">
-<input id="Internet" type="checkbox" name="" value="Internet">
-<label for="Internet">Internet</label>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img5.jpg" alt=""></td>
+<td data-title="Title">
+<h3>Apple Macbook Pro 13 Inch with/without Touch Bar</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Apple</td>
+<td data-title="Ad Status"><span class="adstatus adstatusactive">Active</span></td>
+<td data-title="Price">
+<h3>$289</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
+</div>
+</td>
+</tr>
+<tr data-category="sold">
+<td>
+<span class="checkbox">
+<input id="adsix" type="checkbox" name="myads" value="myadsix">
+<label for="adsix"></label>
 </span>
-<span class="tg-radio">
-<input id="Parking" type="checkbox" name="" value="Parking">
-<label for="Parking">Parking</label>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img6.jpg" alt=""></td>
+<td data-title="Title">
+<h3>Apple MQDT2CL/A 10.5-Inch 64GB Wi-Fi iPad Pro</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Apple iPad</td>
+<td data-title="Ad Status"><span class="adstatus adstatussold">Sold</span></td>
+<td data-title="Price">
+<h3>$159</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
+</div>
+</td>
+</tr>
+<tr data-category="expired">
+<td>
+<span class="checkbox">
+<input id="adseven" type="checkbox" name="myads" value="myadseven">
+<label for="adseven"></label>
 </span>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img7.jpg" alt=""></td>
+<td data-title="Title">
+<h3>Essential Phone 8GB Unlocked with Dual Camera</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Mobile</td>
+<td data-title="Ad Status"><span class="adstatus adstatusexpired">Expired</span></td>
+<td data-title="Price">
+<h3>$89</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
 </div>
+</td>
+</tr>
+<tr data-category="inactive">
+<td>
+<span class="checkbox">
+<input id="adeight" type="checkbox" name="myads" value="myadeight">
+<label for="adeight"></label>
+</span>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img8.jpg" alt=""></td>
+<td data-title="Title">
+<h3>LG Nexus 5x LG-H791 32GB GSM Smartphone</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Mobile</td>
+<td>
+<span class="adstatus adstatusinactive">Inactive</span>
+</td>
+<td data-title="Price">
+<h3>$59</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
 </div>
-<div class="form-group mb-3">
-<label class="control-label">Bedroom</label>
-<input class="form-control input-md" name="name" type="number">
+</td>
+</tr>
+<tr data-category="expired">
+<td>
+<span class="checkbox">
+<input id="adnine" type="checkbox" name="myads" value="myadnine">
+<label for="adnine"></label>
+</span>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img9.jpg" alt=""></td>
+<td data-title="Title">
+<h3>Samsung Galaxy G550T On5 GSM Unlocked Smartphone</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Mobile</td>
+<td data-title="Ad Status"><span class="adstatus adstatusexpired">Expired</span></td>
+<td data-title="Price">
+<h3>$129</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
 </div>
-<div class="form-group mb-3">
-<label class="control-label">Washroom*</label>
-<input class="form-control input-md" name="name" type="number">
+</td>
+</tr>
+<tr data-category="deleted">
+<td>
+<span class="checkbox">
+<input id="adten" type="checkbox" name="myads" value="myadten">
+<label for="adten"></label>
+</span>
+</td>
+<td class="photo"><img class="img-fluid" src="assets/img/product/img10.jpg" alt=""></td>
+<td data-title="Title">
+<h3>Apple iMac Pro 27" All-in-One Desktop, Space Gray</h3>
+<span>Ad ID: ng3D5hAMHPajQrM</span>
+</td>
+<td data-title="Category">Apple iMac</td>
+<td data-title="Ad Status"><span class="adstatus adstatusdeleted">Deleted</span></td>
+<td data-title="Price">
+<h3>$389</h3>
+</td>
+<td data-title="Action">
+<div class="btns-actions">
+<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
+<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
+<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
 </div>
-<div class="form-group mb-3">
-<label class="control-label">Kitchen*</label>
-<input class="form-control input-md" name="phone" type="number">
-</div>
-<div class="form-group mb-3">
-<label class="control-label">Balcony</label>
-<input class="form-control input-md" name="address" type="number">
-</div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Devision</label>
-<div class="tg-select form-control">
-<select>
-<option value="0">Select One</option>
-@foreach($devision as $row)
-<option value="{{ $row->name }}">{{ $row->name }}</option>
-@endforeach
-</select>
-</div>
-</div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">City</label>
-<div class="tg-select form-control">
-<select>
-<option value="0">Select One</option>
-@foreach($city as $row)
-<option value="{{ $row->name }}">{{ $row->name }}</option>
-@endforeach
-</select>
-</div>
-</div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Subarea</label>
-<div class="tg-select form-control">
-<select>
-<option value="0">Select One</option>
-@foreach($subarea as $row)
-<option value="{{ $row->name }}">{{ $row->name }}</option>
-@endforeach
-</select>
-</div>
-</div>
-<div class="form-group md-5">
-<label class="control-label">Sort Address</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.."></textarea>
-</div>
-<label class="control-label">Photos</label>
-<div class="row">    
-        <div class="col-xs-12 col-md-12">  
-            <!-- image-preview-filename input [CUT FROM HERE]-->
-            <div class="input-group image-preview">
-                <input type="text" class="form-control image-preview-filename" disabled="disabled" placeholder="Click browse >>"> <!-- don't give a name === doesn't send on POST/GET -->
-                <span class="input-group-btn">
-                    <!-- image-preview-clear button -->
-                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                        <span class="glyphicon glyphicon-remove"></span> Clear
-                    </button>
-                    <!-- image-preview-input -->
-                    <div class="btn btn-default image-preview-input">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                        <span class="image-preview-input-title" style="background-color:#00cc67;padding:12px;color:white;">Browse</span>
-                        <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif" multiple/> <!-- rename it -->
-                    </div>
-                </span>
-            </div><!-- /input-group image-preview [TO HERE]-->
-        </div>
-    </div>
-</br>   
-<div class="tg-checkbox">
-<input id="tg-agreetermsandrules" type="checkbox" name="agreetermsandrules" value="on">
-<label for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0);">Terms of Use &amp; Posting Rules</a></label>
-</div>
-<button class="btn btn-common" type="button">Post Ad</button>
-</div>
-</div>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -578,7 +648,7 @@ Listings
 <strong>Phone :</strong><span>+48 123 456 789</span>
 </li>
 <li>
-<strong>E-mail :</strong><span><a href="#"><span class="__cf_email__" data-cfemail="533a3d353c13362b323e233f367d303c3e">[email&#160;protected]</span></a></span>
+<strong>E-mail :</strong><span><a href="#"><span class="__cf_email__" data-cfemail="462f28202906233e272b362a236825292b">[email&#160;protected]</span></a></span>
 </li>
 </ul>
 <ul class="footer-social">
@@ -621,7 +691,7 @@ Listings
 </div>
 </div>
 </div>
- 
+
 </footer>
 
 
@@ -648,66 +718,7 @@ Listings
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
-<script>
-$(document).on('click', '#close-preview', function(){ 
-    $('.image-preview').popover('hide');
-    // Hover befor close the preview
-    $('.image-preview').hover(
-        function () {
-           $('.image-preview').popover('show');
-        }, 
-         function () {
-           $('.image-preview').popover('hide');
-        }
-    );    
-});
-
-$(function() {
-    // Create the close button
-    var closebtn = $('<button/>', {
-        type:"button",
-        text: 'x',
-        id: 'close-preview',
-        style: 'font-size: initial;',
-    });
-    closebtn.attr("class","close pull-right");
-    // Set the popover default content
-    $('.image-preview').popover({
-        trigger:'manual',
-        html:true,
-        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
-        content: "There's no image",
-        placement:'bottom'
-    });
-    // Clear event
-    $('.image-preview-clear').click(function(){
-        $('.image-preview').attr("data-content","").popover('hide');
-        $('.image-preview-filename').val("");
-        $('.image-preview-clear').hide();
-        $('.image-preview-input input:file').val("");
-        $(".image-preview-input-title").text("Browse"); 
-    }); 
-    // Create the preview image
-    $(".image-preview-input input:file").change(function (){     
-        var img = $('<img/>', {
-            id: 'dynamic',
-            width:250,
-            height:200
-        });      
-        var file = this.files[0];
-        var reader = new FileReader();
-        // Set preview image into the popover data-content
-        reader.onload = function (e) {
-            $(".image-preview-input-title").text("Change");
-            $(".image-preview-clear").show();
-            $(".image-preview-filename").val(file.name);            
-            img.attr('src', e.target.result);
-            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
-        }        
-        reader.readAsDataURL(file);
-    });  
-});
-</script>
 </body>
 
+<!-- Mirrored from preview.uideck.com/items/classially/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:23:21 GMT -->
 </html>
