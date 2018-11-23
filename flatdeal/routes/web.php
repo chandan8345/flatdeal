@@ -15,3 +15,4 @@ Route::post('/signupcheck','securityController@signup');
 Route::get('/dashbord','userController@index');
 //ads-post
 Route::get('/ads-post','postController@index');
+Route::post('/addpost','postController@addpost');
