@@ -1,3 +1,4 @@
+@include('layouts.session')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,7 +76,7 @@
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item">
-<a class="nav-link" href="">
+<a class="nav-link" href="/">
 Home
 </a>
 </li>
@@ -150,7 +151,7 @@ FAQ
 </div>
 <ul class="mobile-menu">
 <li>
-<a href="index-2.html">Home</a>
+<a href="/">Home</a>
 </li>
 <li>
 <a href="category.html">Categories</a>
@@ -215,7 +216,11 @@ Listings
 <div class="row">
 <div class="col-md-12">
 <div class="breadcrumb-wrapper">
-<h2 class="product-title">Post you Ads</h2>
+@if (Session::has('msg'))
+<h2 class="product-title">{{ Session::get('msg') }}</h2>
+@else
+<h2 class="product-title">Post an Ad</h2>
+@endif
 <ol class="breadcrumb">
 <li><a href="#">Home /</a></li>
 <li class="current">Post you Ads</li>
@@ -314,23 +319,23 @@ Listings
 <input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
 <div class="dashboard-wrapper">
 <div class="form-group mb-3">
-<label class="control-label">Tolet Title</label>
-<input class="form-control input-md" name="title" placeholder="Title" type="text">
+<label class="control-label">Tolet Title*</label>
+<input class="form-control input-md" name="title" placeholder="Title" type="text"  required>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Tolet Categories</label>
+<label class="control-label">Tolet Categories*</label>
 <div class="tg-select form-control">
 <select name="categories">
 <option value="0">Select Categories</option>
 @foreach($category as $row)
- <option value="{{ $row->name }}">{{ $row->name }}</option>
+ <option value="{{ $row->id }}">{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
 </div>
 <div class="form-group mb-3">
-<label class="control-label">Rent</label>
-<input class="form-control input-md" name="rent" placeholder="Ad your Price" type="text">
+<label class="control-label">Rent*</label>
+<input class="form-control input-md" name="rent" placeholder="Ad your Price" type="text" required>
 <div class="tg-checkbox">
 <input id="tg-priceoncall" type="checkbox" name="rentoncall" value="1">
 <label for="tg-priceoncall">Call for Rent</label>
@@ -338,16 +343,16 @@ Listings
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Area Size</label>
-<input class="form-control input-md" name="size" placeholder="Ad your area size" type="text">
+<input class="form-control input-md" name="size" placeholder="Ad your area size" type="text" required>
 </div>
 <div class="form-group mb-3">
-<label class="control-label">Tolet Month</label>
-<input class="form-control input-md" id="datepicker" name="month" type="text">
+<label class="control-label">Tolet Month*</label>
+<input class="form-control input-md" id="datepicker" name="month" type="text" required>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Area Type</label>
+<label class="control-label">Area Type*</label>
 <div class="tg-select form-control">
-<select name="area">
+<select name="area"  required>
 <option value="0">Select One</option>
  <option value="Residential">Residential</option>
  <option value="Commercial">Commercial</option>
@@ -357,9 +362,9 @@ Listings
 </div>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Tolet For</label>
+<label class="control-label">Tolet For*</label>
 <div class="tg-select form-control">
-<select name="toletfor">
+<select name="toletfor" required>
 <option value="0">Select One</option>
  <option value="Family">Family</option>
  <option value="Male">Male</option>
@@ -369,9 +374,9 @@ Listings
 </div>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Condition</label>
+<label class="control-label">Condition*</label>
 <div class="tg-select form-control">
-<select name="condition">
+<select name="condition"  required>
 <option value="0">Select One</option>
 <option value="Plug & Play">Plug & Play</option>
 <option value="Semi Furnished">Semi Furnished</option>
@@ -383,7 +388,7 @@ Listings
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Facing</label>
 <div class="tg-select form-control">
-<select name="facing">
+<select name="facing"  required>
 <option value="0">Select One</option>
 <option value="East">East</option>
 <option value="West">West</option>
@@ -395,8 +400,8 @@ Listings
 </div>
 </div>
 <div class="form-group md-5">
-<label class="control-label">Details</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"></textarea>
+<label class="control-label">Details*</label>
+<textarea style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"  required></textarea>
 </div>
 <!--<div class="form-group md-5">
 <label class="control-label">Location</label>
@@ -414,7 +419,7 @@ Listings
 </div>-->
 <div class="dashboard-wrapper">
 <div class="form-group mb-3">
-<strong>Inluded Utility bill on Rent</strong>
+<strong>Inluded Utility bill on Rent*</strong>
 <div class="tg-selectgroup">
 <span class="tg-radio">
 <input id="tg-sameuser"  type="checkbox" name="maintanence" value="1">
@@ -437,8 +442,8 @@ Listings
 <label for="Generator">Generator</label>
 </span>
 <span class="tg-radio">
-<input id="Parking" type="checkbox" name="lift" value="1">
-<label for="Parking">Lift</label>
+<input id="lift" type="checkbox" name="lift" value="1">
+<label for="lift">Lift</label>
 </span>
 <span class="tg-radio">
 <input id="Internet" type="checkbox" name="internet" value="1">
@@ -451,26 +456,26 @@ Listings
 </div>
 </div>
 <div class="form-group mb-3">
-<label class="control-label">Bedroom</label>
-<input class="form-control input-md" name="bedroom" type="number">
+<label class="control-label">Bedroom*</label>
+<input class="form-control input-md" name="bedroom" type="number" required>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Washroom*</label>
-<input class="form-control input-md" name="washroom" type="number">
+<input class="form-control input-md" name="washroom" type="number" required>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Kitchen*</label>
-<input class="form-control input-md" name="kitchen" type="number">
+<input class="form-control input-md" name="kitchen" type="number" required>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Balcony</label>
-<input class="form-control input-md" name="balcony" type="number">
+<input class="form-control input-md" name="balcony" type="number" required>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Devision</label>
+<label class="control-label">Devision*</label>
 <div class="tg-select form-control">
-<select name="devision">
-<option value="0">Select One</option>
+<select name="devision"  required>
+<option value="0"   required>Select One</option>
 @foreach($devision as $row)
 <option value="{{ $row->id }}">{{ $row->name }}</option>
 @endforeach
@@ -478,30 +483,30 @@ Listings
 </div>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">City</label>
+<label class="control-label">City*</label>
 <div class="tg-select form-control">
-<select name="city">
+<select name="city"  required>
 <option value="0">Select One</option>
 @foreach($city as $row)
-<option value="{{ $row->name }}">{{ $row->name }}</option>
+<option value="{{ $row->id }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Subarea</label>
+<label class="control-label">Subarea*</label>
 <div class="tg-select form-control">
-<select name="subarea">
+<select name="subarea"  required>
 <option value="0">Select One</option>
 @foreach($subarea as $row)
-<option value="{{ $row->name }}">{{ $row->name }}</option>
+<option value="{{ $row->id }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
 </div>
 <div class="form-group md-5">
-<label class="control-label">Sort Address</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress"></textarea>
+<label class="control-label">Sort Address*</label>
+<textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required></textarea>
 </div>
 <label class="control-label">Photos</label>
 <div class="row">    
@@ -518,7 +523,7 @@ Listings
                     <div class="btn btn-default image-preview-input">
                         <span class="glyphicon glyphicon-folder-open"></span>
                         <span class="image-preview-input-title" style="background-color:#00cc67;padding:12px;color:white;">Browse</span>
-                        <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif" multiple/> <!-- rename it -->
+                        <input type="file" id="image" name="image[]" accept="image/png, image/jpeg, image/gif" multiple/> <!-- rename it -->
                     </div>
                 </span>
             </div><!-- /input-group image-preview [TO HERE]-->
@@ -527,7 +532,7 @@ Listings
 </br>   
 <div class="tg-checkbox">
 <input id="tg-agreetermsandrules" type="checkbox" name="rule" value="1">
-<label for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0);">Terms of Use &amp; Posting Rules</a></label>
+<label for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0);"   required>Terms of Use &amp; Posting Rules</a></label>
 </div>
 <button class="btn btn-common" type="submit">Post Ad</button>
 <button class="btn btn-common" type="reset">Reset</button>

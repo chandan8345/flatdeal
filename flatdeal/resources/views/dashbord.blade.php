@@ -1,3 +1,4 @@
+@include('layouts.session')
 <!DOCTYPE html>
 <html lang="en">
 

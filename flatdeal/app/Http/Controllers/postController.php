@@ -38,14 +38,56 @@ class postController extends Controller
         $washroom=$req->input('washroom');
         $kitchen=$req->input('kitchen');
         $balcony=$req->input('balcony');
-        $devision=$req->input('devition');
+        $devision=$req->input('devision');
         $city=$req->input('city');
         $subarea=$req->input('subarea');
         $sortaddress=$req->input('sortaddress');
         $terms=$req->input('rule');
         $rentoncall=$req->input('rentoncall');
         $month=$req->input('month');
-        $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'dateofjoin'=>date('d-m-Y'),'image'=>$mobile.'.'.$extention,'role'=>1,'status'=>1);
-        //DB::table('users')->insert($data);
+        $user_id=Session::get('user_id');
+        $amount=0;
+        if($terms == 1){
+            if($rentoncall == 1){
+                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$amount,'size'=>$size,'area'=>$area,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision_id'=>$devision,'city_id'=>$city,'subarea_id'=>$subarea,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>1);
+               $id = DB::table('post')->insertGetId($data);
+              // echo $id;
+               if($req->file('image') != null){
+               $files=$req->file('image');
+               foreach($files as $file) {
+                $image = $file->getClientOriginalName();
+                $extention = $file->getClientOriginalExtension();
+                $dp='postimages/'.$id.'_'.$image.'.'.$extention;
+                $photo=array('post_id'=>$id,'name'=>$id.'_'.$image,'status'=>1);
+                DB::table('postos')->insert($photo);
+                $sp=$file->getPathName();
+                move_uploaded_file($sp,$dp);
+                 }
+                }
+                Session::flash('msg','Your Ads post successfully');
+                return redirect('/ads-post');
+            }else{
+                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$rent,'size'=>$size,'area'=>$area,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision_id'=>$devision,'city_id'=>$city,'subarea_id'=>$subarea,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>1);
+                $id = DB::table('post')->insertGetId($data);
+                // echo $id;
+                 if($req->file('image') != null){
+                 $files=$req->file('image');
+                 foreach($files as $file) {
+                  $image = $file->getClientOriginalName();
+                  $extention = $file->getClientOriginalExtension();
+                  $dp='postimages/'.$id.'_'.$image.'.'.$extention;
+                  $photo=array('post_id'=>$id,'name'=>$id.'_'.$image,'status'=>1);
+                  DB::table('postos')->insert($photo);
+                  $sp=$file->getPathName();
+                  move_uploaded_file($sp,$dp);
+                   }
+                  }
+                  Session::flash('msg','Your Ads post successfully');
+                  return redirect('/ads-post');
+            }
+        }else{
+            Session::flash('msg','please check our terms & conditions');
+            return redirect('/ads-post');
+        }
     }
 }
