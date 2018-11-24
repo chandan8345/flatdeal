@@ -22,7 +22,7 @@ Home
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="category.html">
+<a class="nav-link" href="/adsview">
 all ads
 </a>
 </li>
@@ -53,15 +53,10 @@ Area
 Sign UP
 </a>
 </li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<li class="nav-item">
+<a class="nav-link" href="/faq">
 FAQ
 </a>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>
-<a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>
-<a class="dropdown-item" href="ads-details.html">Listing Detail</a>
-</div>
 </li>
 </ul>
 <ul class="sign-in">

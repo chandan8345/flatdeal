@@ -2,6 +2,7 @@
 
 //Homepage
 Route::get('/','homeController@index');
+Route::get('/faq','homeController@faq');
 //Error
 Route::get('404', ['as' => '404', 'uses' => 'errorController@notfound']);
 Route::get('500', ['as' => '500', 'uses' => 'errorController@fatal']);
@@ -16,3 +17,5 @@ Route::get('/dashbord','userController@index');
 //ads-post
 Route::get('/ads-post','postController@index');
 Route::post('/addpost','postController@addpost');
+//ads-view
+Route::get('/adsview','adsviewController@index');

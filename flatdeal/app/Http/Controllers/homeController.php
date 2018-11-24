@@ -15,4 +15,7 @@ class homeController extends Controller
         $city=DB::table('city')->get();
         return view('index')->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
+    public function faq(){
+        return view('faq');
+    }
 }
