@@ -161,8 +161,9 @@ Listings
 <p>Bangladesh No.1 Best TO-LET Dealing Website, <br> Create Account & Enjoy the Best Selling Experience with us.</p>
 
 <div class="search-bar">
-<fieldset><!--
-<form class="search-form">
+<fieldset>
+<form method="get" action="/searchads" class="search-form">
+<!--
 <div class="form-group tg-inputwithicon">
 <i class="lni-tag"></i>
 <input type="text" name="customword" class="form-control" placeholder="What are you looking for">
@@ -170,22 +171,22 @@ Listings
 <div class="form-group tg-inputwithicon">
 <i class="lni-map-marker"></i>
 <div class="tg-select">
-<select>
+<select id="devision" onchange="getCity()" name="devision">
 <option value="0">Select Divisions</option>
 @foreach($devision as $row)
-    <option value="{{ $row->id }}">{{ $row->name }}</option>
-    @endforeach
+    <option value="{{ $row->id }}" <?php if($row->name == "Dhaka"){ echo "selected";}  ?> >{{ $row->name }}</option>
+@endforeach
 </select>
 </div>
 </div>
 <div class="form-group tg-inputwithicon">
 <i class="lni-layers"></i>
 <div class="tg-select">
-<select>
+<select id="city" name="city">
 <option value="0">Select City</option>
 @foreach($city as $row)
     <option value="{{ $row->id }}">{{ $row->name }}</option>
-    @endforeach
+@endforeach
 </select>
 </div>
 </div>
@@ -193,7 +194,7 @@ Listings
 <div class="form-group tg-inputwithicon">
     <i class="lni-layers"></i>
     <div class="tg-select">
-    <select>
+    <select id="category" name="category">
     <option value="0">Select Categories</option>
     @foreach($category as $row)
     <option value="{{ $row->id }}">{{ $row->name }}</option>
@@ -202,7 +203,7 @@ Listings
     </div>
     </div>
 
-<button class="btn btn-common" type="button"><i class="lni-search"></i></button>
+<button type="submit" class="btn btn-common" type="button"><i class="lni-search"></i></button>
 </form>
 </fieldset>
 </div>

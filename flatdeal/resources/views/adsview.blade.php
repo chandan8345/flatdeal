@@ -414,86 +414,15 @@ View Details
 </div>
 </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-<div class="featured-box">
-<figure>
-<div class="icon">
-<i class="lni-heart"></i>
-</div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img3.jpg" alt=""></a>
- </figure>
-<div class="feature-content">
-<div class="tg-product">
-<a href="#">Electronics > Accessories</a>
-</div>
-<h4><a href="ads-details.html">Canon Photography Camera</a></h4>
-<span>Last Updated: 4 hours ago</span>
-<ul class="address">
-<li>
-<a href="#"><i class="lni-map-marker"></i>New York</a>
-</li>
-<li>
-<a href="#"><i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
-</li>
-<li>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</li>
-<li>
-<a href="#"><i class="lni-tag"></i> Electronics</a>
-</li>
-</ul>
-<div class="btn-list">
-<a class="btn-price" href="#">$ 25</a>
-<a class="btn btn-common" href="ads-details.html">
-<i class="lni-list"></i>
-View Details
-</a>
+
 </div>
 </div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-<div class="featured-box">
-<figure>
-<div class="icon">
-<i class="lni-heart"></i>
-</div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img4.jpg" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="tg-product">
-<a href="#">Photography > Accessories</a>
-</div>
-<h4><a href="ads-details.html">Photography Services In USA</a></h4>
-<span>Last Updated: 4 hours ago</span>
-<ul class="address">
-<li>
-<a href="#"><i class="lni-map-marker"></i>New York</a>
-</li>
-<li>
-<a href="#"><i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
-</li>
-<li>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</li>
-<li>
-<a href="#"><i class="lni-tag"></i>Photography</a>
-</li>
-</ul>
-<div class="btn-list">
-<a class="btn-price" href="#">$ 25</a>
-<a class="btn btn-common" href="ads-details.html">
-<i class="lni-list"></i>
-View Details
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<!--listview -->
 <div id="list-view" class="tab-pane fade active show">
 <div class="row">
+<table id="table" class="table" style="width:100%">
+    <tbody>
+         <tr>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="featured-box">
 <figure>
@@ -532,120 +461,9 @@ View Details
 </div>
 </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="featured-box">
-<figure>
-<div class="icon">
-<i class="lni-heart"></i>
-</div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img2.jpg" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="tg-product">
-<a href="#">Laptop > Accessories</a>
-</div>
-<h4><a href="ads-details.html">Brand New Macbook Pro</a></h4>
-<span>Last Updated: 4 hours ago</span>
-<ul class="address">
-<li>
-<a href="#"><i class="lni-map-marker"></i>New York</a>
-</li>
-<li>
-<a href="#"><i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
-</li>
-<li>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</li>
-<li>
-<a href="#"><i class="lni-tag"></i> Laptop</a>
-</li>
-</ul>
-<div class="btn-list">
-<a class="btn-price" href="#">$ 25</a>
-<a class="btn btn-common" href="ads-details.html">
-<i class="lni-list"></i>
-View Details
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="featured-box">
-<figure>
-<div class="icon">
-<i class="lni-heart"></i>
-</div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img3.jpg" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="tg-product">
-<a href="#">Electronics > Accessories</a>
- </div>
-<h4><a href="ads-details.html">Canon Photography Camera</a></h4>
-<span>Last Updated: 4 hours ago</span>
-<ul class="address">
-<li>
-<a href="#"><i class="lni-map-marker"></i>New York</a>
-</li>
-<li>
-<a href="#"><i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
-</li>
-<li>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</li>
-<li>
-<a href="#"><i class="lni-tag"></i> Electronics</a>
-</li>
-</ul>
-<div class="btn-list">
-<a class="btn-price" href="#">$ 25</a>
-<a class="btn btn-common" href="ads-details.html">
-<i class="lni-list"></i>
-View Details
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="featured-box">
-<figure>
-<div class="icon">
-<i class="lni-heart"></i>
-</div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img4.jpg" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="tg-product">
-<a href="#">Photography > Accessories</a>
-</div>
-<h4><a href="ads-details.html">Photography Services In USA</a></h4>
-<span>Last Updated: 4 hours ago</span>
-<ul class="address">
-<li>
-<a href="#"><i class="lni-map-marker"></i>New York</a>
-</li>
-<li>
-<a href="#"><i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
-</li>
-<li>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</li>
-<li>
-<a href="#"><i class="lni-tag"></i>Photography</a>
-</li>
-</ul>
-<div class="btn-list">
-<a class="btn-price" href="#">$ 25</a>
-<a class="btn btn-common" href="ads-details.html">
-<i class="lni-list"></i>
-View Details
-</a>
-</div>
-</div>
-</div>
-</div>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
