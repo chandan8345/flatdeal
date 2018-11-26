@@ -42,12 +42,12 @@
 </div>
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
-<li class="nav-item active">
+<li class="nav-item">
 <a class="nav-link" href="/">
 Home
 </a>
 </li>
-<li class="nav-item">
+<li class="nav-item  active">
 <a class="nav-link" href="/adsview">
 all ads
 </a>
@@ -190,22 +190,22 @@ Listings
 <div class="form-group tg-inputwithicon">
 <i class="lni-map-marker"></i>
 <div class="tg-select">
-<select>
+<select id="devision" onchange="getCity()" name="devision">
 <option value="0">Select Divisions</option>
 @foreach($devision as $row)
-    <option value="{{ $row->id }}">{{ $row->name }}</option>
-    @endforeach
+<option value="{{ $row->id }}"  <?php if(isset($d)){if($row->id == $d){ echo "selected";}}else if($row->name == "Dhaka"){echo "selected";}  ?>>{{ $row->name }}</option>
+@endforeach
 </select>
 </div>
 </div>
 <div class="form-group tg-inputwithicon">
 <i class="lni-layers"></i>
 <div class="tg-select">
-<select>
+<select id="city" name="city">
 <option value="0">Select City</option>
 @foreach($city as $row)
-    <option value="{{ $row->id }}">{{ $row->name }}</option>
-    @endforeach
+ <option value="{{ $row->id }}"  <?php if(isset($c)){if($row->id == $c){ echo "selected";}}else if($row->name == "Dhaka"){echo "selected";} ?>>{{ $row->name }}</option>
+@endforeach
 </select>
 </div>
 </div>
@@ -216,7 +216,7 @@ Listings
     <select>
     <option value="0">Select Categories</option>
     @foreach($category as $row)
-    <option value="{{ $row->id }}">{{ $row->name }}</option>
+    <option value="{{ $row->id }}"  <?php if(isset($cat)){if($row->id == $cat){ echo "selected";}} ?>>{{ $row->name }}</option>
     @endforeach
     </select>
     </div>
@@ -249,51 +249,30 @@ Listings
 </div>
 
 <div class="widget categories">
-<h4 class="widget-title">All Categories</h4>
-<ul class="categories-list">
-<li>
-<a href="#">
-<i class="lni-dinner"></i>
-Hotel & Travels <span class="category-counter">(5)</span>
-</a>
-</li>
-<li>
-<a href="#">
-<i class="lni-control-panel"></i>
-Services <span class="category-counter">(8)</span>
-</a>
-</li>
-<li>
-<a href="#">
-<i class="lni-github"></i>
-Pets <span class="category-counter">(2)</span>
-</a>
-</li>
-<li>
-<a href="#">
-<i class="lni-coffee-cup"></i>
-Restaurants <span class="category-counter">(3)</span>
-</a>
-</li>
-<li>
-<a href="#">
-<i class="lni-home"></i>
-Real Estate <span class="category-counter">(4)</span>
-</a>
-</li>
-<li>
-<a href="#">
-<i class="lni-pencil"></i>
-Jobs <span class="category-counter">(5)</span>
-</a>
-</li>
-<li>
-<a href="#">
-<i class="lni-display"></i>
-Electronics <span class="category-counter">(9)</span>
-</a>
-</li>
-</ul>
+<h4 class="widget-title">Dist Area</h4>
+<div class="form-group mb-4 tg-inputwithicon">
+<div class="tg-select form-control">
+<select name="devision"  required>
+<option value="0"   required>Select One</option>
+@foreach($devision as $row)
+<option value="{{ $row->id }}">{{ $row->name }}</option>
+@endforeach
+</select>
+</div>
+</div>
+</div>
+<div class="widget categories">
+<h4 class="widget-title">SubArea</h4>
+<div class="form-group mb-3 tg-inputwithicon">
+<div class="tg-select form-control">
+<select name="devision"  required>
+<option value="0"   required>Select One</option>
+@foreach($devision as $row)
+<option value="{{ $row->id }}">{{ $row->name }}</option>
+@endforeach
+</select>
+</div>
+</div>
 </div>
 <div class="widget">
 <h4 class="widget-title">Advertisement</h4>
@@ -605,6 +584,38 @@ View Details
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
+<script type="text/javascript">
+function getCity(){
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getcity") }}',
+      data:{
+            id:$("#devision").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          console.log(response);
+          $("#city").html(response);
+     }
+});
+}
+</script>
+<script type="text/javascript">
+function getCity(){
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getcity") }}',
+      data:{
+            id:$("#devision").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          console.log(response);
+          $("#city").html(response);
+     }
+});
+}
+</script>
 </body>
 
 <!-- Mirrored from preview.uideck.com/items/classially/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:22:34 GMT -->

@@ -21,7 +21,7 @@ class homeController extends Controller
     public function getcity(Request $req){
         $id=$req->id;
         if($id !=0){
-        echo '<option value="0">Select City</option>';
+        '<option value="0">Select City</option>';
         $city=DB::table('city')->where('devisionid',$id)->get();
         foreach($city as $row){
            echo '<option value="'.$row->id.'">'.$row->name.'</option>';
@@ -43,9 +43,13 @@ class homeController extends Controller
        }
     }
     public function searchads(Request $req){
-        $devision=$req->input('devision');
-        $city=$req->input('city');
-        $category=$req->input('category');
-        echo $category.'_'.$devision.'_'.$city;
+        $d=$req->input('devision');
+        $c=$req->input('city');
+        $cat=$req->input('category');
+        //echo $category.'_'.$devision.'_'.$city;
+        $devision=DB::table('devision')->get();
+        $category=DB::table('category')->get();
+        $city=DB::table('city')->get();
+        return view('adsview', ['d' => $d,'c' => $c,'cat' => $cat])->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
 }
