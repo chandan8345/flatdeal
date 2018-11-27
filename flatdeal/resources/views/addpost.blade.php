@@ -81,7 +81,7 @@ Home
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="category.html">
+<a class="nav-link" href="/ads-post">
 all ads
 </a>
 </li>

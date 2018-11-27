@@ -177,7 +177,6 @@ Listings
 
 </nav>
 
-
 <div id="hero-area">
 <div class="overlay"></div>
 <div class="container">
@@ -186,7 +185,8 @@ Listings
 <div class="contents-ctg">
 <div class="search-bar">
 <fieldset>
-<form class="search-form">
+<form method="get" id="form" class="">
+<input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
 <div class="form-group tg-inputwithicon">
 <i class="lni-map-marker"></i>
 <div class="tg-select">
@@ -201,7 +201,7 @@ Listings
 <div class="form-group tg-inputwithicon">
 <i class="lni-layers"></i>
 <div class="tg-select">
-<select id="city" name="city">
+<select id="city" name="city"  onchange="getArea()">
 <option value="0">Select City</option>
 @foreach($city as $row)
  <option value="{{ $row->id }}"  <?php if(isset($c)){if($row->id == $c){ echo "selected";}}else if($row->name == "Dhaka"){echo "selected";} ?>>{{ $row->name }}</option>
@@ -223,7 +223,6 @@ Listings
     </div>
 
 <button class="btn btn-common" type="button"><i class="lni-search"></i></button>
-</form>
 </fieldset>
 </div>
 </div>
@@ -242,19 +241,17 @@ Listings
 <aside>
 
 <div class="widget widget_search">
-<form role="search" id="search-form">
 <input type="search" class="form-control" autocomplete="off" name="s" placeholder="Search..." id="search-input" value="">
 <button type="submit" id="search-submit" class="search-btn"><i class="lni-search"></i></button>
-</form>
 </div>
 
 <div class="widget categories">
-<h4 class="widget-title">Dist Area</h4>
-<div class="form-group mb-4 tg-inputwithicon">
+<h4 class="widget-title" style="font-size:16px;border-bottom: 0px solid #f1f1f1;">Dist Area</h4>
+<div class="form-group mb-4 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
 <div class="tg-select form-control">
-<select name="devision"  required>
-<option value="0"   required>Select One</option>
-@foreach($devision as $row)
+<select id="area" name="area" onchange="getSubarea()">
+<option value="0">Select Area</option>
+@foreach($area as $row)
 <option value="{{ $row->id }}">{{ $row->name }}</option>
 @endforeach
 </select>
@@ -262,24 +259,40 @@ Listings
 </div>
 </div>
 <div class="widget categories">
-<h4 class="widget-title">SubArea</h4>
-<div class="form-group mb-3 tg-inputwithicon">
+<h5 class="widget-title" style="font-size:16px;border-bottom: 0px solid #f1f1f1;">SubArea</h5>
+<div class="form-group mb-5 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
 <div class="tg-select form-control">
-<select name="devision"  required>
-<option value="0"   required>Select One</option>
-@foreach($devision as $row)
+<select id="subarea" name="subarea" >
+<option value="0">Select Subarea</option>
+@foreach($subarea as $row)
 <option value="{{ $row->id }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
 </div>
 </div>
+<div class="widget categories">
+<h4 class="widget-title" style="font-size:16px;border-bottom: 0px solid #f1f1f1;">Area Type</h4>
+<div class="form-group mb-4 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
+<div class="tg-select form-control">
+<select name="areatype">
+<option value="0" >Select One</option>
+<option value="Residential" >Residential</option>
+<option value="Commercial" >Commercial</option>
+<option value="DOHS" >DOHS</option>
+<option value="Local" >Local</option>
+</select>
+</div>
+</div>
+</div>
+</form>
+<!--
 <div class="widget">
 <h4 class="widget-title">Advertisement</h4>
 <div class="add-box">
 <img class="img-fluid" src="assets/img/img1.jpg" alt="">
 </div>
-</div>
+</div>-->
 </aside>
 </div>
 <div class="col-lg-9 col-md-12 col-xs-12 page-content">
@@ -612,6 +625,66 @@ function getCity(){
       success: function(response){
           console.log(response);
           $("#city").html(response);
+     }
+});
+}
+</script>
+<script type="text/javascript">
+function getArea(){
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getarea") }}',
+      data:{
+            id:$("#city").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          console.log(response);
+          $("#area").html(response);
+     }
+});
+}
+</script>
+<script type="text/javascript">
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getarea") }}',
+      data:{
+            id:$("#city").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          console.log(response);
+          $("#area").html(response);
+     }
+});
+</script>
+<script type="text/javascript">
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getsubarea") }}',
+      data:{
+            id:$("#area").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          console.log(response);
+          $("#subarea").html(response);
+     }
+});
+</script>
+<script type="text/javascript">
+function getSubarea(){
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getsubarea") }}',
+      data:{
+            id:$("#area").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          console.log(response);
+          $("#subarea").html(response);
      }
 });
 }

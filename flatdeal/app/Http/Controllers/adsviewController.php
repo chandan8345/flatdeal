@@ -13,6 +13,8 @@ class adsviewController extends Controller
         $devision=DB::table('devision')->get();
         $category=DB::table('category')->get();
         $city=DB::table('city')->get();
-        return view('adsview')->with('devision',$devision)->with('category',$category)->with('city',$city);
+        $area=DB::table('area')->get();
+        $subarea=DB::table('subarea')->get();
+        return view('adsview')->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('subarea',$subarea);
     }
 }
