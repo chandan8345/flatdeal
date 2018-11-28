@@ -15,6 +15,10 @@ class adsviewController extends Controller
         $city=DB::table('city')->get();
         $area=DB::table('area')->get();
         $subarea=DB::table('subarea')->get();
-        return view('adsview')->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('subarea',$subarea);
+        $ads=DB::table('post')->where('status',1)->get();
+        return view('adsview')->with('ads',$ads)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('subarea',$subarea);
+    }
+    public function getads(Request $req){
+        
     }
 }

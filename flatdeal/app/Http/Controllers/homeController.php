@@ -64,6 +64,16 @@ class homeController extends Controller
         $city=DB::table('city')->get();
         $area=DB::table('area')->get();
         $subarea=DB::table('subarea')->get();
-        return view('adsview', ['d' => $d,'c' => $c,'cat' => $cat])->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('subarea',$subarea);
+        $sql="select post.id,post.title,post.month,post.rent,postos.name as image,post.postingdate,subarea.name as subarea,users.name as username,users.mobile as usermobile from postos,post,subarea,users where post.id > 0 and post.id=postos.post_id and post.subarea_id=subarea.id and post.user_id=users.id and post.status=1";
+
+      if(!empty($d)){
+          $sql =$sql." and post.devision_id='$d'";
+      }if(!empty($c)){
+          $sql =$sql." and post.city_id='$c'";
+      }if(!empty($cat)){
+          $sql =$sql." and post.category_id='$cat'";
+      }
+       $posts=DB::select($sql);
+    return view('adsview', ['d' => $d,'c' => $c,'cat' => $cat])->with('posts',$posts)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('subarea',$subarea);
     }
 }

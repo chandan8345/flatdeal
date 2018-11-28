@@ -23,3 +23,4 @@ Route::get('/ads-post','postController@index');
 Route::post('/addpost','postController@addpost');
 //ads-view
 Route::get('/adsview','adsviewController@index');
+Route::post('/getads','adsviewController@getads');

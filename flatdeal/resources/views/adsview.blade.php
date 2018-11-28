@@ -185,8 +185,9 @@ Listings
 <div class="contents-ctg">
 <div class="search-bar">
 <fieldset>
-<form method="get" id="form" class="">
+<form method="post" action="/getads" id="form" class="">
 <input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
+<input type ="hidden" id="citydata" name="" value ="<?php if(isset($c)){echo $c;} ?>">
 <div class="form-group tg-inputwithicon">
 <i class="lni-map-marker"></i>
 <div class="tg-select">
@@ -201,7 +202,7 @@ Listings
 <div class="form-group tg-inputwithicon">
 <i class="lni-layers"></i>
 <div class="tg-select">
-<select id="city" name="city"  onchange="getArea()">
+<select id="city" name="city" onchange="getArea()">
 <option value="0">Select City</option>
 @foreach($city as $row)
  <option value="{{ $row->id }}"  <?php if(isset($c)){if($row->id == $c){ echo "selected";}}else if($row->name == "Dhaka"){echo "selected";} ?>>{{ $row->name }}</option>
@@ -213,7 +214,7 @@ Listings
 <div class="form-group tg-inputwithicon">
     <i class="lni-layers"></i>
     <div class="tg-select">
-    <select>
+    <select name="category"> 
     <option value="0">Select Categories</option>
     @foreach($category as $row)
     <option value="{{ $row->id }}"  <?php if(isset($cat)){if($row->id == $cat){ echo "selected";}} ?>>{{ $row->name }}</option>
@@ -222,7 +223,7 @@ Listings
     </div>
     </div>
 
-<button class="btn btn-common" type="button"><i class="lni-search"></i></button>
+<button class="btn btn-common" type="submit"><i class="lni-search"></i></button>
 </fieldset>
 </div>
 </div>
@@ -239,12 +240,12 @@ Listings
 <div class="row">
 <div class="col-lg-3 col-md-12 col-xs-12 page-sidebar">
 <aside>
-
+<!--
 <div class="widget widget_search">
 <input type="search" class="form-control" autocomplete="off" name="s" placeholder="Search..." id="search-input" value="">
 <button type="submit" id="search-submit" class="search-btn"><i class="lni-search"></i></button>
 </div>
-
+-->
 <div class="widget categories">
 <h4 class="widget-title" style="font-size:16px;border-bottom: 0px solid #f1f1f1;">Dist Area</h4>
 <div class="form-group mb-4 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
@@ -276,7 +277,7 @@ Listings
 <div class="form-group mb-4 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
 <div class="tg-select form-control">
 <select name="areatype">
-<option value="0" >Select One</option>
+<option value="0">Select One</option>
 <option value="Residential" >Residential</option>
 <option value="Commercial" >Commercial</option>
 <option value="DOHS" >DOHS</option>
@@ -301,7 +302,7 @@ Listings
 <div class="short-name">
 <span>Showing (1 - 12 products of 7371 products)</span>
 </div>
-<div class="Show-item">
+<!--<div class="Show-item">
 <span>Show Items</span>
 <form class="woocommerce-ordering" method="post">
 <label>
@@ -314,7 +315,13 @@ Listings
 </select>
 </label>
 </form>
+</div>-->
+<div class="Show-item">
+<div class="widget widget_search">
+<input type="search" class="form-control" autocomplete="off" name="s" placeholder="Search..." id="search-input" value="">
 </div>
+</div>
+<!--
 <ul class="nav nav-tabs">
 <li class="nav-item">
 <a class="nav-link" data-toggle="tab" href="#grid-view"><i class="lni-grid"></i></a>
@@ -322,7 +329,7 @@ Listings
 <li class="nav-item">
 <a class="nav-link active" data-toggle="tab" href="#list-view"><i class="lni-list"></i></a>
 </li>
-</ul>
+</ul>-->
 </div>
 
 
@@ -414,6 +421,7 @@ View Details
 <div class="row">
 <table id="table" class="table" style="width:100%">
     <tbody>
+@foreach($posts as $row)
          <tr>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="featured-box">
@@ -421,30 +429,31 @@ View Details
 <div class="icon">
 <i class="lni-heart"></i>
 </div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img1.jpg" alt=""></a>
+
+<a href=""><img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->image }}" alt=""></a>
  </figure>
 <div class="feature-content">
+<h4><a href="ads-details.html">{{ $row->title }}</a></h4>
 <div class="tg-product">
-<a href="#">Mobiles > Accessories</a>
+<!--<a href="#">Mobiles > Accessories</a>-->
 </div>
-<h4><a href="ads-details.html">Apple iPhone X</a></h4>
 <span>Last Updated: 4 hours ago</span>
 <ul class="address">
 <li>
-<a href="#"><i class="lni-map-marker"></i>New York</a>
+<a href="#"><i class="lni-map-marker"></i>{{ $row->subarea }}</a>
 </li>
 <li>
-<a href="#"><i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
+<a href="#"><i class="lni-alarm-clock"></i>{{ $row->month }}</a>
 </li>
 <li>
-<a href="#"><i class="lni-user"></i> John Smith</a>
+<a href="#"><i class="lni-user"></i> {{ $row->username }}</a>
 </li>
 <li>
-<a href="#"><i class="lni-tag"></i> Mobile</a>
+<a href="#"><i class="lni-mobile"></i> {{ $row->usermobile }}</a>
 </li>
 </ul>
 <div class="btn-list">
-<a class="btn-price" href="#">$ 25</a>
+<a class="btn-price" href="#">৳ {{ $row->rent}}</a>
 <a class="btn btn-common" href="ads-details.html">
 <i class="lni-list"></i>
 View Details
@@ -454,6 +463,7 @@ View Details
 </div>
 </div>
 </tr>
+@endforeach
 </tbody>
 </table>
 </div>
@@ -598,7 +608,9 @@ View Details
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
 <script type="text/javascript">
-function getCity(){
+  var citydata=$("#citydata").val();
+  console.log(citydata);
+  if(citydata == 0){
     $.ajax({
       type: "GET",
       url: '{{ URL::to("/getcity") }}',
@@ -623,7 +635,7 @@ function getCity(){
             _token:$("#token").val()
            },
       success: function(response){
-          console.log(response);
+          //console.log(response);
           $("#city").html(response);
      }
 });
@@ -639,7 +651,7 @@ function getArea(){
             _token:$("#token").val()
            },
       success: function(response){
-          console.log(response);
+         // console.log(response);
           $("#area").html(response);
      }
 });
@@ -654,7 +666,7 @@ function getArea(){
             _token:$("#token").val()
            },
       success: function(response){
-          console.log(response);
+         // console.log(response);
           $("#area").html(response);
      }
 });
@@ -668,7 +680,7 @@ function getArea(){
             _token:$("#token").val()
            },
       success: function(response){
-          console.log(response);
+         // console.log(response);
           $("#subarea").html(response);
      }
 });
@@ -683,12 +695,13 @@ function getSubarea(){
             _token:$("#token").val()
            },
       success: function(response){
-          console.log(response);
+         // console.log(response);
           $("#subarea").html(response);
      }
 });
 }
 </script>
+
 </body>
 
 <!-- Mirrored from preview.uideck.com/items/classially/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:22:34 GMT -->
