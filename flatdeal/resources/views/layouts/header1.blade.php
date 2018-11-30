@@ -31,22 +31,11 @@ all ads
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Categories
 </a>
-<div class="dropdown-menu">
-    @foreach($category as $row)
-    <a class="dropdown-item" href="{{ $row->name }}">{{ $row->name }}</a>
-    @endforeach
-</div>
 </li>
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Area
 </a>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="blog.html">Residential</a>
-<a class="dropdown-item" href="blog-left-sidebar.html">Commercial</a>
-<a class="dropdown-item" href="blog-grid-full-width.html">DOHS</a>
-<a class="dropdown-item" href="single-post.html">Local</a>
-</div>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="/signup">

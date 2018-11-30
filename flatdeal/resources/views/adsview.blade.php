@@ -185,16 +185,19 @@ Listings
 <div class="contents-ctg">
 <div class="search-bar">
 <fieldset>
-<form method="post" action="/getads" id="form" class="">
+<form method="post" action="/getads" id="form">
 <input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
 <input type ="hidden" id="citydata" name="" value ="<?php if(isset($c)){echo $c;} ?>">
+<input type ="hidden" id="areadata" name="" value ="<?php if(isset($a)){echo $a;} ?>">
+<input type ="hidden" id="subareadata" name="" value ="<?php if(isset($s)){echo $s;} ?>">
+<input type ="hidden" id="typedata" name="" value ="<?php if(isset($t)){echo $t;} ?>">
 <div class="form-group tg-inputwithicon">
 <i class="lni-map-marker"></i>
 <div class="tg-select">
 <select id="devision" onchange="getCity()" name="devision">
 <option value="0">Select Divisions</option>
 @foreach($devision as $row)
-<option value="{{ $row->id }}"  <?php if(isset($d)){if($row->id == $d){ echo "selected";}}else if($row->name == "Dhaka"){echo "selected";}  ?>>{{ $row->name }}</option>
+<option value="{{ $row->id }}"  <?php if(isset($d)){if($row->id == $d){ echo "selected";}}else if($row->name == "Dhaka"){echo "selected";} ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -205,7 +208,8 @@ Listings
 <select id="city" name="city" onchange="getArea()">
 <option value="0">Select City</option>
 @foreach($city as $row)
- <option value="{{ $row->id }}"  <?php if(isset($c)){if($row->id == $c){ echo "selected";}}else if($row->name == "Dhaka"){echo "selected";} ?>>{{ $row->name }}</option>
+ <option value="{{ $row->id }}" <?php if(isset($c)){if($row->id == $c){echo "selected";} }else if($row->name == "Dhaka"){ echo "selected";
+ } ?> >{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -223,7 +227,7 @@ Listings
     </div>
     </div>
 
-<button class="btn btn-common" type="submit"><i class="lni-search"></i></button>
+<button class="btn btn-common" onclick="load()" type="submit"><i class="lni-search"></i></button>
 </fieldset>
 </div>
 </div>
@@ -248,25 +252,12 @@ Listings
 -->
 <div class="widget categories">
 <h4 class="widget-title" style="font-size:16px;border-bottom: 0px solid #f1f1f1;">Dist Area</h4>
-<div class="form-group mb-4 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
+<div class="form-group mb-3 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
 <div class="tg-select form-control">
-<select id="area" name="area" onchange="getSubarea()">
+<select id="area" name="area">
 <option value="0">Select Area</option>
 @foreach($area as $row)
-<option value="{{ $row->id }}">{{ $row->name }}</option>
-@endforeach
-</select>
-</div>
-</div>
-</div>
-<div class="widget categories">
-<h5 class="widget-title" style="font-size:16px;border-bottom: 0px solid #f1f1f1;">SubArea</h5>
-<div class="form-group mb-5 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
-<div class="tg-select form-control">
-<select id="subarea" name="subarea" >
-<option value="0">Select Subarea</option>
-@foreach($subarea as $row)
-<option value="{{ $row->id }}">{{ $row->name }}</option>
+<option value="{{ $row->id }}" <?php if(isset($a)){if($row->id == $a){ echo "selected";}} ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -274,14 +265,13 @@ Listings
 </div>
 <div class="widget categories">
 <h4 class="widget-title" style="font-size:16px;border-bottom: 0px solid #f1f1f1;">Area Type</h4>
-<div class="form-group mb-4 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
+<div class="form-group mb-3 tg-inputwithicon" style="margin-left:24px;margin-right: 5px;">
 <div class="tg-select form-control">
 <select name="areatype">
 <option value="0">Select One</option>
-<option value="Residential" >Residential</option>
-<option value="Commercial" >Commercial</option>
-<option value="DOHS" >DOHS</option>
-<option value="Local" >Local</option>
+@foreach($areatype as $row)
+<option value="{{ $row->id }}" <?php if(isset($t)){if($row->name == $t){ echo "selected";}} ?>>{{ $row->name }}</option>
+@endforeach
 </select>
 </div>
 </div>
@@ -440,7 +430,7 @@ View Details
 <span>Last Updated: 4 hours ago</span>
 <ul class="address">
 <li>
-<a href="#"><i class="lni-map-marker"></i>{{ $row->subarea }}</a>
+<a href="#"><i class="lni-map-marker"></i>{{ $row->area }}</a>
 </li>
 <li>
 <a href="#"><i class="lni-alarm-clock"></i>{{ $row->month }}</a>
@@ -609,7 +599,7 @@ View Details
 <script src="assets/js/summernote.js"></script>
 <script type="text/javascript">
   var citydata=$("#citydata").val();
-  console.log(citydata);
+  //console.log(citydata);
   if(citydata == 0){
     $.ajax({
       type: "GET",
@@ -619,10 +609,23 @@ View Details
             _token:$("#token").val()
            },
       success: function(response){
-          console.log(response);
+          //console.log(response);
           $("#city").html(response);
-     }
+      }
 });
+}else if(citydata > 0){
+     $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getcity") }}',
+      data:{
+            id:$("#devision").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          $("#city").html(response);
+          $("#city").val(citydata).change();
+      }
+});     
 }
 </script>
 <script type="text/javascript">
@@ -636,7 +639,7 @@ function getCity(){
            },
       success: function(response){
           //console.log(response);
-          $("#city").html(response);
+       $("#city").html(response);
      }
 });
 }
@@ -651,13 +654,15 @@ function getArea(){
             _token:$("#token").val()
            },
       success: function(response){
-         // console.log(response);
-          $("#area").html(response);
+       console.log(response);
+       $("#area").html(response);
      }
 });
 }
 </script>
 <script type="text/javascript">
+var area=$("#areadata").val();
+  if(area == 0){
     $.ajax({
       type: "GET",
       url: '{{ URL::to("/getarea") }}',
@@ -667,41 +672,25 @@ function getArea(){
            },
       success: function(response){
          // console.log(response);
+          $("#area").html(response);          
+         // $("#area option[value=area]").attr('selected', 'selected');
+     }
+});
+}else if(area > 0){
+     $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getarea") }}',
+      data:{
+            id:$("#city").val(),
+            _token:$("#token").val()
+           },
+      success: function($response){
           $("#area").html(response);
-     }
-});
-</script>
-<script type="text/javascript">
-    $.ajax({
-      type: "GET",
-      url: '{{ URL::to("/getsubarea") }}',
-      data:{
-            id:$("#area").val(),
-            _token:$("#token").val()
-           },
-      success: function(response){
-         // console.log(response);
-          $("#subarea").html(response);
-     }
-});
-</script>
-<script type="text/javascript">
-function getSubarea(){
-    $.ajax({
-      type: "GET",
-      url: '{{ URL::to("/getsubarea") }}',
-      data:{
-            id:$("#area").val(),
-            _token:$("#token").val()
-           },
-      success: function(response){
-         // console.log(response);
-          $("#subarea").html(response);
-     }
+    }
+    
 });
 }
 </script>
-
 </body>
 
 <!-- Mirrored from preview.uideck.com/items/classially/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:22:34 GMT -->

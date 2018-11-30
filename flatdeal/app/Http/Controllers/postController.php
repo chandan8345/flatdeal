@@ -13,15 +13,15 @@ class postController extends Controller
         $devision=DB::table('devision')->get();
         $category=DB::table('category')->get();
         $city=DB::table('city')->get();
-        $subarea=DB::table('subarea')->get();
-        return view('addpost')->with('devision',$devision)->with('category',$category)->with('city',$city)->with('subarea',$subarea);
+        $area=DB::table('area')->get();
+        return view('addpost')->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area);
     }
     public function addpost(Request $req){
         $title=$req->input('title');
         $category=$req->input('categories');
         $rent=$req->input('rent');
         $size=$req->input('size');
-        $area=$req->input('area');
+        $areatype=$req->input('area');
         $toletfor=$req->input('toletfor');
         $condition=$req->input('condition');
         $facing=$req->input('facing');
@@ -40,7 +40,7 @@ class postController extends Controller
         $balcony=$req->input('balcony');
         $devision=$req->input('devision');
         $city=$req->input('city');
-        $subarea=$req->input('subarea');
+        $area=$req->input('area');
         $sortaddress=$req->input('sortaddress');
         $terms=$req->input('rule');
         $rentoncall=$req->input('rentoncall');
@@ -49,7 +49,7 @@ class postController extends Controller
         $amount=0;
         if($terms == 1){
             if($rentoncall == 1){
-                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$amount,'size'=>$size,'area'=>$area,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision_id'=>$devision,'city_id'=>$city,'subarea_id'=>$subarea,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>1);
+                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$amount,'size'=>$size,'area'=>$areatype,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision_id'=>$devision,'city_id'=>$city,'area_id'=>$area,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>1);
                $id = DB::table('post')->insertGetId($data);
               // echo $id;
                if($req->file('image') != null){
@@ -57,7 +57,7 @@ class postController extends Controller
                foreach($files as $file) {
                 $image = $file->getClientOriginalName();
                 $extention = $file->getClientOriginalExtension();
-                $dp='postimages/'.$id.'_'.$image.'.'.$extention;
+                $dp='postimages/'.$id.'_'.$image;
                 $photo=array('post_id'=>$id,'name'=>$id.'_'.$image,'status'=>1);
                 DB::table('postos')->insert($photo);
                 $sp=$file->getPathName();
@@ -67,7 +67,7 @@ class postController extends Controller
                 Session::flash('msg','Your Ads post successfully');
                 return redirect('/ads-post');
             }else{
-                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$rent,'size'=>$size,'area'=>$area,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision_id'=>$devision,'city_id'=>$city,'subarea_id'=>$subarea,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>1);
+                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$rent,'size'=>$size,'area'=>$area,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision_id'=>$devision,'city_id'=>$city,'area_id'=>$area,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>1);
                 $id = DB::table('post')->insertGetId($data);
                 // echo $id;
                  if($req->file('image') != null){
@@ -75,7 +75,7 @@ class postController extends Controller
                  foreach($files as $file) {
                   $image = $file->getClientOriginalName();
                   $extention = $file->getClientOriginalExtension();
-                  $dp='postimages/'.$id.'_'.$image.'.'.$extention;
+                  $dp='postimages/'.$id.'_'.$image;
                   $photo=array('post_id'=>$id,'name'=>$id.'_'.$image,'status'=>1);
                   DB::table('postos')->insert($photo);
                   $sp=$file->getPathName();

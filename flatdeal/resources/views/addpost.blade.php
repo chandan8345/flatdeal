@@ -81,7 +81,7 @@ Home
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/ads-post">
+<a class="nav-link" href="/adsview">
 all ads
 </a>
 </li>
@@ -90,22 +90,11 @@ all ads
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Categories
 </a>
-<div class="dropdown-menu">
-    @foreach($category as $row)
-    <a class="dropdown-item" href="{{ $row->name }}">{{ $row->name }}</a>
-    @endforeach
-</div>
 </li>
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Area
 </a>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="blog.html">Residential</a>
-<a class="dropdown-item" href="blog-left-sidebar.html">Commercial</a>
-<a class="dropdown-item" href="blog-grid-full-width.html">DOHS</a>
-<a class="dropdown-item" href="single-post.html">Local</a>
-</div>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="/signup">
@@ -335,7 +324,7 @@ Listings
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Rent*</label>
-<input class="form-control input-md" name="rent" placeholder="Ad your Price" type="text" required>
+<input class="form-control input-md" name="rent" placeholder="Ad your Price" type="text">
 <div class="tg-checkbox">
 <input id="tg-priceoncall" type="checkbox" name="rentoncall" value="1">
 <label for="tg-priceoncall">Call for Rent</label>
@@ -352,7 +341,7 @@ Listings
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area Type*</label>
 <div class="tg-select form-control">
-<select name="area"  required>
+<select name="areatype"  required>
 <option value="0">Select One</option>
  <option value="Residential">Residential</option>
  <option value="Commercial">Commercial</option>
@@ -368,7 +357,7 @@ Listings
 <option value="0">Select One</option>
  <option value="Family">Family</option>
  <option value="Male">Male</option>
- <option value="FFemale">Female</option>
+ <option value="Female">Female</option>
  <option value="Ask">Ask</option>
 </select>
 </div>
@@ -456,7 +445,7 @@ Listings
 </div>
 </div>
 <div class="form-group mb-3">
-<label class="control-label">Bedroom*</label>
+<label class="control-label">Room*</label>
 <input class="form-control input-md" name="bedroom" type="number" required>
 </div>
 <div class="form-group mb-3">
@@ -494,11 +483,11 @@ Listings
 </div>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Subarea*</label>
+<label class="control-label">Area*</label>
 <div class="tg-select form-control">
-<select name="subarea"  required>
+<select name="area"  required>
 <option value="0">Select One</option>
-@foreach($subarea as $row)
+@foreach($area as $row)
 <option value="{{ $row->id }}">{{ $row->name }}</option>
 @endforeach
 </select>
