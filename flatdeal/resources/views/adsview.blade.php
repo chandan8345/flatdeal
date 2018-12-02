@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from preview.uideck.com/items/classially/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:22:34 GMT -->
 <head>
 
 <meta charset="utf-8">
@@ -23,7 +21,11 @@
 
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
-<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">   
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -57,22 +59,11 @@ all ads
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Categories
 </a>
-<div class="dropdown-menu">
-    @foreach($category as $row)
-    <a class="dropdown-item" href="{{ $row->name }}">{{ $row->name }}</a>
-    @endforeach
-</div>
 </li>
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Area
 </a>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="blog.html">Residential</a>
-<a class="dropdown-item" href="blog-left-sidebar.html">Commercial</a>
-<a class="dropdown-item" href="blog-grid-full-width.html">DOHS</a>
-<a class="dropdown-item" href="single-post.html">Local</a>
-</div>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="/signup">
@@ -409,7 +400,7 @@ View Details
 <!--listview -->
 <div id="list-view" class="tab-pane fade active show">
 <div class="row">
-<table id="table" class="table" style="width:100%">
+<table id="example" class="table" style="width:100%">
     <tbody>
 @foreach($posts as $row)
          <tr>
@@ -461,7 +452,7 @@ View Details
 </div>
 </div>
 
-
+<!--
 <div class="pagination-bar">
 <nav>
 <ul class="pagination">
@@ -471,7 +462,7 @@ View Details
 <li class="page-item"><a class="page-link" href="#">Next</a></li>
 </ul>
 </nav>
-</div>
+</div>-->
 
 </div>
 </div>
@@ -548,7 +539,7 @@ View Details
 <div class="row">
 <div class="col-md-12">
 <div class="site-info float-left">
-<p>All copyrights reserved &copy; 2018 - Designed by <a href="https://uideck.com/" rel="nofollow">UIdeck</a></p>
+<p>All copyrights reserved &copy; 2018 - Designed by <a href="" rel="nofollow">UIdeck</a></p>
 </div>
 <div class="float-right">
 <ul class="bottom-card">
@@ -582,7 +573,6 @@ View Details
 <div class="loader" id="loader-1"></div>
 </div>
 
-
 <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -597,6 +587,38 @@ View Details
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  
+  var scrollLink = $('.scroll');
+  
+  // Smooth scrolling
+  scrollLink.click(function(e) {
+    e.preventDefault();
+    $('body,html').animate({
+      scrollTop: $(this.hash).offset().top
+    }, 1000 );
+  });
+  
+  // Active link switching
+  $(window).scroll(function() {
+    var scrollbarLocation = $(this).scrollTop();
+    
+    scrollLink.each(function() {
+      
+      var sectionOffset = $(this.hash).offset().top - 20;
+      
+      if ( sectionOffset <= scrollbarLocation ) {
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+      }
+    })
+    
+  })
+  
+})
+});
+</script>
 <script type="text/javascript">
   var citydata=$("#citydata").val();
   //console.log(citydata);

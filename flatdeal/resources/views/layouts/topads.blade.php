@@ -1,5 +1,5 @@
-<section class="featured section-padding">
-<div class="container">
+<section class="featured section-padding" id="latest">
+<div class="container" >
 <h1 class="section-title">Latest To-Let Ads</h1>
 <div class="row">
 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">

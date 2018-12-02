@@ -1,7 +1,6 @@
 <footer>
-
-<section class="footer-Content">
-<div class="container">
+<section class="footer-Content"  id="contact">
+<div class="container" id="contact">
 <div class="row">
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
 <div class="widget">

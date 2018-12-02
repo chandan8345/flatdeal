@@ -7,7 +7,6 @@ Route::get('/getcity','homeController@getcity');
 Route::get('/getsubarea','homeController@getsubarea');
 Route::get('/getarea','homeController@getarea');
 Route::get('/searchads','homeController@searchads');
-Route::get('/category/{id}','homeController@category');
 //Error
 Route::get('404', ['as' => '404', 'uses' => 'errorController@notfound']);
 Route::get('500', ['as' => '500', 'uses' => 'errorController@fatal']);
@@ -24,4 +23,5 @@ Route::get('/ads-post','postController@index');
 Route::post('/addpost','postController@addpost');
 //ads-view
 Route::get('/adsview','adsviewController@index');
+Route::get('/category','adsviewController@category');
 Route::post('/getads','adsviewController@getads');

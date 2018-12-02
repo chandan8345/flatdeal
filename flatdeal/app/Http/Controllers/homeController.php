@@ -34,7 +34,7 @@ class homeController extends Controller
     public function getarea(Request $req){
         $id=$req->id;
         if($id !=0){
-         echo '<option value="0">Select Area</option>';
+        //echo '<option value="0">Select Area</option>';
         $area=DB::table('area')->where('cityid',$id)->get();
         foreach($area as $row){
          echo '<option value="'.$row->id.'" >'.$row->name.'</option>';

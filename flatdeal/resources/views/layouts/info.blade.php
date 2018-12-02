@@ -1,5 +1,5 @@
-<section class="services section-padding">
-<div class="container">
+<section class="services section-padding"  id="feature">
+<div class="container" id="feature">
 <div class="row">
 
 <div class="col-md-6 col-lg-4 col-xs-12">

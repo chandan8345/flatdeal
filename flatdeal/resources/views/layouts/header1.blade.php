@@ -17,7 +17,7 @@
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item active">
-<a class="nav-link" href="/">
+<a class="nav-link scroll" href="#home">
 Home
 </a>
 </li>
@@ -26,20 +26,24 @@ Home
 all ads
 </a>
 </li>
-
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a class="nav-link" href="#category">
 Categories
 </a>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Area
+<a class="nav-link" href="#latest">
+latest Ads
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/signup">
-Sign UP
+<a class="nav-link" href="#feature">
+Feature
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#contact">
+Contact us
 </a>
 </li>
 <li class="nav-item">
@@ -62,9 +66,7 @@ FAQ
 @if(empty(Session::get('user_name')))
 <a class="dropdown-item" href="/signin"><i class="lni-lock"></i> Log In</a>
 @endif
-@if(empty(Session::get('user_name')))
-<a class="dropdown-item" href="/signup"><i class="lni-user"></i> Signup</a>
-@endif
+<a class="dropdown-item" href="/signup"><i class="lni-user"></i> Registration</a>
 <a class="dropdown-item" href="forgot-password.html"><i class="lni-reload"></i> Forgot Password</a>
 @if(!empty(Session::get('user_name')))
 <a class="dropdown-item" href="/logout"><i class="lni-close"></i>Log out</a>
@@ -142,7 +144,7 @@ Listings
 
 <div id="hero-area">
 <div class="overlay"></div>
-<div class="container">
+<div class="container" id="home">
 <div class="row">
 <div class="col-md-12 col-lg-12 col-xs-12 text-center">
 <div class="contents">

@@ -157,6 +157,17 @@
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
+<script>
+$('#main-navbar .scroll').click(function(e){
+     e.preventdefault();
+     var hash=this.hash;
+     var position=$(hash).offset().top;
+     $('html').animate({
+          scrollTop : position
+     }.1000);
+     alert(position);
+})
+</script>
 <script type="text/javascript">
     $.ajax({
       type: "GET",
@@ -170,6 +181,22 @@
           $("#city").html(response);
      }
 });
+</script>
+<script type="text/javascript">
+function getCity(){
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getcity") }}',
+      data:{
+            id:$("#devision").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          console.log(response);
+          $("#city").html(response);
+     }
+});
+}
 </script>
 <script type="text/javascript">
 function getCity(){
