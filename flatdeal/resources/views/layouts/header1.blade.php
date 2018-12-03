@@ -17,18 +17,13 @@
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item active">
-<a class="nav-link scroll" href="#home">
+<a class="nav-link" href="#home">
 Home
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="/adsview">
-all ads
 </a>
 </li>
 <li class="nav-item dropdown">
 <a class="nav-link" href="#category">
-Categories
+category
 </a>
 </li>
 <li class="nav-item dropdown">
@@ -41,6 +36,12 @@ latest Ads
 Feature
 </a>
 </li>
+<li class="nav-item">
+<a class="nav-link" href="#why">
+why easy
+</a>
+</li>
+
 <li class="nav-item">
 <a class="nav-link" href="#contact">
 Contact us
@@ -84,60 +85,59 @@ FAQ
 
 <ul class="mobile-menu">
 <li>
-<a class="active" href="index-2.html">Home</a>
+<a class="active" href="#home">Home</a>
 </li>
 <li>
-<a href="category.html">Categories</a>
+<a href="#category">Category</a>
 </li>
-<li>
-<a href="#">
-Listings
+<li class="nav-item dropdown">
+<a class="nav-link" href="#latest">
+latest Ads
 </a>
-<ul class="dropdown">
-<li><a href="adlistinggrid.html">Ad Grid</a></li>
-<li><a href="adlistinglist.html">Ad Listing</a></li>
-<li><a href="ads-details.html">Listing Detail</a></li>
-</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#why">
+Feature
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#feature">
+why easy
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#contact">
+Contact us
+</a>
 </li>
 <li>
-<a href="#">Pages</a>
-<ul class="dropdown">
-<li><a href="about.html">About Us</a></li>
-<li><a href="services.html">Services</a></li>
-<li><a href="ads-details.html">Ads Details</a></li>
-<li><a href="post-ads.html">Ads Post</a></li>
-<li><a href="pricing.html">Packages</a></li>
-<li><a href="testimonial.html">Testimonial</a></li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="404.html">404</a></li>
-</ul>
-</li>
-<li>
-<a href="#">Blog</a>
-<ul class="dropdown">
-<li><a href="blog.html">Blog - Right Sidebar</a></li>
-<li><a href="blog-left-sidebar.html">Blog - Left Sidebar</a></li>
-<li><a href="blog-grid-full-width.html"> Blog full width </a></li>
-<li><a href="single-post.html">Blog Details</a></li>
-</ul>
-</li>
-<li>
-<a href="contact.html">Contact Us</a>
-</li>
-<li>
-<a>My Account</a>
-<ul class="dropdown">
-<li><a href="account-profile-setting.html"><i class="lni-home"></i> Account Home</a></li>
-<li><a href="account-myads.html"><i class="lni-wallet"></i> My Ads</a></li>
-<li><a href="account-favourite-ads.html"><i class="lni-heart"></i> Favourite ads</a></li>
-<li><a href="account-archived-ads.html"><i class="lni-folder"></i> Archived</a></li>
-<li><a href="login.html"><i class="lni-lock"></i> Log In</a></li>
-<li><a href="signup.html"><i class="lni-user"></i> Signup</a></li>
-<li><a href="forgot-password.html"><i class="lni-reload"></i> Forgot Password</a></li>
-<li><a href="account-close.html"><i class="lni-close"></i>Account close</a></li>
-</ul>
+<ul class="sign-in">
+<li class="nav-item dropdown">
+@if(!empty(Session::get('user_name')))
+<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> {{ Session::get('user_name') }}</a>
+@else
+<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> My Account</a>
+@endif
+<div class="dropdown-menu">
+@if(!empty(Session::get('user_name')))
+<a class="dropdown-item" href="/dashbord"><i class="lni-home"></i> Account Home</a>
+@endif
+@if(empty(Session::get('user_name')))
+<a class="dropdown-item" href="/signin"><i class="lni-lock"></i> Log In</a>
+@endif
+<a class="dropdown-item" href="/signup"><i class="lni-user"></i> Registration</a>
+<a class="dropdown-item" href="forgot-password.html"><i class="lni-reload"></i> Forgot Password</a>
+@if(!empty(Session::get('user_name')))
+<a class="dropdown-item" href="/logout"><i class="lni-close"></i>Log out</a>
+@endif
+</div>
 </li>
 </ul>
+@if(!empty(Session::get('user_name')))
+<a class="tg-btn" href="/ads-post">
+<i class="lni-pencil-alt"></i> Post An Ad
+</a>
+@endif
 
 </nav>
 

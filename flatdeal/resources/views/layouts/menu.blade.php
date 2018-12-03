@@ -41,7 +41,7 @@
  <div class="icon">
 <img class="img-fluid" src="assets/img/industry.png" alt="">
 </div>
-<h4>Industry | Factory</h4>
+<h4>Factory | Warehouse</h4>
 <strong>69 Ads</strong>
 </div>
 </a>

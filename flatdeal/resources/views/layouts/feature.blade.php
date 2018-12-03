@@ -1,8 +1,8 @@
-<section class="featured-lis section-padding">
+<section class="featured-lis section-padding" id="feature" >
 <div class="container">
 <div class="row">
 <div class="col-md-12 wow fadeIn" data-wow-delay="0.5s">
-<h3 class="section-title">Featured Products</h3>
+<h3 class="section-title">Featured To-let</h3>
 <div id="new-products" class="owl-carousel">
 <div class="item">
 <div class="product-item">

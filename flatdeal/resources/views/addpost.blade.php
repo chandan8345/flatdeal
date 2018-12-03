@@ -314,7 +314,7 @@ Listings
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Tolet Categories*</label>
 <div class="tg-select form-control">
-<select name="categories">
+<select id="category" name="categories" onchange="myfunc()">
 <option value="0">Select Categories</option>
 @foreach($category as $row)
  <option value="{{ $row->id }}">{{ $row->name }}</option>
@@ -335,7 +335,7 @@ Listings
 <input class="form-control input-md" name="size" placeholder="Ad your area size" type="text" required>
 </div>
 <div class="form-group mb-3">
-<label class="control-label">Tolet Month*</label>
+<label class="control-label">Available Month*</label>
 <input class="form-control input-md" id="datepicker" name="month" type="text" required>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
@@ -368,25 +368,15 @@ Listings
 <select name="condition"  required>
 <option value="0">Select One</option>
 <option value="Plug & Play">Plug & Play</option>
-<option value="Semi Furnished">Semi Furnished</option>
+<option value="Semi Furnished">Furnished</option>
 <option value="Non Furnished">Non Furnished</option>
 <option value="Non Paint">Non Paint</option>
 </select>
 </div>
 </div>
-<div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Facing</label>
-<div class="tg-select form-control">
-<select name="facing"  required>
-<option value="0">Select One</option>
-<option value="East">East</option>
-<option value="West">West</option>
-<option value="North">North</option>
-<option value="South">South</option>
-<option value="Road">Road</option>
-<option value="Ask">Ask</option>
-</select>
-</div>
+<div id="floor" class="form-group mb-3">
+<label class="control-label">Floor No</label>
+<input class="form-control input-md" name="balcony" type="text" placeholder="Ground Floor">
 </div>
 <div class="form-group md-5">
 <label class="control-label">Details*</label>
@@ -407,7 +397,7 @@ Listings
 <h2 class="dashbord-title">Contact Detail</h2>
 </div>-->
 <div class="dashboard-wrapper">
-<div class="form-group mb-3">
+<div  id="facility" class="form-group mb-3">
 <strong>Inluded Utility bill on Rent*</strong>
 <div class="tg-selectgroup">
 <span class="tg-radio">
@@ -444,21 +434,35 @@ Listings
 </span>
 </div>
 </div>
-<div class="form-group mb-3">
+<div id="room" class="form-group mb-3">
 <label class="control-label">Room*</label>
-<input class="form-control input-md" name="bedroom" type="number" required>
+<input class="form-control input-md" name="bedroom" type="number">
 </div>
-<div class="form-group mb-3">
+<div id="washroom" class="form-group mb-3">
 <label class="control-label">Washroom*</label>
-<input class="form-control input-md" name="washroom" type="number" required>
+<input class="form-control input-md" name="washroom" type="number">
 </div>
-<div class="form-group mb-3">
-<label class="control-label">Kitchen*</label>
-<input class="form-control input-md" name="kitchen" type="number" required>
+<div id="kitchen" class="form-group mb-3">
+<label id="lblkitchen" class="control-label">Kitchen*</label>
+<input class="form-control input-md" name="kitchen" type="number">
 </div>
-<div class="form-group mb-3">
-<label class="control-label">Balcony</label>
-<input class="form-control input-md" name="balcony" type="number" required>
+<div id="balcony" class="form-group mb-3">
+<label id="lblbalcony" class="control-label">Balcony</label>
+<input class="form-control input-md" name="balcony" type="number">
+</div>
+<div id="facing" class="form-group mb-3 tg-inputwithicon">
+<label class="control-label">Facing</label>
+<div class="tg-select form-control">
+<select name="facing">
+<option value="0">Select One</option>
+<option value="East">East</option>
+<option value="West">West</option>
+<option value="North">North</option>
+<option value="South">South</option>
+<option value="Road">Road</option>
+<option value="Ask">Ask</option>
+</select>
+</div>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Devision*</label>
@@ -720,6 +724,93 @@ $(function() {
   $( function() {
     $( "#datepicker" ).datepicker();
   } );
+  </script>
+  <script type="text/javascript">
+    function myfunc(){
+      var category=$("#category").val();
+      //console.log(category);
+      if(category == 1){
+         $('#kitchen').show();
+         $('#washroom').show();
+         $('#balcony').show();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show();
+         $('#lblkitchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+      }else if(category == 2){
+        $('#kitchen').show();
+         $('#washroom').show();
+         $('#balcony').show();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show(); 
+         $('#lblkitchen').text("Conference Room");
+         $('#lblbalcony').text("Canteen");
+      }else if(category == 3){
+        $('#lblkitchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+        $('#kitchen').hide();
+         $('#washroom').hide();
+         $('#balcony').hide();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show(); 
+      }else if(category == 4){
+        $('#lblkitchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");  
+        $('#kitchen').hide();
+         $('#washroom').show();
+         $('#balcony').hide();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').hide();
+      }else if(category == 5){
+        $('#lblkitchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");  
+        $('#kitchen').hide();
+         $('#washroom').hide();
+         $('#balcony').hide();
+         $('#floor').hide();
+         $('#room').hide();
+         $('#facility').hide();
+         $('#facing').show();
+      }else if(category == 6){
+        $('#lblkithchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+        $('#kitchen').hide();
+         $('#washroom').hide();
+         $('#balcony').hide();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show();
+      }else if(category == 7){
+        $('#lblkithchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+        $('#kitchen').show();
+         $('#washroom').show();
+         $('#balcony').show();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show();
+      }else if(category == 8){
+        $('#lblkithchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+        $('#kitchen').show();
+         $('#washroom').show();
+         $('#balcony').show();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show();
+      }
+  }
   </script>
 </body>
 

@@ -158,16 +158,6 @@
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
 <script>
-$('#main-navbar .scroll').click(function(e){
-     e.preventdefault();
-     var hash=this.hash;
-     var position=$(hash).offset().top;
-     $('html').animate({
-          scrollTop : position
-     }.1000);
-     alert(position);
-})
-</script>
 <script type="text/javascript">
     $.ajax({
       type: "GET",
@@ -177,7 +167,7 @@ $('#main-navbar .scroll').click(function(e){
             _token:$("#token").val()
            },
            success: function(response){
-          console.log(response);
+          //console.log(response);
           $("#city").html(response);
      }
 });
@@ -192,7 +182,7 @@ function getCity(){
             _token:$("#token").val()
            },
       success: function(response){
-          console.log(response);
+         // console.log(response);
           $("#city").html(response);
      }
 });
@@ -208,7 +198,7 @@ function getCity(){
             _token:$("#token").val()
            },
       success: function(response){
-          console.log(response);
+          //console.log(response);
           $("#city").html(response);
      }
 });
