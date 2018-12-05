@@ -65,7 +65,8 @@ class adsviewController extends Controller
         $area=DB::table('area')->get();
         $areatype=DB::table('areatype')->get();
         $sql="select post.id,post.title,post.month,post.rent,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area where post.id=postos.post_id and post.area_id=area.id and post.category_id=$id and post.user_id=users.id and post.status=1";
-         $posts=DB::select($sql);
-       return view('adsview',['cat' => $id])->with('posts',$posts)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype);
+        $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
+        $posts=DB::select($sql);
+        return view('adsview',['cat' => $id])->with('posts',$posts)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype);
     }
 }

@@ -67,14 +67,4 @@ class homeController extends Controller
       $posts=DB::select($sql);
       return view('adsview', ['d' => $d,'c' => $c,'cat' => $cat,'a' => $a,'t' => $t])->with('posts',$posts)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype);
     }
-    public function category($id){
-        $devision=DB::table('devision')->get();
-        $category=DB::table('category')->get();
-        $city=DB::table('city')->get();
-        $area=DB::table('area')->get();
-        $areatype=DB::table('areatype')->get();
-        $sql="select post.id,post.title,post.month,post.rent,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area where post.id=postos.post_id and post.area_id=area.id and post.category_id=$id and post.user_id=users.id and post.status=1";
-         $posts=DB::select($sql);
-       return view('adsview')->with('posts',$posts)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype);
-    }
 }
