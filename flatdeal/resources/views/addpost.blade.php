@@ -376,7 +376,7 @@ Listings
 </div>
 <div id="floor" class="form-group mb-3">
 <label class="control-label">Floor No</label>
-<input class="form-control input-md" name="balcony" type="text" placeholder="Ground Floor">
+<input class="form-control input-md" name="floor" type="text" placeholder="Ground Floor">
 </div>
 <div class="form-group md-5">
 <label class="control-label">Details*</label>

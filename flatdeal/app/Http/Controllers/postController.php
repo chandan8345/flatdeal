@@ -26,6 +26,7 @@ class postController extends Controller
         $condition=$req->input('condition');
         $facing=$req->input('facing');
         $details=$req->input('details');
+        $floor=$req->input('floor');
         $maintanence=$req->input('maintanence');
         $electricity=$req->input('electricity');
         $water=$req->input('water');
@@ -49,7 +50,7 @@ class postController extends Controller
         $amount=0;
         if($terms == 1){
             if($rentoncall == 1){
-                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$amount,'size'=>$size,'area'=>$areatype,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision_id'=>$devision,'city_id'=>$city,'area_id'=>$area,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>1);
+                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$amount,'size'=>$size,'area'=>$areatype,'floor'=>$floor,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision_id'=>$devision,'city_id'=>$city,'area_id'=>$area,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>1);
                $id = DB::table('post')->insertGetId($data);
               // echo $id;
                if($req->file('image') != null){

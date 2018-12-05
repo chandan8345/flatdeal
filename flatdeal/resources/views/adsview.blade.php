@@ -435,7 +435,7 @@ View Details
 </ul>
 <div class="btn-list">
 <a class="btn-price" href="#">৳ {{ $row->rent}}</a>
-<a class="btn btn-common" href="ads-details.html">
+<a class="btn btn-common" href="/singleads?id={{ $row->id }}">
 <i class="lni-list"></i>
 View Details
 </a>

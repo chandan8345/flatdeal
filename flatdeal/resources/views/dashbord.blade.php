@@ -214,7 +214,7 @@ Listings
 <div class="sidebar-box">
 <div class="user">
 <figure>
-<a href="#"><img src="assets/img/author/img1.jpg" alt=""></a>
+<a href="#"><img src="{{ URL::to('/') }}/image/{{ Session::get('image') }}" style="width:80px;height:80px;" alt=""></a>
 </figure>
 <div class="usercontent">
 <h3>{{ Session::get('user_name') }}</h3>
