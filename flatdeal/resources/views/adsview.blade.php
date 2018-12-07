@@ -31,7 +31,7 @@
 
 <header id="header-wrap">
 
-<nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
+<nav class="navbar navbar-expand-lg fixed-top scrolling-navbar" >
 <div class="container">
 
 <div class="navbar-header">
@@ -45,34 +45,8 @@
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item">
-<a class="nav-link" href="/">
+<a class="nav-link" href="/"><i class="lni-chevron-left"></i>
 Home
-</a>
-</li>
-<li class="nav-item  active">
-<a class="nav-link" href="/adsview">
-all ads
-</a>
-</li>
-
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Categories
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Area
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="/signup">
-Sign UP
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="/faq">
-FAQ
 </a>
 </li>
 </ul>
@@ -168,7 +142,7 @@ Listings
 
 </nav>
 
-<div id="hero-area">
+<div id="hero-area" style="background: url(assets/img/ii.jpg);">
 <div class="overlay"></div>
 <div class="container">
 <div class="row">
@@ -229,8 +203,7 @@ Listings
 
 </header>
 
-
-<div class="main-container section-padding">
+<div class="main-container section-padding" id="ads">
 <div class="container">
 <div class="row">
 <div class="col-lg-3 col-md-12 col-xs-12 page-sidebar">
@@ -470,7 +443,7 @@ View Details
 </div>
 
 
-<footer>
+<footer id="contact">
 
 <section class="footer-Content">
 <div class="container">

@@ -76,40 +76,9 @@
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item">
-<a class="nav-link" href="/">
+<a class="nav-link" href="/"><i class="lni-chevron-left"></i>
 Home
 </a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="/adsview">
-all ads
-</a>
-</li>
-
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Categories
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Area
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="/signup">
-Sign UP
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-FAQ
-</a>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>
-<a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>
-<a class="dropdown-item" href="ads-details.html">Listing Detail</a>
-</div>
 </li>
 </ul>
 <ul class="sign-in">
@@ -200,7 +169,7 @@ Listings
 </header>
 
 
-<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+<div class="page-header"  style="background: url(assets/img/ii.jpg);">
 <div class="container">
 <div class="row">
 <div class="col-md-12">
@@ -211,7 +180,7 @@ Listings
 <h2 class="product-title">Post an Ad</h2>
 @endif
 <ol class="breadcrumb">
-<li><a href="#">Home /</a></li>
+<li><a href="#">Home ></a></li>
 <li class="current">Post you Ads</li>
 </ol>
 </div>
@@ -229,7 +198,7 @@ Listings
 <div class="sidebar-box">
 <div class="user">
 <figure>
-<a href="#"><img src="assets/img/author/img1.jpg" alt=""></a>
+<a href="#"><img src="{{ URL::to('/') }}/image/{{ Session::get('image') }}" style="width:80px;height:80px;" alt=""></a>
 </figure>
 <div class="usercontent">
 <h3>{{ Session::get('user_name') }}</h3>
@@ -467,8 +436,8 @@ Listings
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Devision*</label>
 <div class="tg-select form-control">
-<select name="devision"  required>
-<option value="0"   required>Select One</option>
+<select id="devision" name="devision" onchange="getCity()" required>
+<option value="0">Select One</option>
 @foreach($devision as $row)
 <option value="{{ $row->id }}">{{ $row->name }}</option>
 @endforeach
@@ -478,7 +447,7 @@ Listings
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">City*</label>
 <div class="tg-select form-control">
-<select name="city"  required>
+<select id="city" onchange="getArea()" name="city" required>
 <option value="0">Select One</option>
 @foreach($city as $row)
 <option value="{{ $row->id }}">{{ $row->name }}</option>
@@ -489,7 +458,7 @@ Listings
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area*</label>
 <div class="tg-select form-control">
-<select name="area"  required>
+<select id="area" name="area" required>
 <option value="0">Select One</option>
 @foreach($area as $row)
 <option value="{{ $row->id }}">{{ $row->name }}</option>
@@ -812,6 +781,38 @@ $(function() {
       }
   }
   </script>
+<script type="text/javascript">
+function getCity(){
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getcity") }}',
+      data:{
+            id:$("#devision").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          console.log(response);
+       $("#city").html(response);
+     }
+});
+}
+</script>
+<script type="text/javascript">
+function getArea(){
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getarea") }}',
+      data:{
+            id:$("#city").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+      // console.log(response);
+       $("#area").html(response);
+     }
+});
+}
+</script>
 </body>
 
 </html>

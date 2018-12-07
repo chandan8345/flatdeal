@@ -177,7 +177,7 @@ Listings
 </header>
 
 
-<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+<div class="page-header" style="background: url(assets/img/ii.jpg);">
 <div class="container">
 <div class="row">
 <div class="col-md-12">
@@ -288,9 +288,9 @@ Listings
 </li>
 </ul>
 <div class="ads-btn mb-4">
-<a class="btn btn-warning" style="text-weight:bold;"><i></i>৳ {{$row->rent}}</a>
-<a class="btn btn-common "><i class="lni-phone-handset"></i> {{ $row->mobile }}</a>
-<a class="btn btn-danger "><i class="lni-alarm-clock"></i> {{ $row->handover }}</a>
+<a class="btn btn-default" style="text-weight:bold;"><i></i>৳ {{$row->rent}}</a>
+<a class="btn btn-default"><i class="lni-phone-handset"></i> {{ $row->mobile }}</a>
+<a class="btn btn-default"><i class="lni-alarm-clock"></i> {{ $row->handover }}</a>
 </div>
 </div>
 </div>
