@@ -204,5 +204,56 @@ function getCity(){
 });
 }
 </script>
+<script type="text/javascript" src="assets/js/typewriting.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.novacancy.min.js"></script>
+ <script>
+$(document).ready( function(){
+	setTimeout( function(){
+		$('#terminal').typewriting( "Bangladesh No.1 Best TO-LET Dealing Website, Create Account & Enjoy the Best Selling Experience with us.", {
+			"typing_interval": 100,
+			"blink_interval": "1s",
+			"cursor_color": ""
+		}, function() {
+			console.log( "END" );
+		});
+	
+	}, 1000);
+});
+
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#1').novacancy({
+				'reblinkProbability': 0.1,
+				'blinkMin': 0.2,
+				'blinkMax': 0.6,
+				'loopMin': 8,
+				'loopMax': 10,
+				'color': '#ffffff',
+				'glow': ['0 0 80px #ffffff', '0 0 30px #008000', '0 0 6px #0000ff']
+			}); 
+
+			$('#2').novacancy({
+				'blink': 1,
+				'off': 1,
+				'color': '#00cc67',
+				'glow': ['0 0 80px 00cc67', '0 0 30px 00cc67', '0 0 6px 00cc67']
+			});
+		});
+	</script>
 </body>
 </html>

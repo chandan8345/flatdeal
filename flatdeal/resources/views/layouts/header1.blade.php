@@ -148,8 +148,8 @@ Contact us
 <div class="row">
 <div class="col-md-12 col-lg-12 col-xs-12 text-center">
 <div class="contents">
-<h1 class="head-title">Welcome to <span class="year">Easy To-Let</span></h1>
-<p>Bangladesh No.1 Best TO-LET Dealing Website, <br> Create Account & Enjoy the Best Selling Experience with us.</p>
+<h1 class="head-title" id="1">Welcome to <span class="year" id="2">Easy To-Let</span></h1>
+<p id="terminal">Bangladesh No.1 Best TO-LET Dealing Website, <br> Create Account & Enjoy the Best Selling Experience with us.</p>
 
 <div class="search-bar">
 <fieldset>
