@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Session;
 use Validator;
 use Input;
+use Mail;
 
 class securityController extends Controller
 {
@@ -23,7 +24,7 @@ class securityController extends Controller
         $name=$request->input('name');
         $mobile=$request->input('mobile');
         $address=$request->input('address');
-        $email=$request->input('email');
+        $email=strtolower($request->input('email'));
         $pass=$request->input('pass');
         $repass=$request->input('repass');
         if($pass == $repass){
@@ -36,6 +37,11 @@ class securityController extends Controller
                 $sp=$request->file('image')->getPathName();
                 move_uploaded_file($sp,$dp);
                 Session::flash('msg','Account create successfully');
+                Mail::send(['text'=>'mail'], $user, function($message) {
+                    $message->to($user['email'])->subject
+                       ('Varify account');
+                    $message->from('easytolet@outlook.com','Easy To-let');
+                 });
                 return redirect('/signup');
             }else{
                 $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'role'=>1,'status'=>1);

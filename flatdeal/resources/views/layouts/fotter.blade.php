@@ -39,13 +39,13 @@
 <h3 class="block-title">Contact Information</h3>
 <ul class="contact-footer">
 <li>
-<strong>Address :</strong><span>1900 Pico Blvd, New York</span>
+<strong>Address :</strong><span>Banani, Dhaka</span>
 </li>
 <li>
-<strong>Phone :</strong><span>+48 123 456 789</span>
+<strong>Phone :</strong><span>+88 017 629 819 76</span>
 </li>
 <li>
-<strong>E-mail :</strong><span><a href="#"><span class="__cf_email__" data-cfemail="355c5b535a75504d54584559501b565a58">[email&#160;protected]</span></a></span>
+<strong>E-mail :</strong><span><a href="#">easytolet@outlook.com</a></span>
 </li>
 </ul>
 <ul class="footer-social">

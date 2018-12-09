@@ -50,36 +50,13 @@
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
-<img src="assets/img/testimonial/img1.png" alt="">
+<img src="assets/img/ak.png" style="width:80px;height:80px;" alt="">
 </div>
 <div class="content">
-<h2><a href="#">John Doe</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
-</div>
-</div>
-</div>
-<div class="item">
-<div class="testimonial-item">
-<div class="img-thumb">
-<img src="assets/img/testimonial/img2.png" alt="">
-</div>
-<div class="content">
-<h2><a href="#">Jessica</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
-</div>
-</div>
-</div>
-<div class="item">
-<div class="testimonial-item">
-<div class="img-thumb">
-<img src="assets/img/testimonial/img3.png" alt="">
-</div>
-<div class="content">
-<h2><a href="#">Johnny Zeigler</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
+<h2><a href="#">Engr. Abul Kalam Azad</a></h2>
+<h3>CEO of <a href="http://www.touchandsolve.com/">Touch and Solve IT</a></h3>
+<p class="description">Senior Vice President at Guardian Life Insurance</p>
+<h3>Director at of <a href="#">Easy To-let</a></h3>
 </div>
 </div>
 </div>
@@ -89,21 +66,23 @@
 <img src="assets/img/testimonial/img1.png" alt="">
 </div>
 <div class="content">
-<h2><a href="#">John Doe</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
+<h2><a href="#">Dr. Ashraful Haque</a></h2>
+<p class="description">Medical Consultant</p>
+<p class="description">Senior Vice President at Guardian Life Insurance</p>
+<h3>Director at of <a href="#">Easy Tolet</a></h3>
 </div>
 </div>
 </div>
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
-<img src="assets/img/testimonial/img2.png" alt="">
+<img src="assets/img/ck.png"  style="width:80px;height:80px;" alt="">
 </div>
 <div class="content">
-<h2><a href="#">Jessica</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
+<h2><a href="#">CK Biswas</a></h2>
+<p class="description">Apps Developer & Web Developer</p>
+<p class="description">Founder of Easy To-let</p>
+<h3>Developer at of <a href="">Easy To-let</a></h3>
 </div>
 </div>
 </div>

@@ -160,7 +160,7 @@ Contact us
 <input type="text" name="customword" class="form-control" placeholder="What are you looking for">
 </div> -->
 <div class="form-group tg-inputwithicon">
-<i class="lni-map-marker"></i>
+<i class="lni-map"></i>
 <div class="tg-select">
 <select id="devision" onchange="getCity()" name="devision">
 <option value="0">Select Divisions</option>
@@ -171,7 +171,7 @@ Contact us
 </div>
 </div>
 <div class="form-group tg-inputwithicon">
-<i class="lni-layers"></i>
+<i class="lni-map-marker"></i>
 <div class="tg-select">
 <select id="city" name="city">
 <option value="0">Select City</option>
@@ -183,7 +183,7 @@ Contact us
 </div>
 
 <div class="form-group tg-inputwithicon">
-    <i class="lni-layers"></i>
+    <i class="lni-apartment"></i>
     <div class="tg-select">
     <select id="category" name="category">
     <option value="0">Select Categories</option>
