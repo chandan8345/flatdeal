@@ -16,34 +16,35 @@
 </div>
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
-<li class="nav-item active">
-<a class="nav-link" href="#home">
+<li class="nav-item">
+<a class="nav-link scroll" href="#home">
 Home
 </a>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link" href="#category">
+<a class="nav-link scroll" href="#category">
 category
 </a>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link" href="#latest">
+<a class="nav-link scroll" href="#latest">
 latest Ads
 </a>
 </li>
+<!--
 <li class="nav-item">
 <a class="nav-link" href="#feature">
 Feature
 </a>
-</li>
+</li>-->
 <li class="nav-item">
-<a class="nav-link" href="#why">
+<a class="nav-link scroll" href="#why">
 why easy
 </a>
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="#contact">
+<a class="nav-link scroll" href="#contact">
 Contact us
 </a>
 </li>

@@ -34,9 +34,9 @@
 @include('layouts.menu')
 
 @include('layouts.topads')
-
+<!--
 @include('layouts.feature')
-
+-->
 @include('layouts.info')
 
 @include('layouts.counter');
@@ -132,28 +132,15 @@
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/nivo-lightbox.js"></script>
 <script src="assets/js/jquery.slicknav.js"></script>
+<script src="assets/js/click-scroll.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
-<script>
 <script type="text/javascript">
-    $.ajax({
-      type: "GET",
-      url: '{{ URL::to("/getcity") }}',
-      data:{
-            id:$("#devision").val(),
-            _token:$("#token").val()
-           },
-           success: function(response){
-          //console.log(response);
-          $("#city").html(response);
-     }
-});
-</script>
-<script type="text/javascript">
-function getCity(){
-    $.ajax({
+  var c= $("#devision").val();
+  //console.log(c);
+  $.ajax({
       type: "GET",
       url: '{{ URL::to("/getcity") }}',
       data:{
@@ -161,11 +148,10 @@ function getCity(){
             _token:$("#token").val()
            },
       success: function(response){
-         // console.log(response);
+          //console.log(response);
           $("#city").html(response);
      }
 });
-}
 </script>
 <script type="text/javascript">
 function getCity(){
@@ -193,7 +179,7 @@ $(document).ready( function(){
 			"blink_interval": "1s",
 			"cursor_color": ""
 		}, function() {
-			console.log( "END" );
+			//console.log( "END" );
 		});
 	
 	}, 1000);
@@ -234,5 +220,6 @@ $(document).ready( function(){
 			});
 		});
 	</script>
+    
 </body>
 </html>

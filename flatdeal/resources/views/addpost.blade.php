@@ -782,6 +782,23 @@ $(function() {
   }
   </script>
 <script type="text/javascript">
+  var c= $("#devision").val();
+  //console.log(c);
+  $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getcity") }}',
+      data:{
+            id:$("#devision").val(),
+            _token:$("#token").val()
+           },
+      success: function(response){
+          //console.log(response);
+          $("#city").html(response);
+     }
+});
+</script>
+
+<script type="text/javascript">
 function getCity(){
     $.ajax({
       type: "GET",
