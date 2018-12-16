@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Mirrored from preview.uideck.com/items/classially/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:21:54 GMT -->
 <head>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Easy Tolet | Sign up</title>
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <style>
 .image-preview-input {
     position: relative;
@@ -39,8 +39,6 @@
 
 <link rel="stylesheet" type="text/css" href="assets/css/slicknav.css">
 
-<link rel="stylesheet" type="text/css" href="assets/css/color-switcher.css">
-
 <link rel="stylesheet" type="text/css" href="assets/css/nivo-lightbox.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
@@ -53,7 +51,7 @@
 </head>
 <body>
 
-<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+<div class="page-header" style="background: url(assets/img/ii.jpg);">
 <div class="container">
 <div class="row">
 <div class="col-md-12">
@@ -260,7 +258,6 @@ Register
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/color-switcher.js"></script>
 <script src="assets/js/jquery.counterup.min.js"></script>
 <script src="assets/js/waypoints.min.js"></script>
 <script src="assets/js/wow.js"></script>

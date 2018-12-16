@@ -7,14 +7,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Easy Tolet | Login</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
 <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/slicknav.css">
-
-<link rel="stylesheet" type="text/css" href="assets/css/color-switcher.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/nivo-lightbox.css">
 
@@ -175,7 +173,6 @@ Login Now
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/color-switcher.js"></script>
 <script src="assets/js/jquery.counterup.min.js"></script>
 <script src="assets/js/waypoints.min.js"></script>
 <script src="assets/js/wow.js"></script>

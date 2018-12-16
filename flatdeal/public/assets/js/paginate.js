@@ -1,7 +1,7 @@
 $(document).ready(function () {
   var rows=$('#datalist .chandan').length;
     console.log(rows);
-    perpagepost=2;
+    perpagepost=10;
     $("#datalist .chandan:gt(" +  (perpagepost - 1)  + ")").hide();
     var totalpages=Math.round(rows/perpagepost);
     $('.pagination').append("<li class='page-item current active'><a class='page-link' href='javascript:void(0)'>"+ 1 +"</a></li>");
