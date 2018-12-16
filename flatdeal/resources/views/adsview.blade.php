@@ -22,10 +22,6 @@
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">   
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -372,18 +368,14 @@ View Details
 </div>
 <!--listview -->
 <div id="list-view" class="tab-pane fade active show">
-<div class="row">
-<table id="example" class="table" style="width:100%">
-    <tbody>
+<div class="row" id="datalist">
 @foreach($posts as $row)
-         <tr>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chandan">
 <div class="featured-box">
 <figure>
 <div class="icon">
 <i class="lni-heart"></i>
 </div>
-
 <a href=""><img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->image }}" alt=""></a>
  </figure>
 <div class="feature-content">
@@ -416,26 +408,24 @@ View Details
 </div>
 </div>
 </div>
-</tr>
 @endforeach
-</tbody>
-</table>
 </div>
 </div>
 </div>
 </div>
 
-<!--
 <div class="pagination-bar">
 <nav>
 <ul class="pagination">
-<li class="page-item"><a class="page-link active" href="#">1</a></li>
-<li class="page-item"><a class="page-link" href="#">2</a></li>
-<li class="page-item"><a class="page-link" href="#">3</a></li>
-<li class="page-item"><a class="page-link" href="#">Next</a></li>
+
+<li class="page-item"><a class="page-link" href="javascript:void(0)">Back</a></li>
+ <!-- 
+<li class="page-item"><a class="page-link active" href="javascript:void(0)">1</a></li>
+<li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
+-->
 </ul>
 </nav>
-</div>-->
+</div>
 
 </div>
 </div>
@@ -557,6 +547,7 @@ View Details
 <script src="assets/js/nivo-lightbox.js"></script>
 <script src="assets/js/jquery.slicknav.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/paginate.js"></script>
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>

@@ -45,52 +45,10 @@
 </div>
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
-<li class="nav-item active">
-<a class="nav-link" href="">
+<li class="nav-item">
+<a class="nav-link" href="/"><i class="lni-chevron-left"></i>
 Home
 </a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="category.html">
-all ads
-</a>
-</li>
-
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Categories
-</a>
-<div class="dropdown-menu">
-    @foreach($category as $row)
-    <a class="dropdown-item" href="{{ $row->name }}">{{ $row->name }}</a>
-    @endforeach
-</div>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Area
-</a>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="blog.html">Residential</a>
-<a class="dropdown-item" href="blog-left-sidebar.html">Commercial</a>
-<a class="dropdown-item" href="blog-grid-full-width.html">DOHS</a>
-<a class="dropdown-item" href="single-post.html">Local</a>
-</div>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="/signup">
-Sign UP
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-FAQ
-</a>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>
-<a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>
-<a class="dropdown-item" href="ads-details.html">Listing Detail</a>
-</div>
 </li>
 </ul>
 <ul class="sign-in">

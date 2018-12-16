@@ -19,7 +19,7 @@
 <div class="icon">
 <img class="img-fluid" src="assets/img/category/img-6.png" alt="">
 </div>
-<h4>Real Estate</h4>
+<h4>Luxury House</h4>
 <strong>150 Ads</strong>
 </div>
 </a>
