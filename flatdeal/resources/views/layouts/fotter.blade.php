@@ -66,7 +66,7 @@
 <div class="row">
 <div class="col-md-12">
 <div class="site-info float-left">
-<p>All copyrights reserved &copy; 2018 - Developed by <a href="chandan.ga/" rel="nofollow">Chandan</a></p>
+<p>All copyrights reserved &copy; 2018 - Developed by <a href="http://chandan.ga"  target="_blank" rel="nofollow">Chandan</a></p>
 </div>
 <div class="float-right">
 <ul class="bottom-card">
