@@ -399,7 +399,7 @@ View Details
 <nav>
 <ul class="pagination">
 
-<li class="page-item"><a class="page-link" href="javascript:void(0)">Back</a></li>
+<li class="page-item back-page"><a class="page-link" href="javascript:void(0)">Back</a></li>
  <!-- 
 <li class="page-item"><a class="page-link active" href="javascript:void(0)">1</a></li>
 <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>

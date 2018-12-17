@@ -227,19 +227,10 @@ Home
 <div class="row">
 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
 <div class="dashboardbox">
-<div class="icon"><i class="lni-write"></i></div>
-<div class="contentbox">
-<h2><a href="#">Total Ad Posted</a></h2>
-<h3>480 Add Posted</h3>
-</div>
-</div>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
-<div class="dashboardbox">
 <div class="icon"><i class="lni-add-files"></i></div>
 <div class="contentbox">
-<h2><a href="#">Featured Ads</a></h2>
-<h3>80 Add Posted</h3>
+<h2><a href="#">Active Ads</a></h2>
+<h3>80 Ads Published</h3>
 </div>
 </div>
 </div>
@@ -247,8 +238,17 @@ Home
 <div class="dashboardbox">
 <div class="icon"><i class="lni-support"></i></div>
 <div class="contentbox">
-<h2><a href="#">Offers / Messages</a></h2>
-<h3>2040 Messages</h3>
+<h2><a href="#">Inactive Ads</a></h2>
+<h3>2040 Ads Inactive</h3>
+</div>
+</div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+<div class="dashboardbox">
+<div class="icon"><i class="lni-support"></i></div>
+<div class="contentbox">
+<h2><a href="#">Sold Ads</a></h2>
+<h3>2040 Ads Sold</h3>
 </div>
 </div>
 </div>
