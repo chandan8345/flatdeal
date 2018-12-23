@@ -16,8 +16,11 @@ Route::get('/logincheck','securityController@logincheck');
 Route::get('/logout','securityController@Logout');
 Route::get('/signup','securityController@indexSignup');
 Route::post('/signupcheck','securityController@signup');
-//user
+//dashbord
 Route::get('/dashbord','userController@index');
+Route::get('/activepost','userController@activepost');
+Route::get('/inactivepost','userController@waitingpost');
+Route::get('/soldpost','userController@soldpost');
 //ads-post
 Route::get('/ads-post','postController@index');
 Route::post('/addpost','postController@addpost');
