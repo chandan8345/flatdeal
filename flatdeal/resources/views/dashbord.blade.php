@@ -23,7 +23,6 @@
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-
 </head>
 <body>
 
@@ -167,37 +166,25 @@ Home
 <li>
 <a href="account-profile-setting.html">
 <i class="lni-cog"></i>
-<span>Profile Settings</span>
+<span>Manage Users</span>
 </a>
 </li>
 <li>
 <a href="account-myads.html">
-<i class="lni-layers"></i>
-<span>My Ads</span>
+<i class="lni-star"></i>
+<span>Profile Settings</span>
 </a>
 </li>
 <li>
 <a href="offermessages.html">
-<i class="lni-envelope"></i>
-<span>Offers/Messages</span>
-</a>
-</li>
-<li>
-<a href="payments.html">
 <i class="lni-wallet"></i>
 <span>Payments</span>
 </a>
 </li>
 <li>
-<a href="account-favourite-ads.html">
-<i class="lni-heart"></i>
-<span>My Favourites</span>
-</a>
-</li>
-<li>
-<a href="privacy-setting.html">
-<i class="lni-star"></i>
-<span>Privacy Settings</span>
+<a href="payments.html">
+<i class="lni-envelope"></i>
+<span>Messages</span>
 </a>
 </li>
 <li>
@@ -256,7 +243,7 @@ Home
 </div>
 </div>
 <table class="table dashboardtable tablemyads tableactive">
-<thead>
+<thead id="a">
 <tr>
 <th>Photo</th>
 <th>Title</th>
@@ -271,7 +258,7 @@ Home
 </tbody>
 </table>
 <table class="table dashboardtable tablemyads tableinactive">
-<thead>
+<thead id="h">
 <tr>
 <th>Photo</th>
 <th>Title</th>
@@ -286,7 +273,7 @@ Home
 </tbody>
 </table>
 <table class="table dashboardtable tablemyads tablesold">
-        <thead>
+        <thead id="s">
         <tr>
         <th>Photo</th>
         <th>Title</th>
@@ -378,7 +365,7 @@ Home
 <div class="row">
 <div class="col-md-12">
 <div class="site-info float-left">
-<p>All copyrights reserved &copy; 2018 - Designed by <a href="https://uideck.com/" rel="nofollow">UIdeck</a></p>
+<p>All copyrights reserved &copy; 2018 - Designed by <a href="" rel="nofollow">UIdeck</a></p>
 </div>
 <div class="float-right">
 <ul class="bottom-card">
@@ -400,9 +387,7 @@ Home
 </div>
 </div>
 </div>
-
 </footer>
-
 
 <a href="#" class="back-to-top">
 <i class="lni-chevron-up"></i>
@@ -427,6 +412,101 @@ Home
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
 <script src="assets/js/mytable.js"></script>
+<script type="text/javascript">
+    function activedelete(key){
+        $.ajax({
+        type: "get",
+        url: '/delete',
+        data:{
+            id:key
+           },
+        success:function(response){
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: '/activepost',
+        success:function(response){
+        if(response != "null"){
+        $("#a").show();
+        $(".activerow").html(response);
+        }else{
+            $("#a").hide();  
+        }
+    }
+    });
+    }
+    function solddelete(key){
+        $.ajax({
+        type: "get",
+        url: '/delete',
+        data:{
+            id:key
+           },
+        success:function(response){
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: '/soldpost',
+        success:function(response){
+        if(response != "null"){
+        $("#s").show();
+        $(".soldrow").html(response);
+        }else{
+            $("#s").hide();   
+        }
+    }
+    });
+    }
+    function inactivedelete(key){
+        $.ajax({
+        type: "get",
+        url: '/delete',
+        data:{
+            id:key
+           },
+        success:function(response){
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: '/inactivepost',
+        success:function(response){
+        if(response != "null"){
+        $("#in").show();  
+        $(".inactiverow").html(response);
+        }else{
+        $("#in").hide();   
+        }
+        }
+    });
+    }
+function approve(id){
+    var num=id;
+    $.ajax({
+        type: "get",
+        url: '/approvepost',
+        data:{
+            id:num
+           },
+        success:function(response){
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: '/inactivepost',
+        success:function(response){
+        if(response != "null"){
+        $("#in").show();
+        $(".inactiverow").html(response);
+        }else{
+        $("#in").hide();
+        }
+        }
+    });
+}
+</script>
 </body>
 
 <!-- Mirrored from preview.uideck.com/items/classially/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:23:21 GMT -->

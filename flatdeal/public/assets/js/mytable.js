@@ -40,9 +40,13 @@ function activepost(){
         type: "get",
         url: '/activepost',
         success:function(response){
+        if(response != "null"){
+        $("#a").show();
         $(".activerow").html(response);
-        console.log(response);
+        }else{
+            $("#a").hide();   
         }
+    }
     });
 }
 function inactivepost(){
@@ -50,9 +54,13 @@ function inactivepost(){
         type: "get",
         url: '/inactivepost',
         success:function(response){
+        if(response != "null"){
+        $("#h").show();
         $(".inactiverow").html(response);
-        console.log(response);
+        }else{
+            $("#h").hide();
         }
+    }
     });
 }
 function soldpost(){
@@ -60,8 +68,12 @@ function soldpost(){
         type: "get",
         url: '/soldpost',
         success:function(response){
+        if(response != "null"){
+        $("#s").show();
         $(".soldrow").html(response);
-        console.log(response);
-        }
+        }else{
+            $("#s").hide();   
+            }
+    }
     });
 }
