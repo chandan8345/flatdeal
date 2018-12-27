@@ -19,10 +19,11 @@ Route::post('/signupcheck','securityController@signup');
 //dashbord
 Route::get('/dashbord','userController@index');
 Route::get('/activepost','userController@activepost');
-Route::get('/inactivepost','userController@waitingpost');
+Route::get('/waitingpost','userController@waitingpost');
 Route::get('/soldpost','userController@soldpost');
 Route::get('/approvepost','userController@approvepost');
 Route::get('/delete','userController@delete');
+Route::get('/sold','userController@sold');
 //ads-post
 Route::get('/ads-post','postController@index');
 Route::post('/addpost','postController@addpost');

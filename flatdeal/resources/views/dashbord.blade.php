@@ -413,17 +413,15 @@ Home
 <script src="assets/js/summernote.js"></script>
 <script src="assets/js/mytable.js"></script>
 <script type="text/javascript">
-    function activedelete(key){
+    function sold(key){
         $.ajax({
         type: "get",
-        url: '/delete',
+        url: '/sold',
         data:{
             id:key
            },
-        success:function(response){
-        }
-    });
-    $.ajax({
+        success:function(res){
+            $.ajax({
         type: "get",
         url: '/activepost',
         success:function(response){
@@ -431,9 +429,12 @@ Home
         $("#a").show();
         $(".activerow").html(response);
         }else{
+            $('.tableactive tr').remove();
             $("#a").hide();  
         }
     }
+    });
+        }
     });
     }
     function solddelete(key){
@@ -443,10 +444,8 @@ Home
         data:{
             id:key
            },
-        success:function(response){
-        }
-    });
-    $.ajax({
+        success:function(res){
+            $.ajax({
         type: "get",
         url: '/soldpost',
         success:function(response){
@@ -454,9 +453,12 @@ Home
         $("#s").show();
         $(".soldrow").html(response);
         }else{
+            $('.tablesold tr').remove();
             $("#s").hide();   
         }
     }
+    });
+        }
     });
     }
     function inactivedelete(key){
@@ -466,19 +468,19 @@ Home
         data:{
             id:key
            },
-        success:function(response){
-        }
-    });
-    $.ajax({
+        success:function(res){
+            $.ajax({
         type: "get",
-        url: '/inactivepost',
+        url: '/waitingpost',
         success:function(response){
-        if(response != "null"){
-        $("#in").show();  
+        if(response != ""){
         $(".inactiverow").html(response);
         }else{
-        $("#in").hide();   
+        $('.tableinactive tr').remove();
+        $("#h").css("display","none");
         }
+    }
+    });
         }
     });
     }
@@ -490,19 +492,19 @@ function approve(id){
         data:{
             id:num
            },
-        success:function(response){
-        }
-    });
-    $.ajax({
+        success:function(res){
+            $.ajax({
         type: "get",
-        url: '/inactivepost',
+        url: '/waitingpost',
         success:function(response){
-        if(response != "null"){
-        $("#in").show();
+        if(response != ""){
         $(".inactiverow").html(response);
         }else{
-        $("#in").hide();
+        $('.tableinactive tr').remove();
+        $("#h").css("display","none");
         }
+    }
+    });
         }
     });
 }

@@ -44,7 +44,8 @@ function activepost(){
         $("#a").show();
         $(".activerow").html(response);
         }else{
-            $("#a").hide();   
+        $('.tableactive tr').remove();
+        $("#a").hide();   
         }
     }
     });
@@ -52,13 +53,13 @@ function activepost(){
 function inactivepost(){
     $.ajax({
         type: "get",
-        url: '/inactivepost',
+        url: '/waitingpost',
         success:function(response){
-        if(response != "null"){
-        $("#h").show();
+        if(response != ""){
         $(".inactiverow").html(response);
         }else{
-            $("#h").hide();
+        $('.tableinactive tr').remove();
+        $("#h").css("display","none");
         }
     }
     });
@@ -72,6 +73,7 @@ function soldpost(){
         $("#s").show();
         $(".soldrow").html(response);
         }else{
+            $('.tablesold tr').remove();
             $("#s").hide();   
             }
     }

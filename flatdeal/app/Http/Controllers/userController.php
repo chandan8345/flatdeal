@@ -21,10 +21,14 @@ class userController extends Controller
         DB::table('post')->where('id', $id)->delete();
        // echo $id;
     }
+    public function sold(Request $request){
+        $id = $request->id;
+        DB::table('post')->where('id',$id)->update(['status' => 2]);
+       // echo $id;
+    }
     public function approvepost(Request $request){
         $id = $request->id;
         DB::table('post')->where('id',$id)->update(['status' => 1]);
-
     }
     public function activepost(){
         $user_id=Session::get('user_id');
@@ -53,7 +57,7 @@ class userController extends Controller
             <div class="btns-actions">
             <a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
             <a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
-            <a class="btn-action btn-delete" onclick="activedelete('.$row->id.')"><i class="lni-trash"></i></a>
+            <a class="btn-action btn-delete" onclick="sold('.$row->id.')"><i class="lni-trash"></i></a>
             </div>
             </td>
             </tr>';
@@ -90,11 +94,11 @@ class userController extends Controller
                 <div class="btns-actions">
                 <a class="btn-action btn-view" onclick="approve('.$row->id.')"><i class="lni-eye"></i></a>
                 <a class="btn-action btn-edit"><i class="lni-pencil"></i></a>
-                <a class="btn-action btn-delete" onclick="delete('.$row->id.')"><i class="lni-trash"></i></a>
+                <a class="btn-action btn-delete" onclick="inactivedelete('.$row->id.')"><i class="lni-trash"></i></a>
                 </div>
                 </td>
                 </tr>';
-              }   
+              }  
         }else{
         echo "null";
         }
