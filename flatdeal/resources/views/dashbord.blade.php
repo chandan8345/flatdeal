@@ -218,7 +218,7 @@ Home
 <div class="icon"><i class="lni-add-files"></i></div>
 <div class="contentbox">
 <h2><a>Active Ads</a></h2>
-<h3>80 Ads Published</h3>
+<h3 id="ta"></h3>
 </div>
 </div>
 </div>
@@ -227,7 +227,7 @@ Home
 <div class="icon"><i class="lni-support"></i></div>
 <div class="contentbox">
 <h2><a>Inactive Ads</a></h2>
-<h3>2040 Ads Inactive</h3>
+<h3 id="ti"></h3>
 </div>
 </div>
 </div>
@@ -236,7 +236,7 @@ Home
 <div class="icon"><i class="lni-support"></i></div>
 <div class="contentbox">
 <h2><a>Sold Ads</a></h2>
-<h3>2040 Ads Sold</h3>
+<h3 id="ts"></h3>
 </div>
 </div>
 </div>
@@ -413,6 +413,30 @@ Home
 <script src="assets/js/summernote.js"></script>
 <script src="assets/js/mytable.js"></script>
 <script type="text/javascript">
+$.ajax({
+        type: "get",
+        url: '/statistics',
+        success:function($result){
+            var result=$result;
+            var obj = JSON.parse(result);
+            $("#ta").html(obj.totalactive + " Ads Live");
+            $("#ti").html(obj.totalinactive + " Ads Unapproved");
+            $("#ts").html(obj.totalsold + " Ads Sold Out");
+        }
+});
+function statistics(){
+    $.ajax({
+        type: "get",
+        url: '/statistics',
+        success:function($result){
+            var result=$result;
+            var obj = JSON.parse(result);
+            $("#ta").html(obj.totalactive + " Ads Live");
+            $("#ti").html(obj.totalinactive + " Ads Unapproved");
+            $("#ts").html(obj.totalsold + " Ads Sold Out");
+        }
+});    
+}
     function sold(key){
         $.ajax({
         type: "get",
@@ -427,10 +451,12 @@ Home
         success:function(response){
         if(response != "null"){
         $("#a").show();
+        statistics();
         $(".activerow").html(response);
         }else{
+            statistics();
             $('.tableactive tr').remove();
-            $("#a").hide();  
+            $("#a").hide();
         }
     }
     });
@@ -451,8 +477,10 @@ Home
         success:function(response){
         if(response != "null"){
         $("#s").show();
+        statistics();
         $(".soldrow").html(response);
         }else{
+            statistics();
             $('.tablesold tr').remove();
             $("#s").hide();   
         }
@@ -474,8 +502,10 @@ Home
         url: '/waitingpost',
         success:function(response){
         if(response != ""){
+        statistics();
         $(".inactiverow").html(response);
         }else{
+        statistics();
         $('.tableinactive tr').remove();
         $("#h").css("display","none");
         }
@@ -498,8 +528,10 @@ function approve(id){
         url: '/waitingpost',
         success:function(response){
         if(response != ""){
+        statistics();
         $(".inactiverow").html(response);
         }else{
+        statistics();
         $('.tableinactive tr').remove();
         $("#h").css("display","none");
         }

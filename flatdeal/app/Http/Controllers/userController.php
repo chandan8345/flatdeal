@@ -15,6 +15,22 @@ class userController extends Controller
         $city=DB::table('city')->get();
         return view ('dashbord')->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
+    public function statistics(){
+        $active=0;$inactive=0;$sold=0;
+        $sql="SELECT post.status as status,count(id) as total FROM post GROUP BY status";
+        $d=DB::select($sql);
+        foreach($d as $row){
+            if($row->status == 0){
+                $inactive=$row->total;
+            }else if($row->status == 1){
+                $active=$row->total;
+            }else{
+                $sold=$row->total;
+            }
+        }
+        $array=array('totalactive'=>$active,'totalinactive'=>$inactive,'totalsold'=>$sold); 
+        return json_encode($array);
+    }
     public function delete(Request $request){
         $id = $request->id;
         DB::table('postos')->where('post_id', $id)->delete();

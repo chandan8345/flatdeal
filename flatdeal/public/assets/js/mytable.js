@@ -1,4 +1,17 @@
-    initialize();
+function statistics(){
+    $.ajax({
+        type: "get",
+        url: '/statistics',
+        success:function($result){
+            var result=$result;
+            var obj = JSON.parse(result);
+            $("#ta").html(obj.totalactive + " Ads Live");
+            $("#ti").html(obj.totalinactive + " Ads Unapproved");
+            $("#ts").html(obj.totalsold + " Ads Sold Out");
+        }
+});
+} 
+   initialize();
 $('.activepost').on("click",function(){
     $('.tableinactive').hide();
     $('.tablesold').hide();
@@ -42,8 +55,10 @@ function activepost(){
         success:function(response){
         if(response != "null"){
         $("#a").show();
+        statistics();
         $(".activerow").html(response);
         }else{
+            statistics();
         $('.tableactive tr').remove();
         $("#a").hide();   
         }
@@ -56,8 +71,10 @@ function inactivepost(){
         url: '/waitingpost',
         success:function(response){
         if(response != ""){
+        statistics();
         $(".inactiverow").html(response);
         }else{
+            statistics();
         $('.tableinactive tr').remove();
         $("#h").css("display","none");
         }
@@ -71,8 +88,10 @@ function soldpost(){
         success:function(response){
         if(response != "null"){
         $("#s").show();
+        statistics();
         $(".soldrow").html(response);
         }else{
+            statistics();
             $('.tablesold tr').remove();
             $("#s").hide();   
             }
