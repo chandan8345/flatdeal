@@ -25,6 +25,7 @@ Route::get('/approvepost','userController@approvepost');
 Route::get('/delete','userController@delete');
 Route::get('/sold','userController@sold');
 Route::get('/statistics','userController@statistics');
+Route::get('/adsupdate','userController@adsupdate');
 //ads-post
 Route::get('/ads-post','postController@index');
 Route::post('/addpost','postController@addpost');

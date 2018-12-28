@@ -21,7 +21,7 @@ class postController extends Controller
         $category=$req->input('categories');
         $rent=$req->input('rent');
         $size=$req->input('size');
-        $areatype=$req->input('area');
+        $areatype=$req->input('areatype');
         $toletfor=$req->input('toletfor');
         $condition=$req->input('condition');
         $facing=$req->input('facing');

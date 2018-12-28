@@ -6,7 +6,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet | Ads-Post</title>
+<title>Easy Tolet | Ads-Update</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <style>
 .image-preview-input {
@@ -151,11 +151,11 @@ Home
 @if (Session::has('msg'))
 <h2 class="product-title">{{ Session::get('msg') }}</h2>
 @else
-<h2 class="product-title">Post an Ad</h2>
+<h2 class="product-title">Update an Ads</h2>
 @endif
 <ol class="breadcrumb">
 <li><a href="/">Home ></a></li>
-<li class="current">Post you Ads</li>
+<li class="current">Modify your Ads</li>
 </ol>
 </div>
 </div>
@@ -179,6 +179,7 @@ Home
 <h4>{{ Session::get('user_role') }}</h4>
 </div>
 </div>
+<!--
 <nav class="navdashboard">
 <ul>
 <li>
@@ -230,7 +231,7 @@ Home
 </a>
  </li>
 </ul>
-</nav>
+</nav>-->
 </div>
 <div class="widget">
 <h4 class="widget-title">Advertisement</h4>
@@ -247,12 +248,13 @@ Home
 <div class="dashboard-box">
 <h2 class="dashbord-title">Ad Detail</h2>
 </div>
+@foreach($data as $key)
 <form enctype="multipart/form-data" method="post" action="/addpost">
 <input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
 <div class="dashboard-wrapper">
 <div class="form-group mb-3">
 <label class="control-label">Tolet Title*</label>
-<input class="form-control input-md" name="title" placeholder="Title" type="text"  required>
+<input class="form-control input-md" name="title" placeholder="Title" type="text" value="{{ $key->title }}" required>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Tolet Categories*</label>
@@ -260,14 +262,14 @@ Home
 <select id="category" name="categories" onchange="myfunc()">
 <option value="0">Select Categories</option>
 @foreach($category as $row)
- <option value="{{ $row->id }}">{{ $row->name }}</option>
+ <option value="{{ $row->id }}" <?php if($key->category_id == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Rent*</label>
-<input class="form-control input-md" name="rent" placeholder="Ad your Price" type="text">
+<input class="form-control input-md" name="rent"  value="{{ $key->rent }}" placeholder="Ad your Price" type="text">
 <div class="tg-checkbox">
 <input id="tg-priceoncall" type="checkbox" name="rentoncall" value="1">
 <label for="tg-priceoncall">Call for Rent</label>
@@ -275,21 +277,20 @@ Home
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Area Size</label>
-<input class="form-control input-md" name="size" placeholder="Ad your area size" type="text" required>
+<input class="form-control input-md" name="size" value="{{ $key->size }}" placeholder="Ad your area size" type="text" required>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Available Month*</label>
-<input class="form-control input-md" id="datepicker" name="month" type="text" required>
+<input class="form-control input-md" id="datepicker" value="{{ $key->month }}" name="month" type="text" required>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area Type*</label>
 <div class="tg-select form-control">
 <select name="areatype"  required>
 <option value="0">Select One</option>
- <option value="1">Residential</option>
- <option value="4">Commercial</option>
- <option value="3">DOHS</option>
- <option value="2">Local Area</option>
+@foreach($areatype as $row)
+ <option value="{{ $row->id }}" <?php if($key->area == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ @endforeach
 </select>
 </div>
 </div>
@@ -298,10 +299,10 @@ Home
 <div class="tg-select form-control">
 <select name="toletfor" required>
 <option value="0">Select One</option>
- <option value="Family">Family</option>
- <option value="Male">Male</option>
- <option value="Female">Female</option>
- <option value="Ask">Ask</option>
+@foreach($toletfor as $row)
+ <option value="{{ $row->id }}" <?php if($key->toletfor == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ @endforeach
+</select>
 </select>
 </div>
 </div>
@@ -310,20 +311,19 @@ Home
 <div class="tg-select form-control">
 <select name="condition"  required>
 <option value="0">Select One</option>
-<option value="Plug & Play">Plug & Play</option>
-<option value="Semi Furnished">Furnished</option>
-<option value="Non Furnished">Non Furnished</option>
-<option value="Non Paint">Non Paint</option>
+@foreach($condition as $row)
+ <option value="{{ $row->id }}" <?php if($key->condit == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ @endforeach
 </select>
 </div>
 </div>
 <div id="floor" class="form-group mb-3">
 <label class="control-label">Floor No</label>
-<input class="form-control input-md" name="floor" type="text" placeholder="Ground Floor">
+<input class="form-control input-md" name="floor" value="{{ $key->floorno }}" type="text" placeholder="Ground Floor">
 </div>
 <div class="form-group md-5">
 <label class="control-label">Details*</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"  required></textarea>
+<textarea style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"  required>{{ $key->details }}</textarea>
 </div>
 <!--<div class="form-group md-5">
 <label class="control-label">Location</label>
@@ -344,66 +344,63 @@ Home
 <strong>Inluded Utility bill on Rent*</strong>
 <div class="tg-selectgroup">
 <span class="tg-radio">
-<input id="tg-sameuser"  type="checkbox" name="maintanence" value="1">
+<input id="tg-sameuser"  type="checkbox" name="maintanence" value="1" <?php if($key->maintanence != "") echo "checked"; ?> >
 <label for="tg-sameuser">Maintanence</label>
 </span>
 <span class="tg-radio">
-<input id="Electricity" type="checkbox" name="electricity" value="1">
+<input id="Electricity" type="checkbox" name="electricity" value="1" <?php if($key->electricity != "") echo "checked"; ?>>
 <label for="Electricity">Electricity</label>
 </span>
 <span class="tg-radio">
-<input id="Gas" type="checkbox" name="gas" value="1">
+<input id="Gas" type="checkbox" name="gas" value="1"  <?php if($key->gas != "") echo "checked"; ?>>
 <label for="Gas">Gas</label>
 </span>
 <span class="tg-radio">
-<input id="Water" type="checkbox" name="water" value="1">
+<input id="Water" type="checkbox" name="water" value="1"  <?php if($key->maintanence != "") echo "checked"; ?>>
 <label for="Water">Water</label>
 </span>
 <span class="tg-radio">
-<input id="Generator" type="checkbox" name="generator" value="1">
+<input id="Generator" type="checkbox" name="generator" value="1"  <?php if($key->generator != "") echo "checked"; ?>>
 <label for="Generator">Generator</label>
 </span>
 <span class="tg-radio">
-<input id="lift" type="checkbox" name="lift" value="1">
+<input id="lift" type="checkbox" name="lift" value="1"  <?php if($key->lift != "") echo "checked"; ?>>
 <label for="lift">Lift</label>
 </span>
 <span class="tg-radio">
-<input id="Internet" type="checkbox" name="internet" value="1">
+<input id="Internet" type="checkbox" name="internet" value="1"  <?php if($key->internet != "") echo "checked"; ?>>
 <label for="Internet">Internet</label>
 </span>
 <span class="tg-radio">
-<input id="Parking" type="checkbox" name="parking" value="1">
+<input id="Parking" type="checkbox" name="parking" value="1"  <?php if($key->parking != "") echo "checked"; ?>>
 <label for="Parking">Parking</label>
 </span>
 </div>
 </div>
 <div id="room" class="form-group mb-3">
 <label class="control-label">Room*</label>
-<input class="form-control input-md" name="bedroom" type="number">
+<input class="form-control input-md" name="bedroom" type="number"  value="{{ $key->bedroom }}">
 </div>
 <div id="washroom" class="form-group mb-3">
 <label class="control-label">Washroom*</label>
-<input class="form-control input-md" name="washroom" type="number">
+<input class="form-control input-md" name="washroom" type="number"  value="{{ $key->washroom }}">
 </div>
 <div id="kitchen" class="form-group mb-3">
 <label id="lblkitchen" class="control-label">Kitchen*</label>
-<input class="form-control input-md" name="kitchen" type="number">
+<input class="form-control input-md" name="kitchen" type="number"  value="{{ $key->kitchen }}">
 </div>
 <div id="balcony" class="form-group mb-3">
 <label id="lblbalcony" class="control-label">Balcony</label>
-<input class="form-control input-md" name="balcony" type="number">
+<input class="form-control input-md" name="balcony" type="number" value="{{ $key->balcony }}">
 </div>
 <div id="facing" class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Facing</label>
 <div class="tg-select form-control">
 <select name="facing">
 <option value="0">Select One</option>
-<option value="East">East</option>
-<option value="West">West</option>
-<option value="North">North</option>
-<option value="South">South</option>
-<option value="Road">Road</option>
-<option value="Ask">Ask</option>
+@foreach($facing as $row)
+ <option value="{{ $row->id }}" <?php if($key->facing == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ @endforeach
 </select>
 </div>
 </div>
@@ -413,7 +410,7 @@ Home
 <select id="devision" name="devision" onchange="getCity()" required>
 <option value="0">Select One</option>
 @foreach($devision as $row)
-<option value="{{ $row->id }}">{{ $row->name }}</option>
+<option value="{{ $row->id }}"  <?php if($key->devision_id == $row->id) echo "selected";  ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -424,7 +421,7 @@ Home
 <select id="city" onchange="getArea()" name="city" required>
 <option value="0">Select One</option>
 @foreach($city as $row)
-<option value="{{ $row->id }}">{{ $row->name }}</option>
+<option value="{{ $row->id }}" <?php if($key->city_id == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -435,14 +432,14 @@ Home
 <select id="area" name="area" required>
 <option value="0">Select One</option>
 @foreach($area as $row)
-<option value="{{ $row->id }}">{{ $row->name }}</option>
+<option value="{{ $row->id }}"  <?php if($key->area_id == $row->id) echo "selected";  ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
 </div>
 <div class="form-group md-5">
 <label class="control-label">Sort Address*</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required></textarea>
+<textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required>{{ $key->sortaddress }}</textarea>
 </div>
 <label class="control-label">Photos</label>
 <div class="row">    
@@ -470,9 +467,10 @@ Home
 <input id="tg-agreetermsandrules" type="checkbox" name="rule" value="1">
 <label for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0);"   required>Terms of Use &amp; Posting Rules</a></label>
 </div>
-<button class="btn btn-common" type="submit">Post Ad</button>
+<button class="btn btn-common" type="submit">Update Ad</button>
 <button class="btn btn-common" type="reset">Reset</button>
 </form>
+@endforeach
 </div>
 </div>
 </div>
@@ -666,6 +664,91 @@ $(function() {
   $( function() {
     $( "#datepicker" ).datepicker();
   } );
+  </script>
+  <script type="text/javascript">
+      var category=$("#category").val();
+      //console.log(category);
+      if(category == 1){
+         $('#kitchen').show();
+         $('#washroom').show();
+         $('#balcony').show();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show();
+         $('#lblkitchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+      }else if(category == 2){
+        $('#kitchen').show();
+         $('#washroom').show();
+         $('#balcony').show();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show(); 
+         $('#lblkitchen').text("Conference Room");
+         $('#lblbalcony').text("Canteen");
+      }else if(category == 3){
+        $('#lblkitchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+        $('#kitchen').hide();
+         $('#washroom').hide();
+         $('#balcony').hide();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show(); 
+      }else if(category == 4){
+        $('#lblkitchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");  
+        $('#kitchen').hide();
+         $('#washroom').show();
+         $('#balcony').hide();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').hide();
+      }else if(category == 5){
+        $('#lblkitchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");  
+        $('#kitchen').hide();
+         $('#washroom').hide();
+         $('#balcony').hide();
+         $('#floor').hide();
+         $('#room').hide();
+         $('#facility').hide();
+         $('#facing').show();
+      }else if(category == 6){
+        $('#lblkithchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+        $('#kitchen').hide();
+         $('#washroom').hide();
+         $('#balcony').hide();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show();
+      }else if(category == 7){
+        $('#lblkithchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+        $('#kitchen').show();
+         $('#washroom').show();
+         $('#balcony').show();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show();
+      }else if(category == 8){
+        $('#lblkithchen').text("Kitchen");
+         $('#lblbalcony').text("Balcony");
+        $('#kitchen').show();
+         $('#washroom').show();
+         $('#balcony').show();
+         $('#floor').show();
+         $('#room').show();
+         $('#facility').show();
+         $('#facing').show();
+      }
   </script>
   <script type="text/javascript">
     function myfunc(){

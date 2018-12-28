@@ -12,8 +12,8 @@ class adsviewController extends Controller
     public function singleads(Request $req){
         $id=$req->input('id');
         $image=DB::table('postos')->where('post_id',$id)->get();
-        $sql="select post.title as title,post.postingdate as postingdate,post.rent as rent,post.size as size,areatype.name as areatype,post.toletfor as toletfor,post.condit as condit,post.facing as facing,post.floorno as floor,post.month as handover,post.details as details,post.bedroom as room,post.washroom as washroom,post.kitchen as kitchen,post.balcony as balcony,post.sortaddress as sortaddress,post.maintanence as maintanence,
-        post.gas as gas,post.water as water,post.electricity as electricity,post.lift as lift,post.generator as generator,post.parking as parking,post.internet as internet,category.name as category,area.name as areaname,city.name as city,users.mobile as mobile from post,category,city,areatype,area,users where post.id = $id and post.user_id = users.id and post.area_id=area.id and post.id =category.id and post.area = areatype.id and post.city_id=city.id and post.status = 1";
+        $sql="select post.title as title,post.postingdate as postingdate,post.rent as rent,post.size as size,areatype.name as areatype,post.toletfor as toletfor,post.condit as condit,post.facing as facing,post.floorno as floorno,post.month as handover,post.details as details,post.bedroom as room,post.washroom as washroom,post.kitchen as kitchen,post.balcony as balcony,post.sortaddress as sortaddress,post.maintanence as maintanence,
+        post.gas as gas,post.water as water,post.electricity as electricity,post.lift as lift,post.generator as generator,post.parking as parking,post.internet as internet,category.name as category,area.name as areaname,city.name as city,users.mobile as mobile from post,category,city,areatype,area,users where post.id = $id and post.user_id = users.id and post.area_id=area.id and post.category_id =category.id and post.area = areatype.id and post.city_id=city.id and post.status = 1";
         $post=DB::select($sql);
         return view('singleads')->with('post',$post)->with('image',$image);
     }

@@ -164,8 +164,41 @@
 <div class="details-meta">
         <span><a href="#"><i class="lni-alarm-clock md-2"></i> {{ $row->postingdate }}</a></span>
         <span><a href="#"><i class="lni-map-marker"></i> {{ $row->areaname }}</a></span>
-        <span><a href="#"><i class="lni-eye"></i> {{ $row->floor }}</a></span>
+        <span><a href="#"><i class="lni-eye"></i> {{ $row->floorno }}</a></span>
         </div>
+<h5 class="title-small">Specification:</h5>
+</div>
+<ul class="advertisement mb-3">
+<li>
+<p><strong>Rooms :</strong> {{ $row->room}}</p>
+</li>
+<li>
+<p><strong>Washroom :</strong> {{ $row->washroom}}</p>
+</li>
+<li>
+<p><strong>Kitchen :</strong> <a> {{ $row->kitchen}}</a></p>
+</li>
+<li>
+<p><strong>Preferrd For :</strong> <a> {{ $row->toletfor}}</a></p>
+</li>
+</ul>
+<ul class="advertisement mb-3">
+<li>
+<p><strong>Area Type</strong> {{ $row->areatype}}</p>
+</li>
+<li>
+<p><strong>Condition</strong> {{ $row->condit}}</p>
+</li>
+<li>
+<p><strong>Facing</strong> <a href="#"> {{ $row->facing}}</a></p>
+</li>
+</ul>
+<div class="ads-btn mb-4">
+<a class="btn btn-default" style="text-weight:bold;"><i></i>৳ {{$row->rent}}</a>
+<a class="btn btn-default"><i class="lni-phone-handset"></i> {{ $row->mobile }}</a>
+<a class="btn btn-default"><i class="lni-alarm-clock"></i> {{ $row->handover }}</a>
+</div>
+</div>
 <div  id="facility" class="form-group">
         <strong>Inluded Utility bill on Rent</strong>
         <div class="tg-selectgroup">
@@ -203,39 +236,6 @@
         </span>
         </div>
         </div>
-<h5 class="title-small">Specification:</h5>
-</div>
-<ul class="advertisement mb-3">
-<li>
-<p><strong>Rooms :</strong> {{ $row->room}}</p>
-</li>
-<li>
-<p><strong>Washroom :</strong> {{ $row->washroom}}</p>
-</li>
-<li>
-<p><strong>Kitchen :</strong> <a> {{ $row->kitchen}}</a></p>
-</li>
-<li>
-<p><strong>Preferrd For :</strong> <a> {{ $row->toletfor}}</a></p>
-</li>
-</ul>
-<ul class="advertisement mb-3">
-<li>
-<p><strong>Area Type</strong> {{ $row->areatype}}</p>
-</li>
-<li>
-<p><strong>Condition</strong> {{ $row->condit}}</p>
-</li>
-<li>
-<p><strong>Facing</strong> <a href="#"> {{ $row->facing}}</a></p>
-</li>
-</ul>
-<div class="ads-btn mb-4">
-<a class="btn btn-default" style="text-weight:bold;"><i></i>৳ {{$row->rent}}</a>
-<a class="btn btn-default"><i class="lni-phone-handset"></i> {{ $row->mobile }}</a>
-<a class="btn btn-default"><i class="lni-alarm-clock"></i> {{ $row->handover }}</a>
-</div>
-</div>
 </div>
 </div>
 

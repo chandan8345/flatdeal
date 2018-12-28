@@ -15,6 +15,44 @@ class userController extends Controller
         $city=DB::table('city')->get();
         return view ('dashbord')->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
+    public function adsupdate(Request $request){
+        $id=$request->id;
+        $user_id=Session::get('user_id');
+        $user_role=Session::get('user_role');
+        if($user_role == 'Administrator'){
+        $sql="SELECT * FROM post where post.id = $id";
+        $d=DB::select($sql);
+        if($d){
+        $devision=DB::table('devision')->get();
+        $category=DB::table('category')->get();
+        $city=DB::table('city')->get();
+        $area=DB::table('area')->get();
+        $areatype=DB::table('areatype')->get();
+        $toletfor=DB::table('toletfor')->get();
+        $condition=DB::table('condit')->get();
+        $facing=DB::table('facing')->get();
+        return view('adsupdate')->with('facing',$facing)->with('data',$d)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype)->with('toletfor',$toletfor)->with('condition',$condition);
+        }else{
+        return redirect('/dashbord');
+        }
+        }else{
+        $sql="SELECT * FROM post where post.id = $id and post.user_id = $user_id";
+        $d=DB::select($sql);
+        if($d){
+        $devision=DB::table('devision')->get();
+        $category=DB::table('category')->get();
+        $city=DB::table('city')->get();
+        $area=DB::table('area')->get();
+        $areatype=DB::table('areatype')->get();
+        $toletfor=DB::table('toletfor')->get();
+        $condition=DB::table('condit')->get();
+        $facing=DB::table('facing')->get();
+        return view('adsupdate')->with('facing',$facing)->with('data',$d)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype)->with('toletfor',$toletfor)->with('condition',$condition);
+        }else{
+        return redirect('/dashbord');
+        }
+        }
+    }
     public function statistics(){
         $active=0;$inactive=0;$sold=0;
         $sql="SELECT post.status as status,count(id) as total FROM post GROUP BY status";
@@ -71,9 +109,9 @@ class userController extends Controller
             </td>
             <td data-title="Action">
             <div class="btns-actions">
-            <a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
-            <a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
-            <a class="btn-action btn-delete" onclick="sold('.$row->id.')"><i class="lni-trash"></i></a>
+            <a class="btn-action btn-view" href="/singleads?id='.$row->id.'">View</a>
+            <a class="btn-action btn-edit" href="/adsupdate?id='.$row->id.'">Edit</i></a>
+            <a class="btn-action btn-delete" onclick="sold('.$row->id.')">Sold</i></a>
             </div>
             </td>
             </tr>';
@@ -108,9 +146,9 @@ class userController extends Controller
                 </td>
                 <td data-title="Action">
                 <div class="btns-actions">
-                <a class="btn-action btn-view" onclick="approve('.$row->id.')"><i class="lni-eye"></i></a>
-                <a class="btn-action btn-edit"><i class="lni-pencil"></i></a>
-                <a class="btn-action btn-delete" onclick="inactivedelete('.$row->id.')"><i class="lni-trash"></i></a>
+                <a class="btn-action btn-view" onclick="approve('.$row->id.')">Allow</a>
+                <a class="btn-action btn-edit" href="/adsupdate?id='.$row->id.'">Edit</a>
+                <a class="btn-action btn-delete" onclick="inactivedelete('.$row->id.')">Trash</a>
                 </div>
                 </td>
                 </tr>';
@@ -145,9 +183,7 @@ class userController extends Controller
             </td>
             <td data-title="Action">
             <div class="btns-actions">
-            <a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
-            <a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
-            <a class="btn-action btn-delete" onclick="solddelete('.$row->id.')"><i class="lni-trash"></i></a>
+            <a class="btn-action btn-delete" onclick="solddelete('.$row->id.')">Trash</a>
             </div>
             </td>
             </tr>';

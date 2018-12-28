@@ -188,7 +188,7 @@ Home
 </a>
 </li>
 <li>
-<a href="#">
+<a href="/logout">
 <i class="lni-enter"></i>
 <span>Logout</span>
 </a>
@@ -217,7 +217,7 @@ Home
 <div class="dashboardbox act">
 <div class="icon"><i class="lni-add-files"></i></div>
 <div class="contentbox">
-<h2><a>Active Ads</a></h2>
+<h2><a>Published Ads</a></h2>
 <h3 id="ta"></h3>
 </div>
 </div>
