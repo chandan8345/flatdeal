@@ -54,13 +54,13 @@ function activepost(){
         url: '/activepost',
         success:function(response){
         if(response != "null"){
-        $("#a").show();
+            $(".tableactive thead tr").show();
         statistics();
         $(".activerow").html(response);
         }else{
             statistics();
-        $('.tableactive tr').remove();
-        $("#a").hide();   
+        $('.tableactive tbody tr').remove();
+        $(".tableactive thead tr").hide();
         }
     }
     });
@@ -71,12 +71,13 @@ function inactivepost(){
         url: '/waitingpost',
         success:function(response){
         if(response != ""){
+            $(".tableinactive thead tr").show();
         statistics();
         $(".inactiverow").html(response);
         }else{
             statistics();
-        $('.tableinactive tr').remove();
-        $("#h").css("display","none");
+        $('.tableinactive tbody tr').remove();
+        $(".tableinactive thead tr").hide();
         }
     }
     });
@@ -87,13 +88,13 @@ function soldpost(){
         url: '/soldpost',
         success:function(response){
         if(response != "null"){
-        $("#s").show();
+            $(".tablesold thead tr").show();
         statistics();
         $(".soldrow").html(response);
         }else{
             statistics();
-            $('.tablesold tr').remove();
-            $("#s").hide();   
+            $('.tablesold tbody tr').remove();
+            $(".tablesold thead tr").hide();
             }
     }
     });

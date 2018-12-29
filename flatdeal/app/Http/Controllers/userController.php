@@ -15,6 +15,14 @@ class userController extends Controller
         $city=DB::table('city')->get();
         return view ('dashbord')->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
+    public function users(){
+        return view('users');
+    }
+    public function expired(Request $request){
+        $id = $request->id;
+        DB::table('users')->where('id',$id)->update(['status' => 2]);
+        echo "null";
+    }
     public function adsupdate(Request $request){
         $id=$request->id;
         $user_id=Session::get('user_id');
@@ -53,6 +61,22 @@ class userController extends Controller
         }
         }
     }
+    public function usersstatistics(){
+        $active=0;$inactive=0;$sold=0;
+        $sql="SELECT users.status as status,count(id) as total FROM users GROUP BY status";
+        $d=DB::select($sql);
+        foreach($d as $row){
+            if($row->status == 0){
+                $inactive=$row->total;
+            }else if($row->status == 1){
+                $active=$row->total;
+            }else{
+                $sold=$row->total;
+            }
+        }
+        $array=array('totalactive'=>$active,'totalinactive'=>$inactive,'totalsold'=>$sold); 
+        return json_encode($array);
+    }
     public function statistics(){
         $active=0;$inactive=0;$sold=0;
         $sql="SELECT post.status as status,count(id) as total FROM post GROUP BY status";
@@ -69,6 +93,11 @@ class userController extends Controller
         $array=array('totalactive'=>$active,'totalinactive'=>$inactive,'totalsold'=>$sold); 
         return json_encode($array);
     }
+    public function active(Request $request){
+        $id = $request->id;
+        DB::table('users')->where('id',$id)->update(['status' => 1]);
+        echo "null";
+    }
     public function delete(Request $request){
         $id = $request->id;
         DB::table('postos')->where('post_id', $id)->delete();
@@ -83,6 +112,82 @@ class userController extends Controller
     public function approvepost(Request $request){
         $id = $request->id;
         DB::table('post')->where('id',$id)->update(['status' => 1]);
+    }
+    public function activeusers(){
+        $user_id=Session::get('user_id');
+        $data=DB::table('users')->where('status',1)->get();
+        if($data){
+            foreach($data as $key => $row){
+            echo '<tr data-category="active">
+            <td class="photo"><img class="img-fluid" src="/image/'. $row->image .'" alt=""  style="width:80px;height:80px;"></td>
+            <td data-title="Title">
+            <h3>'.$row->name.'</h3>
+            <span>Joining: '.$row->dateofjoin.'</span>
+            </td>
+            <td data-title="Category"><span class="adcategories">'.$row->mobile.'</span></td>
+            <td data-title="Ad Status"><span class="adcategories">'.$row->email.'</span></td>
+            <td data-title="Price">
+            <h3>'.$row->address.'</h3>
+            </td>
+            <td data-title="Action">
+            <div class="btns-actions">
+            <a class="btn-action btn-delete" style="width:60px" onclick="expired('.$row->id.')">Expired</a>
+            </div>
+            </td>
+            </tr>';
+         }
+        }
+    }
+    public function waitingusers(){
+        $user_id=Session::get('user_id');
+        $data=DB::table('users')->where('status',0)->get();
+        if($data){
+            foreach($data as $key => $row){
+            echo '<tr data-category="active">
+            <td class="photo"><img class="img-fluid" src="/image/'. $row->image .'" alt=""  style="width:80px;height:80px;"></td>
+            <td data-title="Title">
+            <h3>'.$row->name.'</h3>
+            <span>Joining: '.$row->dateofjoin.'</span>
+            </td>
+            <td data-title="Category"><span class="adcategories">'.$row->mobile.'</span></td>
+            <td data-title="Ad Status"><span class="adcategories">'.$row->email.'</span></td>
+            <td data-title="Price">
+            <h3>'.$row->address.'</h3>
+            </td>
+            <td data-title="Action">
+            <div class="btns-actions">
+            <a class="btn-action btn-view" style="width:60px" onclick="activeuser('.$row->id.')">Active</a>
+            <a class="btn-action btn-delete" style="width:60px" onclick="inactiveremove('.$row->id.')">Remove</a>
+            </div>
+            </td>
+            </tr>';
+         }
+        }
+    }
+    public function expiredusers(){
+        $user_id=Session::get('user_id');
+        $data=DB::table('users')->where('status',2)->get();
+        if($data){
+            foreach($data as $key => $row){
+            echo '<tr data-category="active">
+            <td class="photo"><img class="img-fluid" src="/image/'. $row->image .'" alt=""  style="width:80px;height:80px;"></td>
+            <td data-title="Title">
+            <h3>'.$row->name.'</h3>
+            <span>Joining: '.$row->dateofjoin.'</span>
+            </td>
+            <td data-title="Category"><span class="adcategories">'.$row->mobile.'</span></td>
+            <td data-title="Ad Status"><span class="adcategories">'.$row->email.'</span></td>
+            <td data-title="Price">
+            <h3>'.$row->address.'</h3>
+            </td>
+            <td data-title="Action">
+            <div class="btns-actions">
+            <a class="btn-action btn-view" style="width:60px" onclick="expiredactive('.$row->id.')">Active</a>
+            </div>
+            </td>
+            </tr>';
+         }
+        }
     }
     public function activepost(){
         $user_id=Session::get('user_id');
@@ -110,8 +215,8 @@ class userController extends Controller
             <td data-title="Action">
             <div class="btns-actions">
             <a class="btn-action btn-view" href="/singleads?id='.$row->id.'">View</a>
-            <a class="btn-action btn-edit" href="/adsupdate?id='.$row->id.'">Edit</i></a>
-            <a class="btn-action btn-delete" onclick="sold('.$row->id.')">Sold</i></a>
+            <a class="btn-action btn-edit" href="/adsupdate?id='.$row->id.'">Edit</a>
+            <a class="btn-action btn-delete" onclick="sold('.$row->id.')">Sold</a>
             </div>
             </td>
             </tr>';

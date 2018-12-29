@@ -5,7 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet | Dashboard</title>
+<title>Easy Tolet | Manage Users</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -131,7 +131,7 @@ Home
 @endif
 <ol class="breadcrumb">
 <li><a href="/">Home /</a></li>
-<li class="current">Dashboard</li>
+<li class="current">Manage Users</li>
 </ol>
 </div>
 </div>
@@ -158,19 +158,17 @@ Home
 <nav class="navdashboard">
 <ul>
 <li>
-<a class="active" href="dashboard.html">
+<a href="/dashbord">
 <i class="lni-dashboard"></i>
 <span>Dashboard</span>
 </a>
 </li>
-@if(Session::get('user_role') == 'Administrator')
 <li>
-<a href="/users">
+<a class="active" href="/users">
 <i class="lni-cog"></i>
 <span>Manage Users</span>
 </a>
 </li>
-@endif
 <li>
 <a href="account-myads.html">
 <i class="lni-star"></i>
@@ -210,48 +208,48 @@ Home
 <div class="page-content">
 <div class="inner-box">
 <div class="dashboard-box">
-<h2 class="dashbord-title">Dashboard</h2>
+<h2 class="dashbord-title">Manage Users</h2>
 </div>
 <div class="dashboard-wrapper">
 <div class="dashboard-sections">
 <div class="row">
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 activepost">
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 activeusers">
 <div class="dashboardbox act">
 <div class="icon"><i class="lni-add-files"></i></div>
 <div class="contentbox">
-<h2><a>Published Ads</a></h2>
+<h2><a>Active Users</a></h2>
 <h3 id="ta"></h3>
 </div>
 </div>
 </div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 inactivepost">
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 inactiveusers">
 <div class="dashboardbox inact">
 <div class="icon"><i class="lni-support"></i></div>
 <div class="contentbox">
-<h2><a>Inactive Ads</a></h2>
+<h2><a>Inactive Users</a></h2>
 <h3 id="ti"></h3>
 </div>
 </div>
 </div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 sold">
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 expiredusers">
 <div class="dashboardbox sell">
 <div class="icon"><i class="lni-support"></i></div>
 <div class="contentbox">
-<h2><a>Sold Ads</a></h2>
+<h2><a>Expired Users</a></h2>
 <h3 id="ts"></h3>
 </div>
 </div>
 </div>
 </div>
 </div>
-<table class="table dashboardtable tablemyads tableactive">
+<table class="table dashboardtable tablemyads tableactiveusers">
 <thead id="a">
 <tr>
 <th>Photo</th>
-<th>Title</th>
-<th>Category</th>
-<th>Month</th>
-<th>Rent</th>
+<th>Name</th>
+<th>Mobile</th>
+<th>Email</th>
+<th>Address</th>
 <th>Action</th>
 </tr>
 </thead>
@@ -259,14 +257,14 @@ Home
 
 </tbody>
 </table>
-<table class="table dashboardtable tablemyads tableinactive">
+<table class="table dashboardtable tablemyads tableinactiveusers">
 <thead id="h">
 <tr>
 <th>Photo</th>
-<th>Title</th>
-<th>Category</th>
-<th>Month</th>
-<th>Rent</th>
+<th>Name</th>
+<th>Mobile</th>
+<th>Email</th>
+<th>Address</th>
 <th>Action</th>
 </tr>
 </thead>
@@ -274,18 +272,18 @@ Home
 
 </tbody>
 </table>
-<table class="table dashboardtable tablemyads tablesold">
+<table class="table dashboardtable tablemyads tableexpiredusers">
         <thead id="s">
         <tr>
         <th>Photo</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Month</th>
-        <th>Rent</th>
-        <th>Action</th>
+<th>Name</th>
+<th>Mobile</th>
+<th>Email</th>
+<th>Address</th>
+<th>Action</th>
         </tr>
         </thead>
-        <tbody class="soldrow">
+        <tbody class="expiredrow">
         
         </tbody>
         </table>
@@ -413,137 +411,110 @@ Home
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
-<script src="assets/js/mytable.js"></script>
+<script src="assets/js/userstable.js"></script>
 <script type="text/javascript">
-$.ajax({
+  $.ajax({
         type: "get",
-        url: '/statistics',
+        url: '/usersstatistics',
         success:function($result){
             var result=$result;
             var obj = JSON.parse(result);
-            $("#ta").html(obj.totalactive + " Ads Live");
-            $("#ti").html(obj.totalinactive + " Ads Unapproved");
-            $("#ts").html(obj.totalsold + " Ads Sold Out");
+            $("#ta").html(obj.totalactive + " Active Users");
+            $("#ti").html(obj.totalinactive + " Users Unapproved");
+            $("#ts").html(obj.totalsold + " Users Expired");
         }
 });
 function statistics(){
     $.ajax({
         type: "get",
-        url: '/statistics',
+        url: '/usersstatistics',
         success:function($result){
             var result=$result;
             var obj = JSON.parse(result);
-            $("#ta").html(obj.totalactive + " Ads Live");
-            $("#ti").html(obj.totalinactive + " Ads Unapproved");
-            $("#ts").html(obj.totalsold + " Ads Sold Out");
+            $("#ta").html(obj.totalactive + " Active Users");
+            $("#ti").html(obj.totalinactive + " Users Unapproved");
+            $("#ts").html(obj.totalsold + " Users Expired");
         }
 });    
 }
-    function sold(key){
+    function expired(key){
         $.ajax({
         type: "get",
-        url: '/sold',
+        url: '/expired',
         data:{
             id:key
            },
         success:function(res){
             $.ajax({
         type: "get",
-        url: '/activepost',
+        url: '/activeusers',
         success:function(response){
-        if(response != "null"){
-            $('.tableactive thead tr').show();
+        if(response != ""){
+        $(".tableactiveusers thead tr").show();
         statistics();
         $(".activerow").html(response);
         }else{
             statistics();
-            $('.tableactive tbody tr').remove();
-            $('.tableactive thead tr').hide();
+            $(".tableactiveusers thead tr").hide();
+            $(".tableactiveusers tbody tr").remove();
         }
     }
     });
         }
     });
     }
-    function solddelete(key){
+    function activeuser(key){
         $.ajax({
         type: "get",
-        url: '/delete',
+        url: '/activeuser',
         data:{
             id:key
            },
         success:function(res){
             $.ajax({
         type: "get",
-        url: '/soldpost',
+        url: '/waitingusers',
         success:function(response){
-        if(response != "null"){
-            $('.tablesold thead tr').show();
+        if(response != ""){
+        $(".tableinactiveusers thead tr").show();
         statistics();
-        $(".soldrow").html(response);
+        $(".inactiverow").html(response);
         }else{
             statistics();
-            $('.tablesold thead tr').hide();
-            $('.tablesold tbody tr').remove();
+        $(".tableinactiveusers thead tr").hide();
+        $(".tableinactiveusers tbody tr").remove();
         }
     }
     });
         }
     });
     }
-    function inactivedelete(key){
+    function expiredactive(key){
         $.ajax({
         type: "get",
-        url: '/delete',
+        url: '/expireduser',
         data:{
             id:key
            },
         success:function(res){
-            $.ajax({
+        $.ajax({
         type: "get",
-        url: '/waitingpost',
+        url: '/expiredusers',
         success:function(response){
         if(response != ""){
-        $(".tableinactive thead tr").show();
+            $(".tableexpiredusers thead tr").show();
         statistics();
-        $(".inactiverow").html(response);
+        $(".expiredrow").html(response);
         }else{
-        statistics();
-        $('.tableinactive tbody tr').remove();
-        $(".tableinactive thead tr").hide();
-        }
+            statistics();
+            $(".tableexpiredusers thead tr").hide();
+            $(".tableexpiredusers tbody  tr").remove();
+            }
     }
     });
         }
     });
     }
-function approve(id){
-    var num=id;
-    $.ajax({
-        type: "get",
-        url: '/approvepost',
-        data:{
-            id:num
-           },
-        success:function(res){
-            $.ajax({
-        type: "get",
-        url: '/waitingpost',
-        success:function(response){
-        if(response != ""){
-            $(".tableinactive thead tr").show();
-        statistics();
-        $(".inactiverow").html(response);
-        }else{
-        statistics();
-        $(".tableinactive thead tr").hide();
-        $('.tableinactive tbody tr').remove();
-        }
-    }
-    });
-        }
-    });
-}
 </script>
 </body>
 
