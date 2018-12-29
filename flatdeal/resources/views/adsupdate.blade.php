@@ -249,8 +249,9 @@ Home
 <h2 class="dashbord-title">Ad Detail</h2>
 </div>
 @foreach($data as $key)
-<form enctype="multipart/form-data" method="post" action="/addpost">
+<form enctype="multipart/form-data" method="post" action="/updatepost">
 <input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
+<input type ="hidden" id="token" name="id" value ="{{ $key->id }}">
 <div class="dashboard-wrapper">
 <div class="form-group mb-3">
 <label class="control-label">Tolet Title*</label>
@@ -341,7 +342,7 @@ Home
 </div>-->
 <div class="dashboard-wrapper">
 <div  id="facility" class="form-group mb-3">
-<strong>Inluded Utility bill on Rent*</strong>
+<strong>Included Utility bill on Rent*</strong>
 <div class="tg-selectgroup">
 <span class="tg-radio">
 <input id="tg-sameuser"  type="checkbox" name="maintanence" value="1" <?php if($key->maintanence != "") echo "checked"; ?> >

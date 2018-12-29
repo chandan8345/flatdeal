@@ -29,6 +29,7 @@ Route::get('/adsupdate','userController@adsupdate');
 //ads-post
 Route::get('/ads-post','postController@index');
 Route::post('/addpost','postController@addpost');
+Route::post('/updatepost','postController@updatepost');
 //ads-view
 Route::get('/adsview','adsviewController@index');
 Route::get('/category','adsviewController@category');

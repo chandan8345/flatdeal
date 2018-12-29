@@ -178,7 +178,7 @@ Home
 <h3>{{ Session::get('user_name') }}</h3>
 <h4>{{ Session::get('user_role') }}</h4>
 </div>
-</div>
+</div><!--
 <nav class="navdashboard">
 <ul>
 <li>
@@ -230,7 +230,7 @@ Home
 </a>
  </li>
 </ul>
-</nav>
+</nav>-->
 </div>
 <div class="widget">
 <h4 class="widget-title">Advertisement</h4>
@@ -286,10 +286,9 @@ Home
 <div class="tg-select form-control">
 <select name="areatype"  required>
 <option value="0">Select One</option>
- <option value="1">Residential</option>
- <option value="4">Commercial</option>
- <option value="3">DOHS</option>
- <option value="2">Local Area</option>
+@foreach($areatype as $row)
+ <option value="{{ $row->id }}" >{{ $row->name }}</option>
+ @endforeach
 </select>
 </div>
 </div>
@@ -298,10 +297,9 @@ Home
 <div class="tg-select form-control">
 <select name="toletfor" required>
 <option value="0">Select One</option>
- <option value="Family">Family</option>
- <option value="Male">Male</option>
- <option value="Female">Female</option>
- <option value="Ask">Ask</option>
+@foreach($toletfor as $row)
+ <option value="{{ $row->id }}" >{{ $row->name }}</option>
+ @endforeach
 </select>
 </div>
 </div>
@@ -310,10 +308,9 @@ Home
 <div class="tg-select form-control">
 <select name="condition"  required>
 <option value="0">Select One</option>
-<option value="Plug & Play">Plug & Play</option>
-<option value="Semi Furnished">Furnished</option>
-<option value="Non Furnished">Non Furnished</option>
-<option value="Non Paint">Non Paint</option>
+@foreach($condition as $row)
+ <option value="{{ $row->id }}" >{{ $row->name }}</option>
+ @endforeach
 </select>
 </div>
 </div>
@@ -341,7 +338,7 @@ Home
 </div>-->
 <div class="dashboard-wrapper">
 <div  id="facility" class="form-group mb-3">
-<strong>Inluded Utility bill on Rent*</strong>
+<strong>Included Utility bill on Rent*</strong>
 <div class="tg-selectgroup">
 <span class="tg-radio">
 <input id="tg-sameuser"  type="checkbox" name="maintanence" value="1">
@@ -398,12 +395,9 @@ Home
 <div class="tg-select form-control">
 <select name="facing">
 <option value="0">Select One</option>
-<option value="East">East</option>
-<option value="West">West</option>
-<option value="North">North</option>
-<option value="South">South</option>
-<option value="Road">Road</option>
-<option value="Ask">Ask</option>
+@foreach($facing as $row)
+ <option value="{{ $row->id }}" >{{ $row->name }}</option>
+ @endforeach
 </select>
 </div>
 </div>
