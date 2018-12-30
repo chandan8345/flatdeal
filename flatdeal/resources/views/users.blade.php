@@ -170,9 +170,9 @@ Home
 </a>
 </li>
 <li>
-<a href="account-myads.html">
+<a href="/profile">
 <i class="lni-star"></i>
-<span>Profile Settings</span>
+<span>Profile</span>
 </a>
 </li>
 <li>

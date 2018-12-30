@@ -15,6 +15,55 @@ class userController extends Controller
         $city=DB::table('city')->get();
         return view ('dashbord')->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
+    public function updateprofile(Request $request){
+        $user_id=Session::get('user_id');
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $mobile = $request->input('mobile');
+        $email = $request->input('email');
+        $address = $request->input('address');
+        $oldpass = $request->input('oldpass');
+        $newpass = $request->input('newpass');
+        if($id == $user_id){
+            $data=DB::table('users')->where('id',$user_id)->where('pass',$oldpass)->count();
+            if($data == 1){
+                if($request->file('image') !=null){
+                    $image = $request->file('image')->getClientOriginalName();
+                    $extention = $request->file('image')->getClientOriginalExtension();
+                    $dp='image/'.$id.'.'.$extention;
+                    if($newpass != ""){
+                    $d=array('name'=>$name,'pass'=>$newpass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'image'=>$id.'.'.$extention);
+                    DB::table('users')->where('id',$id)->update($d);
+                    }else{
+                    $d=array('name'=>$name,'pass'=>$oldpass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'image'=>$id.'.'.$extention);
+                    DB::table('users')->where('id',$id)->update($d);    
+                    }
+                    $sp=$request->file('image')->getPathName();
+                    move_uploaded_file($sp,$dp);
+                    Session::flash('msg','Account Update successfully');
+                    return redirect('/profile');
+                }else{
+                    if($newpass != ""){
+                    $d=array('name'=>$name,'pass'=>$newpass,'address'=>$address,'mobile'=>$mobile,'email'=>$email);
+                    DB::table('users')->where('id',$id)->update($d);
+                    }else{
+                    $d=array('name'=>$name,'pass'=>$oldpass,'address'=>$address,'mobile'=>$mobile,'email'=>$email);
+                    DB::table('users')->where('id',$id)->update($d);    
+                    }
+                    Session::flash('msg','Account Update successfully');
+                    return redirect('/profile');
+                }
+            }else{
+                Session::flash('msg','Sorry, old password mismatch');
+                return redirect('/profile');
+            }
+        }
+      }
+    public function profile(){
+        $user_id=Session::get('user_id');
+        $data=DB::table('users')->where('id',$user_id)->get();
+        return view('profile')->with('data',$data);
+    }
     public function users(){
         return view('users');
     }

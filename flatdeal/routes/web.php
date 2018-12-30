@@ -18,6 +18,7 @@ Route::get('/signup','securityController@indexSignup');
 Route::post('/signupcheck','securityController@signup');
 //dashbord
 Route::get('/dashbord','userController@index');
+Route::post('/updateprofile','userController@updateprofile');
 Route::get('/activepost','userController@activepost');
 Route::get('/waitingpost','userController@waitingpost');
 Route::get('/soldpost','userController@soldpost');
@@ -34,6 +35,7 @@ Route::get('/statistics','userController@statistics');
 Route::get('/usersstatistics','userController@usersstatistics');
 Route::get('/adsupdate','userController@adsupdate');
 Route::get('/users','userController@users');
+Route::get('/profile','userController@profile');
 //ads-post
 Route::get('/ads-post','postController@index');
 Route::post('/addpost','postController@addpost');

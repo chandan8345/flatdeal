@@ -5,7 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet | Dashboard</title>
+<title>Easy Tolet | Profile</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -23,6 +23,30 @@
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+<style>
+        .image-preview-input {
+            position: relative;
+            overflow: hidden;
+            margin: 0px;    
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;    
+        }
+        .image-preview-input input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+        .image-preview-input-title {
+            margin-left:2px;
+        }
+        </style>
 </head>
 <body>
 
@@ -126,12 +150,14 @@ Home
 <div class="row">
 <div class="col-md-12">
 <div class="breadcrumb-wrapper">
-@if (Session::has('user_name'))
-<h2 class="product-title">Hi, {{ Session::get('user_name') }}</h2>
-@endif
+        @if (Session::has('msg'))
+        <h2 class="product-title">{{ Session::get('msg') }}</h2>
+        @else
+        <h2 class="product-title">Update Profile</h2>
+        @endif
 <ol class="breadcrumb">
 <li><a href="/">Home /</a></li>
-<li class="current">Dashboard</li>
+<li class="current">Profile Settings</li>
 </ol>
 </div>
 </div>
@@ -158,21 +184,19 @@ Home
 <nav class="navdashboard">
 <ul>
 <li>
-<a class="active" href="dashboard.html">
+<a href="/dashbord">
 <i class="lni-dashboard"></i>
 <span>Dashboard</span>
 </a>
 </li>
-@if(Session::get('user_role') == 'Administrator')
 <li>
 <a href="/users">
 <i class="lni-cog"></i>
 <span>Manage Users</span>
 </a>
 </li>
-@endif
 <li>
-<a href="/profile">
+<a  class="active" href="/profile">
 <i class="lni-star"></i>
 <span>Profile</span>
 </a>
@@ -207,89 +231,93 @@ Home
 </aside>
 </div>
 <div class="col-sm-12 col-md-8 col-lg-9">
-<div class="page-content">
-<div class="inner-box">
-<div class="dashboard-box">
-<h2 class="dashbord-title">Dashboard</h2>
-</div>
-<div class="dashboard-wrapper">
-<div class="dashboard-sections">
-<div class="row">
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 activepost">
-<div class="dashboardbox act">
-<div class="icon"><i class="lni-add-files"></i></div>
-<div class="contentbox">
-<h2><a>Published Ads</a></h2>
-<h3 id="ta"></h3>
-</div>
-</div>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 inactivepost">
-<div class="dashboardbox inact">
-<div class="icon"><i class="lni-support"></i></div>
-<div class="contentbox">
-<h2><a>Inactive Ads</a></h2>
-<h3 id="ti"></h3>
-</div>
-</div>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 sold">
-<div class="dashboardbox sell">
-<div class="icon"><i class="lni-support"></i></div>
-<div class="contentbox">
-<h2><a>Sold Ads</a></h2>
-<h3 id="ts"></h3>
-</div>
-</div>
-</div>
-</div>
-</div>
-<table class="table dashboardtable tablemyads tableactive">
-<thead id="a">
-<tr>
-<th>Photo</th>
-<th>Title</th>
-<th>Category</th>
-<th>Month</th>
-<th>Rent</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody class="activerow">
-
-</tbody>
-</table>
-<table class="table dashboardtable tablemyads tableinactive">
-<thead id="h">
-<tr>
-<th>Photo</th>
-<th>Title</th>
-<th>Category</th>
-<th>Month</th>
-<th>Rent</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody class="inactiverow">
-
-</tbody>
-</table>
-<table class="table dashboardtable tablemyads tablesold">
-        <thead id="s">
-        <tr>
-        <th>Photo</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Month</th>
-        <th>Rent</th>
-        <th>Action</th>
-        </tr>
-        </thead>
-        <tbody class="soldrow">
-        
-        </tbody>
-        </table>
-</div>
+    <div class="row page-content">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+    <div class="inner-box">
+    <div class="dashboard-box">
+    <h2 class="dashbord-title">Profile</h2>
+    </div>
+    @foreach($data as $key)
+    <form enctype="multipart/form-data" method="post" action="/updateprofile">
+    <input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
+    <input type ="hidden" id="" name="id" value ="{{ $key->id }}">
+    <div class="dashboard-wrapper">
+    <div class="form-group mb-3">
+    <label class="control-label">Your Name*</label>
+    <input class="form-control input-md" name="name" placeholder="Username" type="text" value="{{ $key->name }}" required>
+    </div>
+    <div class="form-group mb-3">
+    <label class="control-label">Mobile No*</label>
+    <input class="form-control input-md" name="mobile"  value="{{ $key->mobile }}" placeholder="Mobile No" type="text">
+    </div>
+    <div class="form-group mb-3">
+    <label class="control-label">Email</label>
+    <input class="form-control input-md" name="email" value="{{ $key->email }}" placeholder="example@examole.com" type="text" required>
+    </div>
+    <div class="form-group md-5">
+    <label class="control-label">Address*</label>
+    <textarea style="width:-webkit-fill-available;text-size:20px;" rows="4" placeholder="Write your address" name="address"  required>{{ $key->address }}</textarea>
+    </div>
+    <!--<div class="form-group md-5">
+    <label class="control-label">Location</label>
+    <textarea style="width:-webkit-fill-available;text-size:20px;" rows="5" placeholder="write full address here..."></textarea>
+    </div>-->
+    <!---->
+    </div>
+    </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+    <div class="inner-box">
+    <div class="tg-contactdetail"><!--
+    <div class="dashboard-box">
+    <h2 class="dashbord-title">Contact Detail</h2>
+    </div>-->
+    <div class="dashboard-wrapper">
+            <div class="row page-content">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="inner-box">
+                    <div class="dashboard-box">
+                    <h2 class="dashbord-title"></h2>
+                    </div>
+    <div id="room" class="form-group mb-3">
+    <label class="control-label">Old Password*</label>
+    <input class="form-control input-md" name="oldpass" type="password"  value="" required>
+    </div>
+    <div id="room" class="form-group mb-3">
+            <label class="control-label">New Password*</label>
+            <input class="form-control input-md" name="newpass" type="password">
+            </div>
+    <label class="control-label">Photos</label>
+    <div class="row">    
+            <div class="col-xs-12 col-md-12">  
+                <!-- image-preview-filename input [CUT FROM HERE]-->
+                <div class="input-group image-preview">
+                    <input type="text" class="form-control image-preview-filename" disabled="disabled" placeholder="Click browse >>"> <!-- don't give a name === doesn't send on POST/GET -->
+                    <span class="input-group-btn">
+                        <!-- image-preview-clear button -->
+                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;background-color:#00cc67;color:white;">
+                            <span class="glyphicon glyphicon-remove"></span> Clear
+                        </button>
+                        <!-- image-preview-input -->
+                        <div class="btn btn-default image-preview-input" style="background-color:#00cc67">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                            <span class="image-preview-input-title" style="color:white;">Browse</span>
+                            <input type="file" id="image" name="image[]" accept="image/png, image/jpeg, image/gif" multiple/> <!-- rename it -->
+                        </div>
+                    </span>
+                </div><!-- /input-group image-preview [TO HERE]-->
+            </div>
+        </div>
+    </br>   
+    <button class="btn btn-common" type="submit">Update</button>
+    </form>
+@endforeach
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 </div>
 </div>
 </div>
@@ -413,138 +441,66 @@ Home
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
-<script src="assets/js/mytable.js"></script>
-<script type="text/javascript">
-$.ajax({
-        type: "get",
-        url: '/statistics',
-        success:function($result){
-            var result=$result;
-            var obj = JSON.parse(result);
-            $("#ta").html(obj.totalactive + " Ads Live");
-            $("#ti").html(obj.totalinactive + " Ads Unapproved");
-            $("#ts").html(obj.totalsold + " Ads Sold Out");
-        }
-});
-function statistics(){
-    $.ajax({
-        type: "get",
-        url: '/statistics',
-        success:function($result){
-            var result=$result;
-            var obj = JSON.parse(result);
-            $("#ta").html(obj.totalactive + " Ads Live");
-            $("#ti").html(obj.totalinactive + " Ads Unapproved");
-            $("#ts").html(obj.totalsold + " Ads Sold Out");
-        }
-});    
-}
-    function sold(key){
-        $.ajax({
-        type: "get",
-        url: '/sold',
-        data:{
-            id:key
-           },
-        success:function(res){
-            $.ajax({
-        type: "get",
-        url: '/activepost',
-        success:function(response){
-        if(response != "null"){
-            $('.tableactive thead tr').show();
-        statistics();
-        $(".activerow").html(response);
-        }else{
-            statistics();
-            $('.tableactive tbody tr').remove();
-            $('.tableactive thead tr').hide();
-        }
-    }
-    });
-        }
-    });
-    }
-    function solddelete(key){
-        $.ajax({
-        type: "get",
-        url: '/delete',
-        data:{
-            id:key
-           },
-        success:function(res){
-            $.ajax({
-        type: "get",
-        url: '/soldpost',
-        success:function(response){
-        if(response != "null"){
-            $('.tablesold thead tr').show();
-        statistics();
-        $(".soldrow").html(response);
-        }else{
-            statistics();
-            $('.tablesold thead tr').hide();
-            $('.tablesold tbody tr').remove();
-        }
-    }
-    });
-        }
-    });
-    }
-    function inactivedelete(key){
-        $.ajax({
-        type: "get",
-        url: '/delete',
-        data:{
-            id:key
-           },
-        success:function(res){
-            $.ajax({
-        type: "get",
-        url: '/waitingpost',
-        success:function(response){
-        if(response != ""){
-        $(".tableinactive thead tr").show();
-        statistics();
-        $(".inactiverow").html(response);
-        }else{
-        statistics();
-        $('.tableinactive tbody tr').remove();
-        $(".tableinactive thead tr").hide();
-        }
-    }
-    });
-        }
-    });
-    }
-function approve(id){
-    var num=id;
-    $.ajax({
-        type: "get",
-        url: '/approvepost',
-        data:{
-            id:num
-           },
-        success:function(res){
-            $.ajax({
-        type: "get",
-        url: '/waitingpost',
-        success:function(response){
-        if(response != ""){
-            $(".tableinactive thead tr").show();
-        statistics();
-        $(".inactiverow").html(response);
-        }else{
-        statistics();
-        $(".tableinactive thead tr").hide();
-        $('.tableinactive tbody tr').remove();
-        }
-    }
-    });
-        }
-    });
-}
-</script>
+<script>
+        $(document).on('click', '#close-preview', function(){ 
+            $('.image-preview').popover('hide');
+            // Hover befor close the preview
+            $('.image-preview').hover(
+                function () {
+                   $('.image-preview').popover('show');
+                }, 
+                 function () {
+                   $('.image-preview').popover('hide');
+                }
+            );    
+        });
+        
+        $(function() {
+            // Create the close button
+            var closebtn = $('<button/>', {
+                type:"button",
+                text: 'x',
+                id: 'close-preview',
+                style: 'font-size: initial;',
+            });
+            closebtn.attr("class","close pull-right");
+            // Set the popover default content
+            $('.image-preview').popover({
+                trigger:'manual',
+                html:true,
+                title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+                content: "There's no image",
+                placement:'bottom'
+            });
+            // Clear event
+            $('.image-preview-clear').click(function(){
+                $('.image-preview').attr("data-content","").popover('hide');
+                $('.image-preview-filename').val("");
+                $('.image-preview-clear').hide();
+                $('.image-preview-input input:file').val("");
+                $(".image-preview-input-title").text("Browse"); 
+            }); 
+            // Create the preview image
+            $(".image-preview-input input:file").change(function (){     
+                var img = $('<img/>', {
+                    id: 'dynamic',
+                    width:250,
+                    height:200
+                });      
+                var file = this.files[0];
+                var reader = new FileReader();
+                // Set preview image into the popover data-content
+                reader.onload = function (e) {
+                    $(".image-preview-input-title").text("Change");
+                    $(".image-preview-clear").show();
+                    $(".image-preview-filename").val(file.name);            
+                    img.attr('src', e.target.result);
+                    $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+                }        
+                reader.readAsDataURL(file);
+            });  
+        });
+        </script>
 </body>
 
 <!-- Mirrored from preview.uideck.com/items/classially/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Nov 2018 14:23:21 GMT -->

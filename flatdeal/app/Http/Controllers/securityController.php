@@ -31,17 +31,12 @@ class securityController extends Controller
             if($request->file('image') !=null){
                 $image = $request->file('image')->getClientOriginalName();
                 $extention = $request->file('image')->getClientOriginalExtension();
-                $dp='image/'.$mobile.'.'.$extention;
-                $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'dateofjoin'=>date('d-m-Y'),'image'=>$mobile.'.'.$extention,'role'=>1,'status'=>1);
-                DB::table('users')->insert($data);
+                $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'dateofjoin'=>date('d-m-Y'),'role'=>1,'status'=>1);
+                $id=DB::table('users')->insertGetid($data);
+                $dp='image/'.$id.'.'.$extention;
                 $sp=$request->file('image')->getPathName();
                 move_uploaded_file($sp,$dp);
                 Session::flash('msg','Account create successfully');
-                Mail::send(['text'=>'mail'], $user, function($message) {
-                    $message->to($user['email'])->subject
-                       ('Varify account');
-                    $message->from('easytolet@outlook.com','Easy To-let');
-                 });
                 return redirect('/signup');
             }else{
                 $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'role'=>1,'status'=>1);
@@ -73,7 +68,7 @@ class securityController extends Controller
                     if($row->mobile == $mobile && $row->pass == $pass){
                         Session::put('user_id',$row->id);
                         Session::put('user_name',$row->name);
-                        Session::put('image',$row->image);
+                        Session::put('image',$row->id);
                         if($row->role == 0){
                         Session::put('user_role','Administrator');
                         }else{
