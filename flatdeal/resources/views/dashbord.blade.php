@@ -5,7 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet | Dashboard</title>
+<title>Smart Tolet | Dashboard</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 

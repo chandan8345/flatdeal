@@ -1,4 +1,5 @@
 <?php
+//API
 
 //Homepage
 Route::get('/','homeController@index');

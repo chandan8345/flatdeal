@@ -9,7 +9,7 @@
 <img class="img-fluid" src="assets/img/flatA.png" alt="">
 </div>
 <h4>Flat | Apartment</h4>
-<strong>189 Ads</strong>
+<strong>{{ $flat }} Ads</strong>
 </div>
 </a>
 </div>
@@ -20,7 +20,7 @@
 <img class="img-fluid" src="assets/img/category/img-6.png" alt="">
 </div>
 <h4>Luxury House</h4>
-<strong>150 Ads</strong>
+<strong>{{ $luxury }} Ads</strong>
 </div>
 </a>
 </div>
@@ -31,7 +31,7 @@
 <img class="img-fluid" src="assets/img/office.png" alt="">
 </div>
 <h4>Office Space</h4>
-<strong>127 Ads</strong>
+<strong>{{ $office }} Ads</strong>
 </div>
 </a>
 </div>
@@ -42,7 +42,7 @@
 <img class="img-fluid" src="assets/img/industry.png" alt="">
 </div>
 <h4>Factory | Warehouse</h4>
-<strong>69 Ads</strong>
+<strong>{{ $factory }} Ads</strong>
 </div>
 </a>
 </div>
@@ -53,7 +53,7 @@
 <img class="img-fluid" src="assets/img/moll.png" alt="">
 </div>
 <h4>Retail Space</h4>
-<strong>172 Ads</strong>
+<strong>{{ $retail }} Ads</strong>
 </div>
 </a>
 </div>
@@ -64,7 +64,7 @@
 <img class="img-fluid" src="assets/img/beach.png" alt="">
 </div>
 <h4>Plot | Land</h4>
-<strong>249 Ads</strong>
+<strong>{{ $plot }} Ads</strong>
 </div>
 </a>
 </div>
@@ -75,7 +75,7 @@
 <img class="img-fluid" src="assets/img/garag.png" alt="">
 </div>
 <h4>Garage</h4>
-<strong>14 9Ads</strong>
+<strong>{{ $garage }} Ads</strong>
 </div>
 </a>
 </div>
@@ -86,7 +86,7 @@
 <img class="img-fluid" src="assets/img/mess.png" alt="">
 </div>
 <h4>Rooms</h4>
-<strong>150 Ads</strong>
+<strong>{{ $rooms }} Ads</strong>
 </div>
 </a>
 </div>

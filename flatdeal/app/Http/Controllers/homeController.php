@@ -10,10 +10,42 @@ use Input;
 class homeController extends Controller
 {
     public function index(){
+        $flat=0;$office=0;$factory=0;$plot=0;
+        $retail=0;$rooms=0;$luxury=0;$garage=0;
         $devision=DB::table('devision')->get();
         $category=DB::table('category')->get();
         $city=DB::table('city')->get();
-        return view('index')->with('devision',$devision)->with('category',$category)->with('city',$city);
+        $sql="SELECT post.category_id as category,count(post.id) total FROM post group by post.category_id";
+        $categorywisetotal=DB::select($sql);
+        foreach($categorywisetotal as $row){
+            if($row->category == 1){
+                $flat=$row->total;
+            }
+            if($row->category == 2){
+                $office=$row->total;
+            }
+            if($row->category == 3){
+                $factory=$row->total;
+            }
+            if($row->category == 4){
+                $retail=$row->total;
+            }
+            if($row->category == 5){
+                $plot=$row->total;
+            }
+            if($row->category == 6){
+                $garage=$row->total;
+            }
+            if($row->category == 7){
+                $rooms=$row->total;
+            }
+            if($row->category == 8){
+                $luxury=$row->total;
+            }
+        }
+        $query="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id=postos.post_id and post.devision_id=1 and post.area_id=area.id and post.user_id=users.id and post.status=1 and post.category_id = category.id GROUP BY postos.post_id order by id desc limit 6";
+        $latestads=DB::select($query);
+        return view('index',['flat' => $flat,'office'=> $office,'retail'=>$retail,'factory'=>$factory,'plot'=>$plot,'rooms'=>$rooms,'garage'=>$garage,'luxury'=>$luxury])->with('latestads',$latestads)->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
     public function faq(){
         return view('faq');
@@ -54,7 +86,7 @@ class homeController extends Controller
         $city=DB::table('city')->get();
         $area=DB::table('area')->get();
         $areatype=DB::table('areatype')->get();
-        $sql="select post.id,post.title,post.month,post.rent,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area where post.id > 0 and post.id=postos.post_id and post.area_id=area.id and post.user_id=users.id and post.status=1 ";
+        $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id > 0 and post.id=postos.post_id and post.area_id=area.id and post.user_id=users.id and post.status=1 and post.category_id=category.id";
         if(!empty($d)){
           $sql =$sql." and post.devision_id='$d'";
         }if(!empty($c)){

@@ -5,7 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet | Profile</title>
+<title>Smart Tolet | Profile</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -302,7 +302,7 @@ Home
                         <div class="btn btn-default image-preview-input" style="background-color:#00cc67">
                             <span class="glyphicon glyphicon-folder-open"></span>
                             <span class="image-preview-input-title" style="color:white;">Browse</span>
-                            <input type="file" id="image" name="image[]" accept="image/png, image/jpeg, image/gif" multiple/> <!-- rename it -->
+                            <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif"/> <!-- rename it -->
                         </div>
                     </span>
                 </div><!-- /input-group image-preview [TO HERE]-->

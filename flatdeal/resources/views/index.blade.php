@@ -7,7 +7,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet</title>
+<title>Smart Tolet</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -36,9 +36,10 @@
 <!--
 @include('layouts.feature')
 -->
+
 @include('layouts.info')
 
-@include('layouts.counter');
+@include('layouts.counter')
 
 
 <section class="testimonial section-padding">
@@ -52,13 +53,13 @@
 <img src="assets/img/ak.png" style="width:80px;height:80px;" alt="">
 </div>
 <div class="content">
-<h2><a href="#">Engr. Abul Kalam Azad</a></h2>
+<h2><a href="#">Md. Abul Kalam Azad</a></h2>
 <h3>CEO of <a href="http://www.touchandsolve.com/">Touch and Solve IT</a></h3>
-<p class="description">Senior Vice President at Guardian Life Insurance</p>
-<h3>Owner at of <a href="#">Easy To-let</a></h3>
+<p class="description">SVP at Guardian Life Insurance</p>
+<h3>Owner at of <a href="#">Smart To-Let</a></h3>
 </div>
 </div>
-</div>
+</div><!--
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
@@ -71,7 +72,7 @@
 <h3>Owner at of <a href="#">Easy Tolet</a></h3>
 </div>
 </div>
-</div>
+</div>-->
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
@@ -80,8 +81,8 @@
 <div class="content">
 <h2><a href="#">CK Biswas</a></h2>
 <p class="description">Apps Developer & Web Developer</p>
-<p class="description">Founder of Easy To-let</p>
-<h3>Developer at of <a href="">Easy Tolet</a></h3>
+<p class="description">Founder of Smart To-Let</p>
+<h3>Developer at of <a href="">Smart To-Let</a></h3>
 </div>
 </div>
 </div>
@@ -91,7 +92,7 @@
  </div>
 </section>
 
-
+<!--
 <section class="subscribes section-padding">
 <div class="container">
 <div class="row wrapper-sub">
@@ -109,7 +110,7 @@
 </div>
 </div>
 </section>
-
+-->
 @include('layouts.fotter')
 
 <a href="#" class="back-to-top">

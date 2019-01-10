@@ -9,8 +9,9 @@
 <span class="lni-menu"></span>
 <span class="lni-menu"></span>
 <span class="lni-menu"></span>
-</button>
+</button><!--
 <a href="/" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
+-->
 </div>
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto">
@@ -37,7 +38,7 @@ Feature
 </li>-->
 <li class="nav-item">
 <a class="nav-link scroll" href="#why">
-why easy
+why smart
 </a>
 </li>
 
@@ -101,7 +102,7 @@ Feature
 </li>
 <li class="nav-item">
 <a class="nav-link" href="#feature">
-why easy
+why smart
 </a>
 </li>
 <li class="nav-item">
@@ -147,8 +148,8 @@ Contact us
 <div class="row">
 <div class="col-md-12 col-lg-12 col-xs-12 text-center">
 <div class="contents">
-<h1 class="head-title" id="1">Welcome to <span class="year" id="2">Easy To-Let</span></h1>
-<p id="terminal">Bangladesh No.1 Best TO-LET Dealing Website, <br> Create Account & Enjoy the Best Selling Experience with us.</p>
+<h1 class="head-title" id="1">WELCOME TO <span class="year" id="2">SMART TO-LET</span></h1>
+<p id="terminal">Bangladesh No.1 Best TO-LET Dealing Website, <br> Create Account and to-let your property very easy.</p>
 
 <div class="search-bar">
 <fieldset>
@@ -162,9 +163,9 @@ Contact us
 <i class="lni-map"></i>
 <div class="tg-select">
 <select id="devision" onchange="getCity()" name="devision">
-<option value="0">Select Divisions</option>
+<option value="0">Select Division</option>
 @foreach($devision as $row)
-    <option value="{{ $row->id }}" <?php if($row->name == "Dhaka"){ echo "selected";}  ?> >{{ $row->name }}</option>
+    <option value="{{ $row->id }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>

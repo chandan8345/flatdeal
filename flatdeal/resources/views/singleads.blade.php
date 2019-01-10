@@ -4,14 +4,13 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet | AdsDetails</title>
+<title>Smart Tolet | AdsDetails</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
 <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/slicknav.css">
-
 
 
 <link rel="stylesheet" type="text/css" href="assets/css/nivo-lightbox.css">
@@ -262,7 +261,7 @@
 </div>
 </div>
 @endforeach
-
+<!--
 <section class="featured-lis section-padding">
 <div class="container">
 <h3 class="section-title">Featured Products</h3>
@@ -378,7 +377,7 @@
 </div>
 </div>
 </section>
-
+-->
 
 <footer>
 

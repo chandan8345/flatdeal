@@ -68,7 +68,7 @@ class securityController extends Controller
                     if($row->mobile == $mobile && $row->pass == $pass){
                         Session::put('user_id',$row->id);
                         Session::put('user_name',$row->name);
-                        Session::put('image',$row->id);
+                        Session::put('image',$row->image);
                         if($row->role == 0){
                         Session::put('user_role','Administrator');
                         }else{

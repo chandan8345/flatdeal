@@ -37,7 +37,7 @@
 </div>
 </section>
 
-
+<!--
 <section class="special-offer section-padding">
 <div class="container">
 <h1 class="section-title">Daily Deals</h1>
@@ -103,3 +103,4 @@
 </div>
 </div>
 </section>
+-->

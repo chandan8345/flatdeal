@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Easy Tolet | AdsView</title>
+<title>Smart Tolet | AdsView</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
@@ -139,7 +139,7 @@ Home
 <select id="devision" onchange="getCity()" name="devision">
 <option value="0">Select Divisions</option>
 @foreach($devision as $row)
-<option value="{{ $row->id }}"  <?php if(isset($d)){if($row->id == $d){ echo "selected";}}else if($row->name == "Dhaka"){echo "selected";} ?>>{{ $row->name }}</option>
+<option value="{{ $row->id }}"  <?php if(isset($d)){if($row->id == $d){ echo "selected";}} ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -230,9 +230,10 @@ Home
 <div class="col-lg-9 col-md-12 col-xs-12 page-content">
 
 <div class="product-filter">
+<!--
 <div class="short-name">
 <span>Showing (1 - 12 products of 7371 products)</span>
-</div>
+</div>-->
 <!--<div class="Show-item">
 <span>Show Items</span>
 <form class="woocommerce-ordering" method="post">
@@ -362,7 +363,7 @@ View Details
 <div class="feature-content">
 <h4><a href="ads-details.html">{{ $row->title }}</a></h4>
 <div class="tg-product">
-<!--<a href="#">Mobiles > Accessories</a>-->
+<a href="#">Category >  {{ $row->category }}</a>
 </div>
 <span>Last Updated: 4 hours ago</span>
 <ul class="address">
