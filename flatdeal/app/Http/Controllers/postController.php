@@ -83,8 +83,8 @@ class postController extends Controller
                     $data=array('title'=>$title,'category_id'=>$category,'rent'=>$rent,'size'=>$size,'area'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>0);
                     DB::table('post')->where('id',$id)->update($data);
                     }else{
-                    $data=array('title'=>$title,'category_id'=>$category,'rent'=>$amount,'size'=>$size,'area'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>0);
-                    DB::table('post')->where('id',$id)->update($data);   
+                    $data=array('title'=>$title,'category_id'=>$category,'rent'=>$rent,'size'=>$size,'area'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'toletfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'sortaddress'=>$sortaddress,'user_id'=>$user_id,'status'=>0);
+                    DB::table('post')->where('id',$id)->update($data);
                     }
                  if($req->file('image') != null){
                  DB::table('postos')->where('post_id',$id)->delete();
