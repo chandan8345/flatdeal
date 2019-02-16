@@ -173,7 +173,7 @@ function getCity(){
  <script>
 $(document).ready( function(){
 	setTimeout( function(){
-		$('#terminal').typewriting( "Bangladesh No.1 Best TO-LET Dealing Website, Create Account & Enjoy the Best Selling Experience with us.", {
+		$('#terminal').typewriting( "Bangladesh No.1 Best Property Dealing Website, To-Let | Sell | Rent Your Property very Smartly.", {
 			"typing_interval": 100,
 			"blink_interval": "1s",
 			"cursor_color": ""

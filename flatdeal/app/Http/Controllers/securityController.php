@@ -69,7 +69,7 @@ class securityController extends Controller
                         Session::put('user_id',$row->id);
                         Session::put('user_name',$row->name);
                         Session::put('image',$row->image);
-                        if($row->role == 0){
+                        if($row->role == 1){
                         Session::put('user_role','Administrator');
                         }else{
                         Session::put('user_role','Local User');
