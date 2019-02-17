@@ -30,7 +30,7 @@ class userController extends Controller
                 if($request->file('image') !=null){
                     $image = $request->file('image')->getClientOriginalName();
                     $extention = $request->file('image')->getClientOriginalExtension();
-                    $dp='image/'.$id.'.'.$extention;
+                    $dp='image/'.$id.'.jpg';
                     if($newpass != ""){
                     $d=array('name'=>$name,'pass'=>$newpass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'image'=>$id.'.'.$extention);
                     DB::table('users')->where('id',$id)->update($d);
@@ -168,7 +168,7 @@ class userController extends Controller
         if($data){
             foreach($data as $key => $row){
             echo '<tr data-category="active">
-            <td class="photo"><img class="img-fluid" src="/image/'. $row->image .'" alt=""  style="width:80px;height:80px;"></td>
+            <td class="photo"><img class="img-fluid" src="/image/'. $row->id.'.jpg' .'" alt=""  style="width:80px;height:80px;"></td>
             <td data-title="Title">
             <h3>'.$row->name.'</h3>
             <span>Joining: '.$row->dateofjoin.'</span>
@@ -193,7 +193,7 @@ class userController extends Controller
         if($data){
             foreach($data as $key => $row){
             echo '<tr data-category="active">
-            <td class="photo"><img class="img-fluid" src="/image/'. $row->image .'" alt=""  style="width:80px;height:80px;"></td>
+            <td class="photo"><img class="img-fluid" src="/image/'. $row->id.'.jpg' .'" alt=""  style="width:80px;height:80px;"></td>
             <td data-title="Title">
             <h3>'.$row->name.'</h3>
             <span>Joining: '.$row->dateofjoin.'</span>
@@ -219,7 +219,7 @@ class userController extends Controller
         if($data){
             foreach($data as $key => $row){
             echo '<tr data-category="active">
-            <td class="photo"><img class="img-fluid" src="/image/'. $row->image .'" alt=""  style="width:80px;height:80px;"></td>
+            <td class="photo"><img class="img-fluid" src="/image/'. $row->id.'.jpg' .'" alt=""  style="width:80px;height:80px;"></td>
             <td data-title="Title">
             <h3>'.$row->name.'</h3>
             <span>Joining: '.$row->dateofjoin.'</span>
@@ -243,15 +243,15 @@ class userController extends Controller
         $user_role=Session::get('user_role');
         if($user_role == 'Administrator'){
         $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-        where post.category_id=category.id and post.id=postos.post_id and post.status=1 and post.user_id=users.id GROUP BY postos.post_id";
+        where post.category=category.name and post.id=postos.post_id and post.status=1 and post.user_id=users.id GROUP BY postos.post_id";
         }else{
             $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-            where post.category_id=category.id and post.id=postos.post_id and post.status=1 and post.user_id=$user_id GROUP BY postos.post_id";    
+            where post.category=category.name and post.id=postos.post_id and post.status=1 and post.user_id=$user_id GROUP BY postos.post_id";    
         }$data=DB::select($query);
         if($data){
             foreach($data as $key => $row){
             echo '<tr data-category="active">
-            <td class="photo"><img class="img-fluid" src="/postimages/'. $row->image .'" alt=""></td>
+            <td class="photo"><img class="img-fluid" src="/postimages/'. $row->id.'.jpg' .'" alt=""></td>
             <td data-title="Title">
             <h3>'.$row->title.'</h3>
             <span>User Mobile: '.$row->mobile.'</span>
@@ -279,16 +279,16 @@ class userController extends Controller
         $user_role=Session::get('user_role');
         if($user_role == 'Administrator'){
             $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-            where post.category_id=category.id and post.id=postos.post_id and post.status=0 and post.user_id=users.id GROUP BY postos.post_id";
+            where post.category=category.name and post.id=postos.post_id and post.status=0 and post.user_id=users.id GROUP BY postos.post_id";
             }else{
                 $query="select post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-                where post.category_id=category.id and post.id=postos.post_id and post.status=0 and post.user_id=$user_id GROUP BY postos.post_id";    
+                where post.category=category.name and post.id=postos.post_id and post.status=0 and post.user_id=$user_id GROUP BY postos.post_id";    
             }
             $da=DB::select($query);
         if($da > 0){
             foreach($da as $key => $row){
                 echo '<tr data-category="active">
-                <td class="photo"><img class="img-fluid" src="/postimages/'. $row->image .'" alt=""></td>
+                <td class="photo"><img class="img-fluid" src="/postimages/'. $row->id.'.jpg' .'" alt=""></td>
                 <td data-title="Title">
                 <h3>'.$row->title.'</h3>
                 <span>User Mobile: '.$row->mobile.'</span>
@@ -316,16 +316,16 @@ class userController extends Controller
         $user_role=Session::get('user_role');
         if($user_role == 'Administrator'){
             $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-            where post.category_id=category.id and post.id=postos.post_id and post.status=2 and post.user_id=users.id GROUP BY postos.post_id";
+            where post.category=category.name and post.id=postos.post_id and post.status=2 and post.user_id=users.id GROUP BY postos.post_id";
             }else{
                 $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-                where post.category_id=category.id and post.id=postos.post_id and post.status=2 and post.user_id=$user_id GROUP BY postos.post_id";  
+                where post.category=category.name and post.id=postos.post_id and post.status=2 and post.user_id=$user_id GROUP BY postos.post_id";  
             }
         $data=DB::select($query);
         if($data){
             foreach($data as $key => $row){
             echo '<tr data-category="active">
-            <td class="photo"><img class="img-fluid" src="/postimages/'. $row->image .'" alt=""></td>
+            <td class="photo"><img class="img-fluid" src="/postimages/'. $row->id.'.jpg' .'" alt=""></td>
             <td data-title="Title">
             <h3>'.$row->title.'</h3>
             <span>User Mobile: '.$row->mobile.'</span>

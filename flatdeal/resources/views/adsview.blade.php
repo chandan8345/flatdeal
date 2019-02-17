@@ -139,7 +139,7 @@ Home
 <select id="devision" onchange="getCity()" name="devision">
 <option value="0">Select Divisions</option>
 @foreach($devision as $row)
-<option value="{{ $row->id }}"  <?php if(isset($d)){if($row->id == $d){ echo "selected";}} ?>>{{ $row->name }}</option>
+<option value="{{ $row->name }}"  <?php if(isset($d)){if($row->name == $d){ echo "selected";}} ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -150,7 +150,7 @@ Home
 <select id="city" name="city" onchange="getArea()">
 <option value="0">Select City</option>
 @foreach($city as $row)
- <option value="{{ $row->id }}" <?php if(isset($c)){if($row->id == $c){echo "selected";} }else if($row->name == "Dhaka"){ echo "selected";
+ <option value="{{ $row->name }}" <?php if(isset($c)){if($row->name == $c){echo "selected";} }else if($row->name == "Dhaka"){ echo "selected";
  } ?> >{{ $row->name }}</option>
 @endforeach
 </select>
@@ -163,7 +163,7 @@ Home
     <select name="category"> 
     <option value="0">Select Categories</option>
     @foreach($category as $row)
-    <option value="{{ $row->id }}"  <?php if(isset($cat)){if($row->id == $cat){ echo "selected";}} ?>>{{ $row->name }}</option>
+    <option value="{{ $row->name }}"  <?php if(isset($cat)){if($row->name== $cat){ echo "selected";}} ?>>{{ $row->name }}</option>
     @endforeach
     </select>
     </div>
@@ -198,7 +198,7 @@ Home
 <select id="area" name="area">
 <option value="0">Select Area</option>
 @foreach($area as $row)
-<option value="{{ $row->id }}" <?php if(isset($a)){if($row->id == $a){ echo "selected";}} ?>>{{ $row->name }}</option>
+<option value="{{ $row->name }}" <?php if(isset($a)){if($row->name == $a){ echo "selected";}} ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -211,7 +211,7 @@ Home
 <select name="areatype">
 <option value="0">Select One</option>
 @foreach($areatype as $row)
-<option value="{{ $row->id }}" <?php if(isset($t)){if($row->name == $t){ echo "selected";}} ?>>{{ $row->name }}</option>
+<option value="{{ $row->name }}" <?php if(isset($t)){if($row->name == $t){ echo "selected";}} ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>

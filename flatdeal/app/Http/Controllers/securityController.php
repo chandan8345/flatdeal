@@ -33,7 +33,7 @@ class securityController extends Controller
                 $extention = $request->file('image')->getClientOriginalExtension();
                 $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'dateofjoin'=>date('d-m-Y'),'role'=>1,'status'=>1);
                 $id=DB::table('users')->insertGetid($data);
-                $dp='image/'.$id.'.'.$extention;
+                $dp='image/'.$id.'.jpg';
                 $sp=$request->file('image')->getPathName();
                 move_uploaded_file($sp,$dp);
                 Session::flash('msg','Account create successfully');
@@ -68,7 +68,7 @@ class securityController extends Controller
                     if($row->mobile == $mobile && $row->pass == $pass){
                         Session::put('user_id',$row->id);
                         Session::put('user_name',$row->name);
-                        Session::put('image',$row->image);
+                        Session::put('image',$row->id.'.jpg');
                         if($row->role == 1){
                         Session::put('user_role','Administrator');
                         }else{

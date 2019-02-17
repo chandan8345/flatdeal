@@ -260,7 +260,7 @@ Home
 <select id="category" name="categories" onchange="myfunc()">
 <option value="0">Select Categories</option>
 @foreach($category as $row)
- <option value="{{ $row->id }}">{{ $row->name }}</option>
+ <option value="{{ $row->name }}">{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
@@ -287,7 +287,7 @@ Home
 <select name="areatype"  required>
 <option value="0">Select One</option>
 @foreach($areatype as $row)
- <option value="{{ $row->id }}" >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
@@ -298,7 +298,7 @@ Home
 <select name="toletfor" required>
 <option value="0">Select One</option>
 @foreach($toletfor as $row)
- <option value="{{ $row->id }}" >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
@@ -309,7 +309,7 @@ Home
 <select name="condition"  required>
 <option value="0">Select One</option>
 @foreach($condition as $row)
- <option value="{{ $row->id }}" >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
@@ -407,7 +407,7 @@ Home
 <select id="devision" name="devision" onchange="getCity()" required>
 <option value="0">Select One</option>
 @foreach($devision as $row)
-<option value="{{ $row->id }}">{{ $row->name }}</option>
+<option value="{{ $row->name }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -418,7 +418,7 @@ Home
 <select id="city" onchange="getArea()" name="city" required>
 <option value="0">Select One</option>
 @foreach($city as $row)
-<option value="{{ $row->id }}">{{ $row->name }}</option>
+<option value="{{ $row->name }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -429,7 +429,7 @@ Home
 <select id="area" name="area" required>
 <option value="0">Select One</option>
 @foreach($area as $row)
-<option value="{{ $row->id }}">{{ $row->name }}</option>
+<option value="{{ $row->name }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -665,7 +665,7 @@ $(function() {
     function myfunc(){
       var category=$("#category").val();
       //console.log(category);
-      if(category == 1){
+      if(category == "Flat | Apartment"){
          $('#kitchen').show();
          $('#washroom').show();
          $('#balcony').show();
@@ -675,7 +675,7 @@ $(function() {
          $('#facing').show();
          $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
-      }else if(category == 2){
+      }else if(category == "Office Space"){
         $('#kitchen').show();
          $('#washroom').show();
          $('#balcony').show();
@@ -685,7 +685,7 @@ $(function() {
          $('#facing').show(); 
          $('#lblkitchen').text("Conference Room");
          $('#lblbalcony').text("Canteen");
-      }else if(category == 3){
+      }else if(category == "Industry | Factory"){
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').hide();
@@ -695,7 +695,7 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show(); 
-      }else if(category == 4){
+      }else if(category == "Retail Space"){
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");  
         $('#kitchen').hide();
@@ -705,7 +705,7 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').hide();
-      }else if(category == 5){
+      }else if(category == "Plot | Land"){
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");  
         $('#kitchen').hide();
@@ -715,7 +715,7 @@ $(function() {
          $('#room').hide();
          $('#facility').hide();
          $('#facing').show();
-      }else if(category == 6){
+      }else if(category == "Garage"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').hide();
@@ -725,7 +725,7 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
-      }else if(category == 7){
+      }else if(category == "Rooms"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').show();
@@ -735,7 +735,7 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
-      }else if(category == 8){
+      }else if(category == "Luxury House"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').show();

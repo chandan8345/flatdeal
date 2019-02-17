@@ -165,7 +165,7 @@ Contact us
 <select id="devision" onchange="getCity()" name="devision">
 <option value="0">Select Division</option>
 @foreach($devision as $row)
-    <option value="{{ $row->id }}">{{ $row->name }}</option>
+    <option value="{{ $row->name }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -176,7 +176,7 @@ Contact us
 <select id="city" name="city">
 <option value="0">Select City</option>
 @foreach($city as $row)
-    <option value="{{ $row->id }}">{{ $row->name }}</option>
+    <option value="{{ $row->name }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -188,7 +188,7 @@ Contact us
     <select id="category" name="category">
     <option value="0">Select Categories</option>
     @foreach($category as $row)
-    <option value="{{ $row->id }}">{{ $row->name }}</option>
+    <option value="{{ $row->name }}">{{ $row->name }}</option>
     @endforeach
     </select>
     </div>

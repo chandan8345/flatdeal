@@ -15,7 +15,7 @@ class homeController extends Controller
         $devision=DB::table('devision')->get();
         $category=DB::table('category')->get();
         $city=DB::table('city')->get();
-        $sql="SELECT post.category_id as category,count(post.id) total FROM post group by post.category_id";
+        $sql="SELECT post.category as category,count(post.id) total FROM post group by post.category";
         $categorywisetotal=DB::select($sql);
         foreach($categorywisetotal as $row){
             if($row->category == 1){
@@ -43,7 +43,7 @@ class homeController extends Controller
                 $luxury=$row->total;
             }
         }
-        $query="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id=postos.post_id and post.devision_id=1 and post.area_id=area.id and post.user_id=users.id and post.status=1 and post.category_id = category.id GROUP BY postos.post_id order by id desc limit 6";
+        $query="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id=postos.post_id and post.devision=1 and post.areatype=area.name and post.user_id=users.id and post.status=1 and post.category = category.name GROUP BY postos.post_id order by id desc limit 6";
         $latestads=DB::select($query);
         return view('index',['flat' => $flat,'office'=> $office,'retail'=>$retail,'factory'=>$factory,'plot'=>$plot,'rooms'=>$rooms,'garage'=>$garage,'luxury'=>$luxury])->with('latestads',$latestads)->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
@@ -53,11 +53,11 @@ class homeController extends Controller
 
     public function getcity(Request $req){
         $id=$req->id;
-        if($id !=0){
+        if($id !=""){
         echo '<option value="0">Select City</option>';
-        $city=DB::table('city')->where('devisionid',$id)->get();
+        $city=DB::table('city')->where('devision',$id)->get();
         foreach($city as $row){
-           echo '<option value="'.$row->id.'" >'.$row->name.'</option>';
+           echo '<option value="'.$row->name.'" >'.$row->name.'</option>';
         }
        }else{
            echo '<option value="0">Select City</option>';
@@ -65,11 +65,11 @@ class homeController extends Controller
     }
     public function getarea(Request $req){
         $id=$req->id;
-        if($id !=0){
+        if($id != ""){
         //echo '<option value="0">Select Area</option>';
-        $area=DB::table('area')->where('cityid',$id)->get();
+        $area=DB::table('area')->where('city',$id)->get();
         foreach($area as $row){
-         echo '<option value="'.$row->id.'" >'.$row->name.'</option>';
+         echo '<option value="'.$row->name.'" >'.$row->name.'</option>';
         }
        }else{
            echo '<option value="0">Select Area</option>';
@@ -86,13 +86,13 @@ class homeController extends Controller
         $city=DB::table('city')->get();
         $area=DB::table('area')->get();
         $areatype=DB::table('areatype')->get();
-        $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id > 0 and post.id=postos.post_id and post.area_id=area.id and post.user_id=users.id and post.status=1 and post.category_id=category.id";
+        $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id > 0 and post.id=postos.post_id and post.areatype=area.name and post.user_id=users.id and post.status=1 and post.category=category.name";
         if(!empty($d)){
-          $sql =$sql." and post.devision_id='$d'";
+          $sql =$sql." and post.devision='$d'";
         }if(!empty($c)){
-          $sql =$sql." and post.city_id='$c'";
+          $sql =$sql." and post.city='$c'";
         }if(!empty($cat)){
-          $sql =$sql." and post.category_id='$cat'";
+          $sql =$sql." and post.category='$cat'";
         }
       $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
       //var_dump($sql);
