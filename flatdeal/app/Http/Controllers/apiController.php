@@ -32,7 +32,7 @@ class apiController extends Controller
     public function area(Request $req){
         $city=$req->input('city');
         if($city != "Select City"){
-            $query="SELECT DISTINCT area.name as name FROM city,area WHERE area.cityid=(select city.id FROM city WHERE city.name='$city')";
+            $query="SELECT DISTINCT area.name as name FROM city,area WHERE area.city=(select city.id FROM city WHERE city.name='$city')";
             $area=DB::select($query);
             echo json_encode($area);
         }else{
@@ -43,7 +43,7 @@ class apiController extends Controller
     public function city(Request $req){
         $devision=$req->input('devision');
         if($devision != "Select Devision"){
-            $query="SELECT DISTINCT city.name as name FROM city,devision WHERE city.devisionid=(select devision.id FROM devision WHERE devision.name='$devision')";
+            $query="SELECT DISTINCT city.name as name FROM city,devision WHERE city.devision=(select devision.id FROM devision WHERE devision.name='$devision')";
             $city=DB::select($query);
             echo json_encode($city);
         }else{
@@ -73,14 +73,15 @@ class apiController extends Controller
         $address=$req->input('address');
         $pass=$req->input('password');
         $mobile=$req->input('phone');
-        if($req->file('image') !=null){
-            $image = $req->file('image')->getClientOriginalName();
-            $extention = $req->file('image')->getClientOriginalExtension();
+        $image=$req->input('image');
+        if($image){
+            //$image = $req->file('image')->getClientOriginalName();
+            //$extention = $req->file('image')->getClientOriginalExtension();
             $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'dateofjoin'=>date('d-m-Y'),'role'=>0,'status'=>0);
             $id=DB::table('users')->insertGetid($data);
-            $dp='image/'.$id.'.'.$extention;
-            $sp=$req->file('image')->getPathName();
-            move_uploaded_file($sp,$dp);
+            $dp='image/'.$id.'.jpg';
+            //$sp=$req->file('image')->getPathName();
+            file_put_contents($dp,base64_decode($image));
         }else{
             $data=array('name'=>$name,'pass'=>$pass,'address'=>$address,'mobile'=>$mobile,'email'=>$email,'dateofjoin'=>date('d-m-Y'),'role'=>0,'status'=>0);
             DB::table('users')->insert($data);

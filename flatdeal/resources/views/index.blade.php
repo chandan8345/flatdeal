@@ -7,7 +7,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Smart Tolet</title>
+<title>FlatBasha | Home</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -56,10 +56,10 @@
 <h2><a href="#">Md. Abul Kalam Azad</a></h2>
 <h3>CEO of <a href="http://www.touchandsolve.com/">Touch and Solve IT</a></h3>
 <p class="description">SVP at Guardian Life Insurance</p>
-<h3>Owner at of <a href="#">Smart To-Let</a></h3>
+<h3>Owner at of <a href="#">FlatBasha</a></h3>
 </div>
 </div>
-</div><!--
+</div>
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
@@ -68,11 +68,12 @@
 <div class="content">
 <h2><a href="#">Dr. Ashraful Haque</a></h2>
 <p class="description">Medical Consultant</p>
-<p class="description">Senior Vice President at Guardian Life Insurance</p>
-<h3>Owner at of <a href="#">Easy Tolet</a></h3>
+<p class="description">SVP at Guardian Life Insurance</p>
+<h3>Owner at of <a href="#">FlatBasha</a></h3>
 </div>
 </div>
-</div>-->
+</div>
+<!--
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
@@ -85,7 +86,7 @@
 <h3>Developer at of <a href="">Smart To-Let</a></h3>
 </div>
 </div>
-</div>
+</div>-->
 </div>
 </div>
 </div>
@@ -173,7 +174,7 @@ function getCity(){
  <script>
 $(document).ready( function(){
 	setTimeout( function(){
-		$('#terminal').typewriting( "Bangladesh No.1 Best Property Dealing Website, To-Let | Sell | Rent Your Property very Smartly.", {
+		$('#terminal').typewriting( "Bangladesh No.1 Best Property Dealing Marketplace, Sell | Rent Your Property very Smartly.", {
 			"typing_interval": 100,
 			"blink_interval": "1s",
 			"cursor_color": ""

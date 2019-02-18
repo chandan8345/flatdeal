@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Smart Tolet | AdsDetails</title>
+<title>FlatBasha | AdsDetails</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/slicknav.css">
 
 
-<link rel="stylesheet" type="text/css" href="assets/css/nivo-lightbox.css">
+<link rel="stylesheet" typeh="text/css" href="assets/css/nivo-lightbox.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
 
@@ -162,14 +162,14 @@
 <h2>{{ $row->title }}</h2>
 <div class="details-meta">
         <span><a href="#"><i class="lni-alarm-clock md-2"></i> {{ $row->postingdate }}</a></span>
-        <span><a href="#"><i class="lni-map-marker"></i> {{ $row->areaname }}</a></span>
+        <span><a href="#"><i class="lni-map-marker"></i> {{ $row->area }}</a></span>
         <span><a href="#"><i class="lni-eye"></i> {{ $row->floorno }}</a></span>
         </div>
 <h5 class="title-small">Specification:</h5>
 </div>
 <ul class="advertisement mb-3">
 <li>
-<p><strong>Rooms :</strong> {{ $row->room}}</p>
+<p><strong>Rooms :</strong> {{ $row->bedroom}}</p>
 </li>
 <li>
 <p><strong>Washroom :</strong> {{ $row->washroom}}</p>
@@ -178,7 +178,7 @@
 <p><strong>Kitchen :</strong> <a> {{ $row->kitchen}}</a></p>
 </li>
 <li>
-<p><strong>Preferrd For :</strong> <a> {{ $row->toletfor}}</a></p>
+<p><strong>Preferrd For :</strong> <a> {{ $row->adsfor}}</a></p>
 </li>
 </ul>
 <ul class="advertisement mb-3">
@@ -193,9 +193,9 @@
 </li>
 </ul>
 <div class="ads-btn mb-4">
-<a class="btn btn-default" style="text-weight:bold;"><i></i>৳ {{$row->rent}}</a>
-<a class="btn btn-default"><i class="lni-phone-handset"></i> {{ $row->mobile }}</a>
-<a class="btn btn-default"><i class="lni-alarm-clock"></i> {{ $row->handover }}</a>
+<a class="btn btn-default" style="text-weight:bold;font-size:16px;"><i></i>৳ {{$row->rent}}</a>
+<a class="btn btn-default" style="text-weight:bold;font-size:16px;"><i class="lni-phone-handset"></i> {{ $row->mobile }}</a>
+<a class="btn btn-default" style="text-weight:bold;font-size:16px;"><i class="lni-alarm-clock"></i> {{ $row->month }}</a>
 </div>
 </div>
 <div  id="facility" class="form-group">

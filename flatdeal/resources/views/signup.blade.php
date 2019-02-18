@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Smart Tolet | Sign up</title>
+<title>FlatBasha | Join us</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <style>
 .image-preview-input {
@@ -91,13 +91,13 @@ Register
 </div>
 <div class="form-group">
 <div class="input-icon">
-<i class="lni-user"></i>
+<i class="lni-mobile"></i>
 <input type="number"id="mobile" name="mobile" class="form-control"  placeholder="Mobile No"  required>
 </div>
 </div>
 <div class="form-group">
 <div class="input-icon">
-<i class="lni-user"></i>
+<i class="lni-map-marker"></i>
 <input type="text" id="address" name="address" class="form-control"  placeholder="Address" required>
 </div>
 </div>

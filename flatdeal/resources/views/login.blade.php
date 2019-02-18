@@ -6,7 +6,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Smart Tolet | Login</title>
+<title>FlatBasha | Login</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -40,7 +40,7 @@ Login Now
 <input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
 <div class="form-group">
 <div class="input-icon">
-<i class="lni-user"></i>
+<i class="lni-mobile"></i>
 <input type="text" id="mobile" class="form-control" name="mobile" placeholder="Mobile No">
 </div>
 </div>

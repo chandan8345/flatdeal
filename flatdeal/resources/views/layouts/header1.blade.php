@@ -148,8 +148,8 @@ Contact us
 <div class="row">
 <div class="col-md-12 col-lg-12 col-xs-12 text-center">
 <div class="contents">
-<h1 class="head-title" id="1">WELCOME TO <span class="year" id="2">SMART TO-LET</span></h1>
-<p id="terminal">Bangladesh No.1 Best TO-LET Dealing Website, <br> Create Account and to-let your property very easy.</p>
+<h1 class="head-title" id="1">WELCOME TO <span class="year" id="2">FLATBASHA</span></h1>
+<p id="terminal">Bangladesh No.1 Best Property Dealing Marketplace, <br> Sell | Rent your property very Smartly.</p>
 
 <div class="search-bar">
 <fieldset>

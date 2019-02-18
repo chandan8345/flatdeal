@@ -6,7 +6,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Smart Tolet | Ads-Post</title>
+<title>FlatBasha | Ads Post</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <style>
 .image-preview-input {
@@ -293,7 +293,7 @@ Home
 </div>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Tolet For*</label>
+<label class="control-label">Ads For*</label>
 <div class="tg-select form-control">
 <select name="toletfor" required>
 <option value="0">Select One</option>
@@ -434,6 +434,15 @@ Home
 </select>
 </div>
 </div>
+<div class="form-group mb-3 tg-inputwithicon">
+  <label class="control-label">Purpose*</label>
+  <div class="tg-select form-control">
+  <select id="" name="adstype" required>
+  <option value="Rent">Rent</option>
+  <option value="Sell">Sell</option>
+  </select>
+  </div>
+  </div>
 <div class="form-group md-5">
 <label class="control-label">Sort Address*</label>
 <textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required></textarea>

@@ -18,32 +18,33 @@ class homeController extends Controller
         $sql="SELECT post.category as category,count(post.id) total FROM post group by post.category";
         $categorywisetotal=DB::select($sql);
         foreach($categorywisetotal as $row){
-            if($row->category == 1){
+            if($row->category == "Flat | Apartment"){
                 $flat=$row->total;
             }
-            if($row->category == 2){
+            if($row->category == "Office Space"){
                 $office=$row->total;
             }
-            if($row->category == 3){
+            if($row->category == "Industry | Factory"){
                 $factory=$row->total;
             }
-            if($row->category == 4){
+            if($row->category == "Retail Space"){
                 $retail=$row->total;
             }
-            if($row->category == 5){
+            if($row->category == "Plot | Land"){
                 $plot=$row->total;
             }
-            if($row->category == 6){
+            if($row->category == "Garage"){
                 $garage=$row->total;
             }
-            if($row->category == 7){
+            if($row->category == "Rooms"){
                 $rooms=$row->total;
             }
-            if($row->category == 8){
+            if($row->category == "Luxury House"){
                 $luxury=$row->total;
             }
         }
-        $query="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id=postos.post_id and post.devision=1 and post.areatype=area.name and post.user_id=users.id and post.status=1 and post.category = category.name GROUP BY postos.post_id order by id desc limit 6";
+        //$query="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category,areatype where post.id=postos.post_id and post.devision=1 and post.areatype=areatype.name and post.user_id=users.id and post.status=1 and post.category = category.name GROUP BY postos.post_id order by id desc limit 6";
+        $query="select * from postos,post,users where post.id=postos.post_id and post.user_id=users.id and post.status=1 GROUP BY postos.post_id order by post.id desc limit 6";
         $latestads=DB::select($query);
         return view('index',['flat' => $flat,'office'=> $office,'retail'=>$retail,'factory'=>$factory,'plot'=>$plot,'rooms'=>$rooms,'garage'=>$garage,'luxury'=>$luxury])->with('latestads',$latestads)->with('devision',$devision)->with('category',$category)->with('city',$city);
     }
@@ -86,7 +87,7 @@ class homeController extends Controller
         $city=DB::table('city')->get();
         $area=DB::table('area')->get();
         $areatype=DB::table('areatype')->get();
-        $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id > 0 and post.id=postos.post_id and post.areatype=area.name and post.user_id=users.id and post.status=1 and post.category=category.name";
+        $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category,areatype where post.id > 0 and post.id=postos.post_id and post.areatype=areatype.name and post.user_id=users.id and post.status=1 and post.category=category.name";
         if(!empty($d)){
           $sql =$sql." and post.devision='$d'";
         }if(!empty($c)){

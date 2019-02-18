@@ -6,7 +6,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Smart Tolet | Ads-Update</title>
+<title>FlatBasha | Ads-Update</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <style>
 .image-preview-input {

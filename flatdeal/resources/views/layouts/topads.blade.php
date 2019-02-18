@@ -1,6 +1,6 @@
 <section class="featured section-padding" id="latest">
 <div class="container" >
-<h1 class="section-title">Latest To-Let Ads</h1>
+<h1 class="section-title">Latest Ads</h1>
 <div class="row">
 @foreach($latestads as $row)
 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
@@ -25,10 +25,10 @@
 <a href="#"><i class="lni-alarm-clock"></i>Expire {{ $row->month }}</a>
 </li>
 <li>
-<a href="#"><i class="lni-user"></i> {{ $row->username }}</a>
+<a href="#"><i class="lni-user"></i> {{ $row->name }}</a>
 </li>
 <li>
-<a href="#"><i class="lni-mobile"></i> {{ $row->usermobile }}</a>
+<a href="#"><i class="lni-mobile"></i> {{ $row->mobile }}</a>
 </li>
 </ul>
 <div class="btn-list">
