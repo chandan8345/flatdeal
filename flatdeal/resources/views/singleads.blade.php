@@ -147,7 +147,7 @@
 @foreach($image as $row)    
 <div class="item">
 <div class="product-img">
-<img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->name }}" alt="">
+<img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->id }}.jpg" alt="">
 </div>
 <span class="price">{{ $id++ }}</span>
 </div>
@@ -164,9 +164,11 @@
         <span><a href="#"><i class="lni-alarm-clock md-2"></i> {{ $row->postingdate }}</a></span>
         <span><a href="#"><i class="lni-map-marker"></i> {{ $row->area }}</a></span>
         <span><a href="#"><i class="lni-eye"></i> {{ $row->floorno }}</a></span>
+        <span><a href="#"><i class="lni-eye"></i> {{ $row->adsfor }}</a></span>
         </div>
 <h5 class="title-small">Specification:</h5>
 </div>
+@if($row->category != "Plot | Land")
 <ul class="advertisement mb-3">
 <li>
 <p><strong>Rooms :</strong> {{ $row->bedroom}}</p>
@@ -175,12 +177,24 @@
 <p><strong>Washroom :</strong> {{ $row->washroom}}</p>
 </li>
 <li>
+@if($row->category == "Office Space")
+<p><strong>Board Room :</strong> <a> {{ $row->kitchen}}</a></p>
+</li>
+@endif
+@if($row->category != "Office Space")
 <p><strong>Kitchen :</strong> <a> {{ $row->kitchen}}</a></p>
 </li>
+@endif
 <li>
-<p><strong>Preferrd For :</strong> <a> {{ $row->adsfor}}</a></p>
+@if($row->category == "Office Space")
+<p><strong>Canteen :</strong> <a> {{ $row->adsfor}}</a></p>
+@endif
+@if($row->category != "Office Space")
+<p><strong>Balcony :</strong> <a> {{ $row->balcony}}</a></p>
+@endif
 </li>
 </ul>
+@endif
 <ul class="advertisement mb-3">
 <li>
 <p><strong>Area Type</strong> {{ $row->areatype}}</p>
@@ -198,6 +212,7 @@
 <a class="btn btn-default" style="text-weight:bold;font-size:16px;"><i class="lni-alarm-clock"></i> {{ $row->month }}</a>
 </div>
 </div>
+@if($row->category != "Plot | Land")
 <div  id="facility" class="form-group">
         <strong>Inluded Utility bill on Rent</strong>
         <div class="tg-selectgroup">
@@ -233,8 +248,13 @@
         <input id="Internet" type="checkbox" name="internet" <?php if($row->internet == 1){echo "checked";} ?> >
         <label for="Internet">Internet</label>
         </span>
+        <span class="tg-radio">
+                        <input id="Security" type="checkbox" name="security" <?php if($row->security == 1){echo "checked";} ?> >
+                        <label for="Security">Security</label>
+                        </span>
         </div>
         </div>
+@endif
 </div>
 </div>
 

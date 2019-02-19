@@ -295,7 +295,7 @@ Home
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Ads For*</label>
 <div class="tg-select form-control">
-<select name="toletfor" required>
+<select name="adsfor" required>
 <option value="0">Select One</option>
 @foreach($toletfor as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
@@ -349,16 +349,12 @@ Home
 <label for="Electricity">Electricity</label>
 </span>
 <span class="tg-radio">
-<input id="Gas" type="checkbox" name="gas" value="1">
-<label for="Gas">Gas</label>
-</span>
-<span class="tg-radio">
-<input id="Water" type="checkbox" name="water" value="1">
-<label for="Water">Water</label>
-</span>
-<span class="tg-radio">
 <input id="Generator" type="checkbox" name="generator" value="1">
 <label for="Generator">Generator</label>
+</span>
+<span class="tg-radio">
+<input id="Gas" type="checkbox" name="gas" value="1">
+<label for="Gas">Gas</label>
 </span>
 <span class="tg-radio">
 <input id="lift" type="checkbox" name="lift" value="1">
@@ -371,6 +367,14 @@ Home
 <span class="tg-radio">
 <input id="Parking" type="checkbox" name="parking" value="1">
 <label for="Parking">Parking</label>
+</span>
+<span class="tg-radio">
+<input id="Security" type="checkbox" name="security" value="1">
+<label for="Security">Security</label>
+</span>
+<span class="tg-radio">
+<input id="Water" type="checkbox" name="water" value="1">
+<label for="Water">Water</label>
 </span>
 </div>
 </div>
@@ -396,7 +400,7 @@ Home
 <select name="facing">
 <option value="0">Select One</option>
 @foreach($facing as $row)
- <option value="{{ $row->id }}" >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>

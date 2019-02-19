@@ -9,7 +9,7 @@
 <div class="icon">
 <i class="lni-heart"></i>
 </div>
-<a href="#"><img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->image }}" alt=""></a>
+<a href="#"><img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->image }}.jpg" alt=""></a>
 </figure>
 <div class="feature-content">
 <div class="tg-product">
@@ -25,10 +25,10 @@
 <a href="#"><i class="lni-alarm-clock"></i>Expire {{ $row->month }}</a>
 </li>
 <li>
-<a href="#"><i class="lni-user"></i> {{ $row->name }}</a>
+<a href="#"><i class="lni-user"></i> {{ $row->username }}</a>
 </li>
 <li>
-<a href="#"><i class="lni-mobile"></i> {{ $row->mobile }}</a>
+<a href="#"><i class="lni-mobile"></i> {{ $row->usermobile }}</a>
 </li>
 </ul>
 <div class="btn-list">

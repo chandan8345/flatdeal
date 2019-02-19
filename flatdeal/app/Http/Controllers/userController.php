@@ -110,25 +110,27 @@ class userController extends Controller
         }
         }
     }
-    public function usersstatistics(){
-        $active=0;$inactive=0;$sold=0;
-        $sql="SELECT users.status as status,count(id) as total FROM users GROUP BY status";
-        $d=DB::select($sql);
-        foreach($d as $row){
-            if($row->status == 0){
-                $inactive=$row->total;
-            }else if($row->status == 1){
-                $active=$row->total;
-            }else{
-                $sold=$row->total;
-            }
-        }
-        $array=array('totalactive'=>$active,'totalinactive'=>$inactive,'totalsold'=>$sold); 
-        return json_encode($array);
-    }
+    // public function usersstatistics(){
+    //     $active=0;$inactive=0;$sold=0;
+    //     $sql="SELECT users.status as status,count(id) as total FROM users GROUP BY status";
+    //     $d=DB::select($sql);
+    //     foreach($d as $row){
+    //         if($row->status == 0){
+    //             $inactive=$row->total;
+    //         }else if($row->status == 1){
+    //             $active=$row->total;
+    //         }else{
+    //             $sold=$row->total;
+    //         }
+    //     }
+    //     $array=array('totalactive'=>$active,'totalinactive'=>$inactive,'totalsold'=>$sold); 
+    //     return json_encode($array);
+    // }
     public function statistics(){
         $active=0;$inactive=0;$sold=0;
-        $sql="SELECT post.status as status,count(id) as total FROM post GROUP BY status";
+        $user_role=Session::get('user_role');
+        if($user_role == 'Administrator'){
+        $sql="SELECT post.status as status,count(post.id) as total FROM post GROUP BY status";
         $d=DB::select($sql);
         foreach($d as $row){
             if($row->status == 0){
@@ -139,7 +141,20 @@ class userController extends Controller
                 $sold=$row->total;
             }
         }
-        $array=array('totalactive'=>$active,'totalinactive'=>$inactive,'totalsold'=>$sold); 
+    }else{
+        $sql="SELECT post.status as status,count(post.id) as total FROM post,users where users.id=post.user_id GROUP BY status";
+        $d=DB::select($sql);
+        foreach($d as $row){
+            if($row->status == 0){
+                $inactive=$row->total;
+            }else if($row->status == 1){
+                $active=$row->total;
+            }else{
+                $sold=$row->total;
+            }
+        }
+    }
+        $array=array('totalactive'=>$active,'totalinactive'=>$inactive,'totalsold'=>$sold);
         return json_encode($array);
     }
     public function active(Request $request){
@@ -242,8 +257,8 @@ class userController extends Controller
         $user_id=Session::get('user_id');
         $user_role=Session::get('user_role');
         if($user_role == 'Administrator'){
-        $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-        where post.category=category.name and post.id=postos.post_id and post.status=1 and post.user_id=users.id GROUP BY postos.post_id";
+        $query="select post.id,post.title,post.rent,postos.id as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
+        where post.category=category.name and post.id=postos.post_id and post.status=1  GROUP BY postos.post_id";
         }else{
             $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
             where post.category=category.name and post.id=postos.post_id and post.status=1 and post.user_id=$user_id GROUP BY postos.post_id";    
@@ -251,7 +266,7 @@ class userController extends Controller
         if($data){
             foreach($data as $key => $row){
             echo '<tr data-category="active">
-            <td class="photo"><img class="img-fluid" src="/postimages/'. $row->id.'.jpg' .'" alt=""></td>
+            <td class="photo"><img class="img-fluid" src="/postimages/'. $row->image.'.jpg' .'" alt=""></td>
             <td data-title="Title">
             <h3>'.$row->title.'</h3>
             <span>User Mobile: '.$row->mobile.'</span>
@@ -278,8 +293,8 @@ class userController extends Controller
         $user_id=Session::get('user_id');
         $user_role=Session::get('user_role');
         if($user_role == 'Administrator'){
-            $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-            where post.category=category.name and post.id=postos.post_id and post.status=0 and post.user_id=users.id GROUP BY postos.post_id";
+            $query="select  post.id,post.title,post.rent,postos.id as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
+            where post.category=category.name and post.id=postos.post_id and post.status=0 GROUP BY postos.post_id";
             }else{
                 $query="select post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
                 where post.category=category.name and post.id=postos.post_id and post.status=0 and post.user_id=$user_id GROUP BY postos.post_id";    
@@ -288,7 +303,7 @@ class userController extends Controller
         if($da > 0){
             foreach($da as $key => $row){
                 echo '<tr data-category="active">
-                <td class="photo"><img class="img-fluid" src="/postimages/'. $row->id.'.jpg' .'" alt=""></td>
+                <td class="photo"><img class="img-fluid" src="/postimages/'. $row->image.'.jpg' .'" alt=""></td>
                 <td data-title="Title">
                 <h3>'.$row->title.'</h3>
                 <span>User Mobile: '.$row->mobile.'</span>
@@ -315,8 +330,8 @@ class userController extends Controller
         $user_id=Session::get('user_id');
         $user_role=Session::get('user_role');
         if($user_role == 'Administrator'){
-            $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
-            where post.category=category.name and post.id=postos.post_id and post.status=2 and post.user_id=users.id GROUP BY postos.post_id";
+            $query="select  post.id,post.title,post.rent,postos.id as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
+            where post.category=category.name and post.id=postos.post_id and post.status=2 GROUP BY postos.post_id";
             }else{
                 $query="select  post.id,post.title,post.rent,postos.name as image,post.month,category.name as category,users.mobile FROM post,postos,category,users
                 where post.category=category.name and post.id=postos.post_id and post.status=2 and post.user_id=$user_id GROUP BY postos.post_id";  
@@ -325,7 +340,7 @@ class userController extends Controller
         if($data){
             foreach($data as $key => $row){
             echo '<tr data-category="active">
-            <td class="photo"><img class="img-fluid" src="/postimages/'. $row->id.'.jpg' .'" alt=""></td>
+            <td class="photo"><img class="img-fluid" src="/postimages/'. $row->image.'.jpg' .'" alt=""></td>
             <td data-title="Title">
             <h3>'.$row->title.'</h3>
             <span>User Mobile: '.$row->mobile.'</span>

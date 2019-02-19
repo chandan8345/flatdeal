@@ -150,8 +150,7 @@ Home
 <select id="city" name="city" onchange="getArea()">
 <option value="0">Select City</option>
 @foreach($city as $row)
- <option value="{{ $row->name }}" <?php if(isset($c)){if($row->name == $c){echo "selected";} }else if($row->name == "Dhaka"){ echo "selected";
- } ?> >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" <?php if(isset($c)){if($row->name == $c){echo "selected";} } ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -163,7 +162,7 @@ Home
     <select name="category"> 
     <option value="0">Select Categories</option>
     @foreach($category as $row)
-    <option value="{{ $row->name }}"  <?php if(isset($cat)){if($row->name== $cat){ echo "selected";}} ?>>{{ $row->name }}</option>
+    <option value="{{ $row->name }}" <?php if(isset($cat)){if($row->name== $cat){ echo "selected";}} ?> >{{ $row->name }}</option>
     @endforeach
     </select>
     </div>
@@ -358,7 +357,7 @@ View Details
 <div class="icon">
 <i class="lni-heart"></i>
 </div>
-<a href=""><img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->image }}" alt=""></a>
+<a href=""><img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->image }}.jpg" alt=""></a>
  </figure>
 <div class="feature-content">
 <h4><a href="ads-details.html">{{ $row->title }}</a></h4>

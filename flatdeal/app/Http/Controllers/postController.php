@@ -27,7 +27,7 @@ class postController extends Controller
         $rent=$req->input('rent');
         $size=$req->input('size');
         $areatype=$req->input('areatype');
-        $toletfor=$req->input('toletfor');
+        $adsfor=$req->input('adsfor');
         $condition=$req->input('condition');
         $facing=$req->input('facing');
         $details=$req->input('details');
@@ -40,6 +40,7 @@ class postController extends Controller
         $lift=$req->input('lift');
         $internet=$req->input('internet');
         $parking=$req->input('parking');
+        $security=$req->input('security');
         $bedroom=$req->input('bedroom');
         $washroom=$req->input('washroom');
         $kitchen=$req->input('kitchen');
@@ -57,10 +58,10 @@ class postController extends Controller
         if($terms == 1){
             if($rentoncall == 1){
                 if($city != 0){
-                $data=array('title'=>$title,'category'=>$category,'rent'=>$amount,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision'=>$devision,'city'=>$city,'area'=>$area,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
+                $data=array('title'=>$title,'category'=>$category,'rent'=>$amount,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$adsfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision'=>$devision,'city'=>$city,'area'=>$area,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'security'=>$security,'user_id'=>$user_id,'status'=>0);
                 DB::table('post')->where('id',$id)->update($data);
                 }else{
-                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$amount,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision'=>$devision,'city'=>$city,'area'=>$area,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
+                $data=array('title'=>$title,'category_id'=>$category,'rent'=>$amount,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$adsfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision'=>$devision,'city'=>$city,'area'=>$area,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'security'=>$security,'user_id'=>$user_id,'status'=>0);
                 DB::table('post')->where('id',$id)->update($data);   
                 }
                 // echo $id;
@@ -81,10 +82,10 @@ class postController extends Controller
                 return redirect()->back();
             }else{
                 if($city != 0){
-                    $data=array('title'=>$title,'category'=>$category,'rent'=>$rent,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
+                    $data=array('title'=>$title,'category'=>$category,'rent'=>$rent,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$adsfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'security'=>$security,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
                     DB::table('post')->where('id',$id)->update($data);
                     }else{
-                    $data=array('title'=>$title,'category'=>$category,'rent'=>$rent,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
+                    $data=array('title'=>$title,'category'=>$category,'rent'=>$rent,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$adsfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'security'=>$security,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
                     DB::table('post')->where('id',$id)->update($data);
                     }
                  if($req->file('image') != null){
@@ -114,7 +115,7 @@ class postController extends Controller
         $rent=$req->input('rent');
         $size=$req->input('size');
         $areatype=$req->input('areatype');
-        $toletfor=$req->input('toletfor');
+        $adsfor=$req->input('adsfor');
         $condition=$req->input('condition');
         $facing=$req->input('facing');
         $details=$req->input('details');
@@ -125,6 +126,7 @@ class postController extends Controller
         $gas=$req->input('gas');
         $generator=$req->input('generator');
         $lift=$req->input('lift');
+        $security=$req->input('security');
         $internet=$req->input('internet');
         $parking=$req->input('parking');
         $bedroom=$req->input('bedroom');
@@ -143,17 +145,17 @@ class postController extends Controller
         $amount=0;
         if($terms == 1){
             if($rentoncall == 1){
-                $data=array('title'=>$title,'category'=>$category,'rent'=>$amount,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision'=>$devision,'city'=>$city,'area'=>$area,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
-               $id = DB::table('post')->insertGetId($data);
+                $data=array('title'=>$title,'category'=>$category,'rent'=>$amount,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'security'=>$security,'kitchen'=>$kitchen,'devision'=>$devision,'city'=>$city,'area'=>$area,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
+                $id = DB::table('post')->insertGetId($data);
               // echo $id;
                if($req->file('image') != null){
                $files=$req->file('image');
                foreach($files as $file) {
+                $photo=array('post_id'=>$id);
+                $pid=DB::table('postos')->insertGetId($photo);
                 $image = $file->getClientOriginalName();
                 $extention = $file->getClientOriginalExtension();
-                $dp='postimages/'.$id.'.jpg';
-                $photo=array('post_id'=>$id,'name'=>$id.'.jpg','status'=>1);
-                DB::table('postos')->insert($photo);
+                $dp='postimages/'.$pid.'.jpg';
                 $sp=$file->getPathName();
                 move_uploaded_file($sp,$dp);
                  }
@@ -161,19 +163,19 @@ class postController extends Controller
                 Session::flash('msg','Your Ads post successfully');
                 return redirect('/ads-post');
             }else{
-                $data=array('title'=>$title,'category'=>$category,'rent'=>$rent,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$toletfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'kitchen'=>$kitchen,'devision'=>$devision,'city'=>$city,'area'=>$area,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
+                $data=array('title'=>$title,'category'=>$category,'rent'=>$rent,'size'=>$size,'areatype'=>$areatype,'floorno'=>$floor,'postingdate'=>date('d-m-Y'),'adsfor'=>$adsfor,'condit'=>$condition,'facing'=>$facing,'month'=>$month,'details'=>$details,'maintanence'=>$maintanence,'electricity'=>$electricity,'bedroom'=>$bedroom,'water'=>$water,'washroom'=>$washroom,'balcony'=>$balcony,'generator'=>$generator,'lift'=>$lift,'internet'=>$internet,'gas'=>$gas,'parking'=>$parking,'security'=>$security,'kitchen'=>$kitchen,'devision'=>$devision,'city'=>$city,'area'=>$area,'sortaddress'=>$sortaddress,'adstype'=>$adstype,'user_id'=>$user_id,'status'=>0);
                 $id = DB::table('post')->insertGetId($data);
                 // echo $id;
                  if($req->file('image') != null){
                  $files=$req->file('image');
                  foreach($files as $file) {
-                  $image = $file->getClientOriginalName();
-                  $extention = $file->getClientOriginalExtension();
-                  $dp='postimages/'.$id.'.jpg';
-                  $photo=array('post_id'=>$id,'name'=>$id.'.jpg','status'=>1);
-                  DB::table('postos')->insert($photo);
-                  $sp=$file->getPathName();
-                  move_uploaded_file($sp,$dp);
+                    $photo=array('post_id'=>$id);
+                    $pid=DB::table('postos')->insertGetId($photo);
+                    $image = $file->getClientOriginalName();
+                    $extention = $file->getClientOriginalExtension();
+                    $dp='postimages/'.$pid.'.jpg';
+                    $sp=$file->getPathName();
+                    move_uploaded_file($sp,$dp);
                    }
                   }
                   Session::flash('msg','Your Ads post successfully');

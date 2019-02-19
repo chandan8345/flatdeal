@@ -263,7 +263,7 @@ Home
 <select id="category" name="categories" onchange="myfunc()">
 <option value="0">Select Categories</option>
 @foreach($category as $row)
- <option value="{{ $row->id }}" <?php if($key->category_id == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" <?php if($key->category == $row->name){ echo "selected";}  ?>>{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
@@ -287,10 +287,10 @@ Home
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area Type*</label>
 <div class="tg-select form-control">
-<select name="areatype"  required>
+<select name="areatype" required>
 <option value="0">Select One</option>
 @foreach($areatype as $row)
- <option value="{{ $row->id }}" <?php if($key->area == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" <?php if($key->area == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
@@ -298,10 +298,10 @@ Home
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Tolet For*</label>
 <div class="tg-select form-control">
-<select name="toletfor" required>
+<select name="adsfor" required>
 <option value="0">Select One</option>
 @foreach($toletfor as $row)
- <option value="{{ $row->id }}" <?php if($key->toletfor == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ <option value="{{ $row->id }}" <?php if($key->adsfor == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
  @endforeach
 </select>
 </select>
@@ -313,7 +313,7 @@ Home
 <select name="condition"  required>
 <option value="0">Select One</option>
 @foreach($condition as $row)
- <option value="{{ $row->id }}" <?php if($key->condit == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" <?php if($key->condit == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
@@ -345,36 +345,40 @@ Home
 <strong>Included Utility bill on Rent*</strong>
 <div class="tg-selectgroup">
 <span class="tg-radio">
-<input id="tg-sameuser"  type="checkbox" name="maintanence" value="1" <?php if($key->maintanence != "") echo "checked"; ?> >
+<input id="tg-sameuser"  type="checkbox" name="maintanence" value="1">
 <label for="tg-sameuser">Maintanence</label>
 </span>
 <span class="tg-radio">
-<input id="Electricity" type="checkbox" name="electricity" value="1" <?php if($key->electricity != "") echo "checked"; ?>>
+<input id="Electricity" type="checkbox" name="electricity" value="1">
 <label for="Electricity">Electricity</label>
 </span>
 <span class="tg-radio">
-<input id="Gas" type="checkbox" name="gas" value="1"  <?php if($key->gas != "") echo "checked"; ?>>
-<label for="Gas">Gas</label>
-</span>
-<span class="tg-radio">
-<input id="Water" type="checkbox" name="water" value="1"  <?php if($key->maintanence != "") echo "checked"; ?>>
-<label for="Water">Water</label>
-</span>
-<span class="tg-radio">
-<input id="Generator" type="checkbox" name="generator" value="1"  <?php if($key->generator != "") echo "checked"; ?>>
+<input id="Generator" type="checkbox" name="generator" value="1">
 <label for="Generator">Generator</label>
 </span>
 <span class="tg-radio">
-<input id="lift" type="checkbox" name="lift" value="1"  <?php if($key->lift != "") echo "checked"; ?>>
+<input id="Gas" type="checkbox" name="gas" value="1">
+<label for="Gas">Gas</label>
+</span>
+<span class="tg-radio">
+<input id="lift" type="checkbox" name="lift" value="1">
 <label for="lift">Lift</label>
 </span>
 <span class="tg-radio">
-<input id="Internet" type="checkbox" name="internet" value="1"  <?php if($key->internet != "") echo "checked"; ?>>
+<input id="Internet" type="checkbox" name="internet" value="1">
 <label for="Internet">Internet</label>
 </span>
 <span class="tg-radio">
-<input id="Parking" type="checkbox" name="parking" value="1"  <?php if($key->parking != "") echo "checked"; ?>>
+<input id="Parking" type="checkbox" name="parking" value="1">
 <label for="Parking">Parking</label>
+</span>
+<span class="tg-radio">
+<input id="Security" type="checkbox" name="security" value="1">
+<label for="Security">Security</label>
+</span>
+<span class="tg-radio">
+<input id="Water" type="checkbox" name="water" value="1">
+<label for="Water">Water</label>
 </span>
 </div>
 </div>
@@ -400,7 +404,7 @@ Home
 <select name="facing">
 <option value="0">Select One</option>
 @foreach($facing as $row)
- <option value="{{ $row->id }}" <?php if($key->facing == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" <?php if($key->facing == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
@@ -411,7 +415,7 @@ Home
 <select id="devision" name="devision" onchange="getCity()" required>
 <option value="0">Select One</option>
 @foreach($devision as $row)
-<option value="{{ $row->id }}"  <?php if($key->devision_id == $row->id) echo "selected";  ?>>{{ $row->name }}</option>
+<option value="{{ $row->name }}"  <?php if($key->devision == $row->name) echo "selected";  ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -422,7 +426,7 @@ Home
 <select id="city" onchange="getArea()" name="city" required>
 <option value="0">Select One</option>
 @foreach($city as $row)
-<option value="{{ $row->id }}" <?php if($key->city_id == $row->id) echo "selected";  ?> >{{ $row->name }}</option>
+<option value="{{ $row->name }}" <?php if($key->city == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -433,7 +437,7 @@ Home
 <select id="area" name="area" required>
 <option value="0">Select One</option>
 @foreach($area as $row)
-<option value="{{ $row->id }}"  <?php if($key->area_id == $row->id) echo "selected";  ?>>{{ $row->name }}</option>
+<option value="{{ $row->name }}"  <?php if($key->area == $row->name) echo "selected";  ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
@@ -442,8 +446,17 @@ Home
 <label class="control-label">Sort Address*</label>
 <textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required>{{ $key->sortaddress }}</textarea>
 </div>
+<div class="form-group mb-3 tg-inputwithicon">
+  <label class="control-label">Purpose*</label>
+  <div class="tg-select form-control">
+  <select id="" name="adstype" required>
+  <option value="Rent" <?php if($key->adstype == 'Rent') echo "selected";  ?> >Rent</option>
+  <option value="Sell" <?php if($key->adstype == 'Sell') echo "selected";  ?> >Sell</option>
+  </select>
+  </div>
+  </div>
 <label class="control-label">Photos</label>
-<div class="row">    
+<div class="row">
         <div class="col-xs-12 col-md-12">  
             <!-- image-preview-filename input [CUT FROM HERE]-->
             <div class="input-group image-preview">

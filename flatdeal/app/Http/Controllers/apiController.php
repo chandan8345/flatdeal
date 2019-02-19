@@ -32,7 +32,7 @@ class apiController extends Controller
     public function area(Request $req){
         $city=$req->input('city');
         if($city != "Select City"){
-            $query="SELECT DISTINCT area.name as name FROM city,area WHERE area.city=(select city.id FROM city WHERE city.name='$city')";
+            $query="SELECT DISTINCT area.name as name FROM city,area WHERE area.city=(select city.name FROM city WHERE city.name='$city')";
             $area=DB::select($query);
             echo json_encode($area);
         }else{
@@ -43,7 +43,7 @@ class apiController extends Controller
     public function city(Request $req){
         $devision=$req->input('devision');
         if($devision != "Select Devision"){
-            $query="SELECT DISTINCT city.name as name FROM city,devision WHERE city.devision=(select devision.id FROM devision WHERE devision.name='$devision')";
+            $query="SELECT DISTINCT city.name as name FROM city,devision WHERE city.devision=(select devision.name FROM devision WHERE devision.name='$devision')";
             $city=DB::select($query);
             echo json_encode($city);
         }else{
