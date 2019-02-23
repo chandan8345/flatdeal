@@ -1,6 +1,7 @@
 <?php
 //API
 Route::get('/cat','apiController@getpost');
+Route::get('/user','apiController@getuser');
 Route::get('/singleadsdata','apiController@singleadsdata');
 Route::get('/singleadsphotos','apiController@singleadsphotos');
 Route::get('/loginverify','apiController@logincheck');

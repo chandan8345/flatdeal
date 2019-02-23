@@ -32,7 +32,7 @@ class apiController extends Controller
     public function area(Request $req){
         $city=$req->input('city');
         if($city != "Select City"){
-            $query="SELECT DISTINCT area.name as name FROM city,area WHERE area.city=(select city.name FROM city WHERE city.name='$city')";
+            $query="SELECT DISTINCT area.name as name FROM city,area WHERE area.city='$city'";
             $area=DB::select($query);
             echo json_encode($area);
         }else{
@@ -43,7 +43,7 @@ class apiController extends Controller
     public function city(Request $req){
         $devision=$req->input('devision');
         if($devision != "Select Devision"){
-            $query="SELECT DISTINCT city.name as name FROM city,devision WHERE city.devision=(select devision.name FROM devision WHERE devision.name='$devision')";
+            $query="SELECT DISTINCT city.name as name FROM city,devision WHERE city.devision='$devision'";
             $city=DB::select($query);
             echo json_encode($city);
         }else{
@@ -98,21 +98,31 @@ class apiController extends Controller
     }
     public function getpost(Request $req){
         $id=$req->input('id');
-        $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.name as image,post.postingdate,area.name as area,adsfor.name as toletfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.category=$id and post.user_id=users.id and post.adsfor=adsfor.name and post.status=1 and post.category=category.name";
-        $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
-        $tolet=DB::select($sql);
-        echo json_encode($tolet);
+        //$sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as adsfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.category='$id' and post.user_id=users.id and post.adsfor=toletfor.name and post.status=1 and post.category=category.name";
+        //$sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
+        //uporer code bad.
+       $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as toletfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.category='$id' and post.user_id=users.id and post.adsfor=toletfor.name and post.status=1 and post.category=category.name";
+       $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
+       $tolet=DB::select($sql);
+       echo json_encode($tolet);
     }
     public function singleadsdata(Request $req){
         $id=$req->input('id');
-        $sql="select post.title as title,post.postingdate as postingdate,post.rent as rent,post.size as size,areatype.name as areatype,adsfor.name as toletfor,condit.name as condit,facing.name as facing,post.floorno as floorno,post.month as handover,post.details as details,post.bedroom as room,post.washroom as washroom,post.kitchen as kitchen,post.balcony as balcony,post.sortaddress as sortaddress,post.maintanence as maintanence,
-        post.gas as gas,post.water as water,post.electricity as electricity,post.lift as lift,post.generator as generator,post.parking as parking,post.internet as internet,category.name as category,area.name as areaname,city.name as city,users.mobile as mobile from post,category,city,areatype,area,users,condit,facing,toletfor where post.id = $id and post.user_id = users.id and post.area=area.name and post.category =category.name and post.areatype = areatype.name and post.city=city.name and post.status = 1 and post.condit = condit.name and post.facing=facing.id and post.adsfor=adsfor.name";
-        $post=DB::select($sql);
+        //$sql="select post.title as title,post.postingdate as postingdate,post.rent as rent,post.size as size,areatype.name as areatype,toletfor.name as toletfor,condit.name as condit,facing.name as facing,post.floorno as floorno,post.month as handover,post.details as details,post.bedroom as room,post.washroom as washroom,post.kitchen as kitchen,post.balcony as balcony,post.sortaddress as sortaddress,post.maintanence as maintanence,
+        //post.gas as gas,post.water as water,post.electricity as electricity,post.lift as lift,post.generator as generator,post.parking as parking,post.internet as internet,category.name as category,area.name as areaname,city.name as city,users.mobile as mobile from post,category,city,areatype,area,users,condit,facing,toletfor where post.id = $id and post.user_id = users.id and post.area=area.name and post.category =category.name and post.areatype = areatype.name and post.city=city.name and post.status = 1 and post.condit = condit.name and post.facing=facing.id and post.adsfor=toletfor.name";
+        //$post=DB::select($sql);
+        $query="select * from post,users WHERE users.id=post.user_id and post.id='$id'";
+        $post=DB::select($query);
         echo json_encode($post);
     }
     public function singleadsphotos(Request $req){
         $id=$req->input('id');
         $image=DB::table('postos')->where('post_id',$id)->get();
+        echo json_encode($image);
+    }
+    public function getuser(Request $req){
+        $id=$req->input('id');
+        $image=DB::table('users')->where('id',$id)->get();
         echo json_encode($image);
     }
 }
