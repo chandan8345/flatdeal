@@ -15,7 +15,7 @@ class homeController extends Controller
         $devision=DB::table('devision')->get();
         $category=DB::table('category')->get();
         $city=DB::table('city')->get();
-        $sql="SELECT post.category as category,count(post.id) total FROM post group by post.category";
+        $sql="SELECT post.category as category,count(post.id) total FROM post where post.status=1 group by post.category";
         $categorywisetotal=DB::select($sql);
         foreach($categorywisetotal as $row){
             if($row->category == "Flat | Apartment"){

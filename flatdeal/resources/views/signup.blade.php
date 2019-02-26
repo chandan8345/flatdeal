@@ -7,6 +7,13 @@
 <title>FlatBasha | Join us</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
 <style>
+.img {
+    vertical-align: middle;
+    border-style: none;
+    margin-top: 10px;
+}
+</style>
+<style>
 .image-preview-input {
     position: relative;
 	overflow: hidden;

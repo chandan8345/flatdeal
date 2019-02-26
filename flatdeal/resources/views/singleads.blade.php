@@ -22,6 +22,13 @@
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+<style>
+.img {
+    vertical-align: middle;
+    border-style: none;
+    margin-top: 10px;
+}
+</style>
 </head>
 <body>
 

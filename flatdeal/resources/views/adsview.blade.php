@@ -28,6 +28,13 @@
     border-color: #00cc67;
 }
 </style>
+<style>
+.img {
+    vertical-align: middle;
+    border-style: none;
+    margin-top: 10px;
+}
+</style>
 </head>
 <body>
 

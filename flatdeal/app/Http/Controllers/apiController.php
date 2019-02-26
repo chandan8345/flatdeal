@@ -10,7 +10,7 @@ use Input;
 class apiController extends Controller
 {
     public function postAd(Request $req){
-        $data=array('title'=>$req->input('title'),'category'=>$req->input('category'),'rent'=>$req->input('rent'),'size'=>$req->input('size'),'areatype'=>$req->input('areatype'),'floorno'=>$req->input('floor'),'postingdate'=>date('d-m-Y'),'adsfor'=>$req->input('adsfor'),'condit'=>$req->input('condition'),'facing'=>$req->input('facing'),'month'=>$req->input('handover'),'details'=>$req->input('details'),'maintanence'=>$req->input('maintain'),'electricity'=>$req->input('electricity'),'bedroom'=>$req->input('room'),'water'=>$req->input('water'),'washroom'=>$req->input('washroom'),'balcony'=>$req->input('balcony'),'generator'=>$req->input('generator'),'lift'=>$req->input('lift'),'internet'=>$req->input('internet'),'gas'=>$req->input('gas'),'parking'=>$req->input('parking'),'security'=>$req->input('security'),'kitchen'=>$req->input('kitchen'),'devision'=>$req->input('devision'),'city'=>$req->input('city'),'subarea'=>$req->input('area'),'sortaddress'=>$req->input('address'),'user_id'=>$req->input('userid'),'adstype'=>$req->input('adstype'),'status'=>0);
+        $data=array('title'=>$req->input('title'),'category'=>$req->input('category'),'rent'=>$req->input('rent'),'size'=>$req->input('size'),'areatype'=>$req->input('areatype'),'floorno'=>$req->input('floor'),'postingdate'=>date('d-m-Y'),'adsfor'=>$req->input('adsfor'),'condit'=>$req->input('condition'),'facing'=>$req->input('facing'),'month'=>$req->input('handover'),'details'=>$req->input('details'),'maintanence'=>$req->input('maintain'),'electricity'=>$req->input('electricity'),'bedroom'=>$req->input('room'),'water'=>$req->input('water'),'washroom'=>$req->input('washroom'),'balcony'=>$req->input('balcony'),'generator'=>$req->input('generator'),'lift'=>$req->input('lift'),'internet'=>$req->input('internet'),'gas'=>$req->input('gas'),'parking'=>$req->input('parking'),'security'=>$req->input('security'),'kitchen'=>$req->input('kitchen'),'devision'=>$req->input('devision'),'city'=>$req->input('city'),'area'=>$req->input('area'),'sortaddress'=>$req->input('address'),'user_id'=>$req->input('userid'),'adstype'=>$req->input('adstype'),'status'=>0);
         $id = DB::table('post')->insertGetId($data);
         echo json_encode($id);
     }
@@ -102,6 +102,16 @@ class apiController extends Controller
         //$sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
         //uporer code bad.
        $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as toletfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.category='$id' and post.user_id=users.id and post.adsfor=toletfor.name and post.status=1 and post.category=category.name";
+       $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
+       $tolet=DB::select($sql);
+       echo json_encode($tolet);
+    }
+    public function getuserpost(Request $req){
+        $id=$req->input('id');
+        //$sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as adsfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.category='$id' and post.user_id=users.id and post.adsfor=toletfor.name and post.status=1 and post.category=category.name";
+        //$sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
+        //uporer code bad.
+       $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as toletfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.user_id=$id and post.adsfor=toletfor.name and post.category=category.name";
        $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
        $tolet=DB::select($sql);
        echo json_encode($tolet);

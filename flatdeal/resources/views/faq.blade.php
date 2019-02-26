@@ -24,6 +24,13 @@
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+<style>
+.img {
+    vertical-align: middle;
+    border-style: none;
+    margin-top: 10px;
+}
+</style>
 </head>
 <body>
 
@@ -277,7 +284,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, aspernatur of
 <div class="content">
 <h2><a href="#">Engr. Abul Kalam Azad</a></h2>
 <h3>CEO of <a href="http://www.touchandsolve.com/">Touch and Solve IT</a></h3>
-<p class="description">Senior Vice President at Guardian Life Insurance</p>
+<p class="description">SVP at Guardian Life Insurance</p>
 <h3>Owner at of <a href="#">Easy Tolet</a></h3>
 </div>
 </div>
@@ -290,11 +297,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, aspernatur of
 <div class="content">
 <h2><a href="#">Dr. Ashraful Haque</a></h2>
 <p class="description">Medical Consultant</p>
-<p class="description">Senior Vice President at Guardian Life Insurance</p>
+<p class="description">SVP at Guardian Life Insurance</p>
 <h3>Owner at of <a href="#">Easy Tolet</a></h3>
 </div>
 </div>
-</div>
+</div><!--
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
@@ -307,7 +314,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, aspernatur of
 <h3>Developer at of <a href="">Easy Tolet</a></h3>
 </div>
 </div>
-</div>
+</div>-->
 </div>
 </div>
 </div>
@@ -384,7 +391,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, aspernatur of
 <div class="row">
 <div class="col-md-12">
 <div class="site-info float-left">
-<p>All copyrights reserved &copy; 2018 - Designed by <a href="https://uideck.com/" rel="nofollow">UIdeck</a></p>
+<p>All copyrights reserved &copy; 2018 - Designed by <a href="https://chandan.ga/" rel="nofollow">Chandan Biswas</a></p>
 </div>
 <div class="float-right">
 <ul class="bottom-card">
