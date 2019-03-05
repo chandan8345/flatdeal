@@ -67,7 +67,7 @@ class homeController extends Controller
     public function getarea(Request $req){
         $id=$req->id;
         if($id != ""){
-        //echo '<option value="0">Select Area</option>';
+        echo '<option value="0">Select Area</option>';
         $area=DB::table('area')->where('city',$id)->get();
         foreach($area as $row){
          echo '<option value="'.$row->name.'" >'.$row->name.'</option>';
@@ -88,11 +88,11 @@ class homeController extends Controller
         $area=DB::table('area')->get();
         $areatype=DB::table('areatype')->get();
         $sql="select postos.id as image,post.id,post.title,post.month,post.rent,category.name as category,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category,areatype where post.id > 0 and post.id=postos.post_id and post.areatype=areatype.name and post.user_id=users.id and post.status=1 and post.category=category.name";
-        if(!empty($d)){
+        if(!empty($d) && $d !=0){
           $sql =$sql." and post.devision='$d'";
-        }if(!empty($c)){
+        }if(!empty($c) && $c !=0){
           $sql =$sql." and post.city='$c'";
-        }if(!empty($cat)){
+        }if(!empty($cat) && $cat !=0){
           $sql =$sql." and post.category='$cat'";
         }
       $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";

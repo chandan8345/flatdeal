@@ -1,6 +1,6 @@
 $(document).ready(function () {
   var rows=$('#datalist .chandan').length;
-    console.log(rows);
+    //console.log(rows);
     perpagepost=10;
     $("#datalist .chandan:gt(" +  (perpagepost - 1)  + ")").hide();
     var totalpages=Math.round(rows/perpagepost);
