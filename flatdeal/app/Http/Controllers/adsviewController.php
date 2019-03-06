@@ -44,25 +44,27 @@ class adsviewController extends Controller
         // $area=DB::table('area')->get();
         // $areatype=DB::table('areatype')->get();
         $sql="select post.id,post.title,post.month,post.rent,post.category,postos.id as image,post.postingdate,users.name as username,users.mobile as usermobile,post.area from postos,post,users,category where post.id > 0 and post.id=postos.post_id and post.user_id=users.id and post.category=category.name and post.status=1";
-        if(!empty($devision) && $devision !=0){
+        if(!empty($devision)){
             $sql =$sql." and post.devision='$devision'";
-        }if(!empty($city) && $city !=0){
+        }if(!empty($city)){
             $sql =$sql." and post.city='$city'";
-        }if(!empty($category) && $category !=0){
+        }if(!empty($category)){
             $sql =$sql." and post.category='$category'";
-        }if(!empty($areatype) && $areatype !=0){
+        }if(!empty($areatype)){
             $sql =$sql." and post.areatype='$areatype'";
-        }if(!empty($area) && $area !=0){
+        }if(!empty($area)){
             $sql =$sql." and post.area='$area'";
-        }if(!empty($title) and $title!=""){
+        }if(!empty($title) and $title != ""){
             $sql =$sql." and post.title like '%$title%'";
-        }if(!empty($purpose) && $purpose !=0){
+        }if(!empty($purpose)){
             $sql =$sql." and post.adstype='$purpose'";
+        }if(!empty($min) && !empty($min)){
+            $sql =$sql." and post.rent between '$min' and '$max'";
         }
         $sql=$sql." group by postos.post_id ORDER BY post.id DESC";
-        $posts=DB::select($sql);
-        if($posts){
-            foreach($posts as $row){
+        $ads=DB::select($sql);
+        if($ads){
+            foreach($ads as $key => $row){
              echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chandan">
 <div class="featured-box">
 <figure>
@@ -102,7 +104,7 @@ View Details
 </div>
 </div>';}
         }
-        
+  // return $sql;    
     }
     public function category(Request $req){
         $id=$req->input('id');

@@ -662,7 +662,7 @@ function load(){
             areatype:$("#areatype").val()
            },
       success: function(response){
-          console.log(response);
+          //console.log(response);
           $("#datalist").html(response);
       }
 });
