@@ -21,7 +21,7 @@ scrollTop:$(linkHref).offset().top - 80
 var linkHref=$(this).attr('href');
 if(linkHref == '#contact'){
 $('html, body').animate({
-scrollTop:$(linkHref).offset().top -80
+scrollTop:$(linkHref).offset().top - 80
 },1200);
 }
 var linkHref=$(this).attr('href');

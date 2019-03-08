@@ -81,23 +81,23 @@ class homeController extends Controller
         $d=$req->input('devision');
         $c=$req->input('city');
         $cat=$req->input('category');
-        $a=0;$t="Select One";
+        $a=0;$t="0";
         $devision=DB::table('devision')->get();
         $category=DB::table('category')->get();
         $city=DB::table('city')->get();
         $area=DB::table('area')->get();
         $areatype=DB::table('areatype')->get();
         $sql="select postos.id as image,post.id,post.title,post.month,post.rent,category.name as category,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category,areatype where post.id > 0 and post.id=postos.post_id and post.areatype=areatype.name and post.user_id=users.id and post.status=1 and post.category=category.name";
-        if(!empty($d) && $d !=0){
+        if(!empty($d)){
           $sql =$sql." and post.devision='$d'";
-        }if(!empty($c) && $c !=0){
+        }if(!empty($c)){
           $sql =$sql." and post.city='$c'";
-        }if(!empty($cat) && $cat !=0){
+        }if(!empty($cat)){
           $sql =$sql." and post.category='$cat'";
         }
       $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
       //var_dump($sql);
       $posts=DB::select($sql);
-      return view('adsview', ['d' => $d,'c' => $c,'cat' => $cat,'a' => $a,'t' => $t])->with('posts',$posts)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype);
+      return view('adsview', ['d' => $d,'c' => $c,'cat' => $cat])->with('posts',$posts)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype);
     }
 }

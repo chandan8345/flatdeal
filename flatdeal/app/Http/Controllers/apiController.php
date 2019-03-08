@@ -101,7 +101,7 @@ class apiController extends Controller
         //$sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as adsfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.category='$id' and post.user_id=users.id and post.adsfor=toletfor.name and post.status=1 and post.category=category.name";
         //$sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
         //uporer code bad.
-       $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as toletfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.category='$id' and post.user_id=users.id and post.adsfor=toletfor.name and post.status=1 and post.category=category.name";
+       $sql="select post.id,post.title,post.month,post.rent,post.category as category,postos.id as image,post.postingdate,post.area as area,post.adsfor as toletfor from postos,post,users where post.id=postos.post_id and post.category='$id' and post.user_id=users.id and post.status=1";
        $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
        $tolet=DB::select($sql);
        echo json_encode($tolet);

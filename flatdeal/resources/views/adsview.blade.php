@@ -247,8 +247,8 @@ Home
             <div class="tg-select form-control">
             <select id="purpose">
             <option value="0">Select One</option>
-            <option value="Sell">SELL</option>
-            <option value="Rent">RENT</option>
+            <option value="Sell">Sell</option>
+            <option value="Rent">Rent</option>
             </select>
             </div>
             </div>
@@ -642,6 +642,27 @@ $(document).ready(function() {
     
   })
   
+});
+</script>
+<script type="text/javascript">
+    $.ajax({
+      type: "GET",
+      url: '{{ URL::to("/getads") }}',
+      data:{
+            title:$("#title").val(),
+            devision:$("#devision").val(),
+            city:$("#city").val(),
+            area:$("#area").val(),
+            min:$("#min").val(),
+            max:$("#max").val(),
+            purpose:$("#purpose").val(),
+            category:$("#category").val(),
+            areatype:$("#areatype").val()
+           },
+      success: function(response){
+          //console.log(response);
+          $("#datalist").html(response);
+      }
 });
 </script>
 
