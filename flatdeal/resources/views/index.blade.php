@@ -129,6 +129,8 @@ img {
 <div class="loader" id="loader-1"></div>
 </div>
 
+<div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src='demo_wait.gif' width="64" height="64" />
+
 
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-min.js"></script>
 <script src="assets/js/popper.min.js"></script>
@@ -144,6 +146,19 @@ img {
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
+<script>
+$(document).ready(function(){
+  $(document).ajaxStart(function(){
+    $("#wait").css("display", "block");
+  });
+  $(document).ajaxComplete(function(){
+    $("#wait").css("display", "none");
+  });
+  $("button").click(function(){
+    $("#txt").load("demo_ajax_load.asp");
+  });
+});
+</script>
 <script type="text/javascript">
   var c= $("#devision").val();
   //console.log(c);

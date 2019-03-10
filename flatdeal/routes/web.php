@@ -61,4 +61,5 @@ Route::post('/updatepost','postController@updatepost');
 Route::get('/adsview','adsviewController@index');
 Route::get('/category','adsviewController@category');
 Route::get('/getads','adsviewController@getads');
+Route::get('/getad','adsviewController@getad');
 Route::get('/singleads','adsviewController@singleads');

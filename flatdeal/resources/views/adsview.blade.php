@@ -265,7 +265,7 @@ Home
             </div>
             </div>
             </div>
-            <button class="btn btn-common getads" onclick="load()" type="button"><i class="lni-search"></i></button>
+            <button class="btn btn-common" onclick="load()" type="button"><i class="lni-search"></i></button>
     </div>
 <!--
 <div class="widget widget_search">
@@ -436,9 +436,6 @@ View Details
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chandan">
 <div class="featured-box">
 <figure>
-<div class="icon">
-<i class="lni-heart"></i>
-</div>
 <a href=""><img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->image }}.jpg" alt=""></a>
  </figure>
 <div class="feature-content">
@@ -494,7 +491,6 @@ View Details
 </div>
  </div>
 </div>
-
 
 <footer id="contact">
 
@@ -590,7 +586,6 @@ View Details
 
 </footer>
 
-
 <a href="#" class="back-to-top">
 <i class="lni-chevron-up"></i>
 </a>
@@ -598,6 +593,7 @@ View Details
 <div id="preloader">
 <div class="loader" id="loader-1"></div>
 </div>
+<div id="wait" style="display:none;width:69px;height:89px;position:fixed;top:47%;left:46%;padding:2px;"><img style="width:130px;height:100px;" src='2.gif' />
 
 <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-min.js"></script>
 <script src="assets/js/popper.min.js"></script>
@@ -647,7 +643,7 @@ $(document).ready(function() {
 <script type="text/javascript">
     $.ajax({
       type: "GET",
-      url: '{{ URL::to("/getads") }}',
+      url: '{{ URL::to("/getad") }}',
       data:{
             title:$("#title").val(),
             devision:$("#devision").val(),
@@ -660,7 +656,6 @@ $(document).ready(function() {
             areatype:$("#areatype").val()
            },
       success: function(response){
-          //console.log(response);
           $("#datalist").html(response);
       }
 });
@@ -682,9 +677,13 @@ function load(){
             category:$("#category").val(),
             areatype:$("#areatype").val()
            },
+           beforeSend:function(){
+            $("#wait").css("display", "block");
+           },
       success: function(response){
           //console.log(response);
           $("#datalist").html(response);
+          $("#wait").css("display", "none");
       }
 });
 }
