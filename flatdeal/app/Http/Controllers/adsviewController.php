@@ -63,7 +63,7 @@ class adsviewController extends Controller
         }
         $sql=$sql." group by postos.post_id ORDER BY post.id DESC";
         $ads=DB::select($sql);
-        sleep(2);
+        sleep(1);
         if($ads){
             foreach($ads as $key => $row){
              echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chandan">
