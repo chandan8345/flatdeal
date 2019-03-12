@@ -155,7 +155,7 @@ Home
 </ul>
 
 </nav>
-
+<input type="hidden" id="menu" value="<?php if(isset($cat)){echo $cat; }?>">
 <div id="hero-area" style="background: url(assets/img/ii.jpg);">
 <div class="overlay"></div>
 <div class="container">
@@ -194,7 +194,7 @@ Home
     <select id="category" name="category"> 
     <option value="0">Select Categories</option>
     @foreach($category as $row)
-    <option value="{{ $row->name }}" <?php if(isset($cat)){if($row->name== $cat){ echo "selected";}} ?> >{{ $row->name }}</option>
+    <option value="{{ $row->name }}" <?php if($row->name == $cat){ echo "selected"; } ?> >{{ $row->name }}</option>
     @endforeach
     </select>
     </div>
@@ -432,43 +432,7 @@ View Details
 <!--listview -->
 <div id="list-view" class="tab-pane fade active show">
 <div id="datalist" class="row">
-@foreach($posts as $row)
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chandan">
-<div class="featured-box">
-<figure>
-<a href=""><img class="img-fluid" src="{{ URL::to('/') }}/postimages/{{ $row->image }}.jpg" alt=""></a>
- </figure>
-<div class="feature-content">
-<h4><a href="ads-details.html">{{ $row->title }}</a></h4>
-<div class="tg-product">
-<a href="#">Category >  {{ $row->category }}</a>
-</div>
-<span>Last Updated: 4 hours ago</span>
-<ul class="address">
-<li>
-<a href="#"><i class="lni-map-marker"></i>{{ $row->area }}</a>
-</li>
-<li>
-<a href="#"><i class="lni-alarm-clock"></i>{{ $row->month }}</a>
-</li>
-<li>
-<a href="#"><i class="lni-user"></i> {{ $row->username }}</a>
-</li>
-<li>
-<a href="#"><i class="lni-mobile"></i> {{ $row->usermobile }}</a>
-</li>
-</ul>
-<div class="btn-list">
-<a class="btn-price" href="#">৳ {{ $row->rent}}</a>
-<a class="btn btn-common" href="/singleads?id={{ $row->id }}">
-<i class="lni-list"></i>
-View Details
-</a>
-</div>
-</div>
-</div>
-</div>
-@endforeach
+
 </div>
 </div>
 </div>
@@ -643,7 +607,7 @@ $(document).ready(function() {
 <script type="text/javascript">
     $.ajax({
       type: "GET",
-      url: '{{ URL::to("/getad") }}',
+      url: '{{ URL::to("/getads") }}',
       data:{
             title:$("#title").val(),
             devision:$("#devision").val(),
@@ -652,15 +616,19 @@ $(document).ready(function() {
             min:$("#min").val(),
             max:$("#max").val(),
             purpose:$("#purpose").val(),
-            category:$("#category").val(),
+            category:$("#menu").val(),
             areatype:$("#areatype").val()
            },
+           beforeSend: function(response){
+          $("#wait").css("display", "block");
+      },
       success: function(response){
+          //console.log(response);
           $("#datalist").html(response);
+          $("#wait").css("display", "none");
       }
 });
 </script>
-
 <script type="text/javascript">
 function load(){
     $.ajax({

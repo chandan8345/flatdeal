@@ -93,7 +93,7 @@ class adsviewController extends Controller
 </ul>
 <div class="btn-list">
 <a class="btn-price" href="#">৳ '.$row->rent.'</a>
-<a class="btn btn-common" href="/singleads?id='.$row->id.'">
+<a class="btn btn-common" target="_blank" href="/singleads?id='.$row->id.'">
 <i class="lni-list"></i>
 View Details
 </a>
@@ -168,7 +168,7 @@ View Details
 </ul>
 <div class="btn-list">
 <a class="btn-price" href="#">৳ '.$row->rent.'</a>
-<a class="btn btn-common" href="/singleads?id='.$row->id.'">
+<a class="btn btn-common" target="_blank" href="/singleads?id='.$row->id.'">
 <i class="lni-list"></i>
 View Details
 </a>
@@ -186,9 +186,10 @@ View Details
         $city=DB::table('city')->get();
         $area=DB::table('area')->get();
         $areatype=DB::table('areatype')->get();
-        $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id=postos.post_id and post.area=area.name and post.category=$id and post.user_id=users.id and post.status=1 and post.category=category.name";
-        $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
-        $posts=DB::select($sql);
-        return view('adsview',['cat' => $id])->with('posts',$posts)->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype);
+        // $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,users.name as username,users.mobile as usermobile,area.name as area from postos,post,users,area,category where post.id=postos.post_id and post.area=area.name and post.category=$id and post.user_id=users.id and post.status=1 and post.category=category.name";
+        // $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
+        // $posts=DB::select($sql);
+        return view('adsview',['cat' => $id])->with('devision',$devision)->with('category',$category)->with('city',$city)->with('area',$area)->with('areatype',$areatype);
     }
 }
+ 

@@ -3,7 +3,7 @@
 <h1 class="section-title">Categories</h1>
 <div class="row">
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="/category?id='Flat | Apartment'">
+<a href="/category?id=Flat | Apartment">
 <div class="box">
 <div class="icon">
 <img class="img-fluid" src="assets/img/flatA.png" alt="">
@@ -14,7 +14,7 @@
 </a>
 </div>
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="/category?id='Luxury House'">
+<a href="/category?id=Luxury House">
 <div class="box">
 <div class="icon">
 <img class="img-fluid" src="assets/img/category/img-6.png" alt="">
@@ -25,7 +25,7 @@
 </a>
 </div>
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="/category?id='Office Space'">
+<a href="/category?id=Office Space">
 <div class="box">
 <div class="icon">
 <img class="img-fluid" src="assets/img/office.png" alt="">
@@ -36,7 +36,7 @@
 </a>
 </div>
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="/category?id='Factory | Warehouse'">
+<a href="/category?id=Factory | Warehouse">
 <div class="box">
  <div class="icon">
 <img class="img-fluid" src="assets/img/industry.png" alt="">
@@ -47,7 +47,7 @@
 </a>
 </div>
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="/category?id='Retail Space'">
+<a href="/category?id=Retail Space">
 <div class="box">
 <div class="icon">
 <img class="img-fluid" src="assets/img/moll.png" alt="">
@@ -58,7 +58,7 @@
 </a>
 </div>
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="/category?id='Plot | Land'">
+<a href="/category?id=Plot | Land">
 <div class="box">
 <div class="icon">
 <img class="img-fluid" src="assets/img/beach.png" alt="">
@@ -69,7 +69,7 @@
 </a>
 </div>
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="/category?id='Garage'">
+<a href="/category?id=Garage">
 <div class="box">
 <div class="icon">
 <img class="img-fluid" src="assets/img/garag.png" alt="">
@@ -80,7 +80,7 @@
 </a>
 </div>
 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-<a href="/category?id='Rooms'">
+<a href="/category?id=Rooms">
 <div class="box">
 <div class="icon">
 <img class="img-fluid" src="assets/img/mess.png" alt="">
