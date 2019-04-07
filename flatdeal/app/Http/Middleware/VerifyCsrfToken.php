@@ -31,6 +31,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        'postAd','postAdImages'
+        'postAd','postAdImages','filterAds','updateProfile'
     ];
 }

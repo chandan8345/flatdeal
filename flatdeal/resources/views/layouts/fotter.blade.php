@@ -45,7 +45,7 @@
 <strong>Phone :</strong><span>+88 017 629 819 76</span>
 </li>
 <li>
-<strong>E-mail :</strong><span><a href="#">easytolet@outlook.com</a></span>
+<strong>E-mail :</strong><span><a href="#">support@flatbasha.com</a></span>
 </li>
 </ul>
 <ul class="footer-social">

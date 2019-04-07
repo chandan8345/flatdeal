@@ -9,6 +9,58 @@ use Input;
 
 class apiController extends Controller
 {
+    public function updateProfile(Request $req){
+        $id=$req->input('id');
+        $name=$req->input('name');
+        $phone=$req->input('phone');
+        $address=$req->input('address');
+        $email=$req->input('email');
+        $oldpass=$req->input('oldpass');
+        $pass=$req->input('pass');
+        $image=$req->input('image');
+        if($pass){
+        $data=array('name'=>$name,'mobile'=>$phone,'address'=>$address,'email'=>$email,'pass'=>$pass);
+        }else{
+            $data=array('name'=>$name,'mobile'=>$phone,'address'=>$address,'email'=>$email);    
+        }
+        $result=DB::table('users')->where('id',$id)->where('pass',$oldpass)->update($data);
+        $dp='image/'.$id.".jpg";
+        file_put_contents($dp,base64_decode($image));
+        echo json_encode("ok");
+    }
+    public function getProfile(Request $req){
+        $id=$req->input('id');
+        $profile=DB::table('users')->where('id',$id)->get();
+        echo json_encode($profile);
+    }
+    public function filterAds(Request $req){
+        $division=$req->input('division');
+        $city=$req->input('city');
+        $area=$req->input('area');
+        $areatype=$req->input('areatype');
+        $purpose=$req->input('purpose');
+        $adsfor=$req->input('adsfor');
+        $min=$req->input('min');
+        $max=$req->input('max');
+        $category=$req->input('category');
+        $sql="select post.id,post.title,post.month,post.rent,post.category as category,postos.id as image,post.postingdate,post.area as area,post.adsfor as toletfor from postos,post,users where post.id=postos.post_id and post.category='$category' and post.user_id=users.id and post.status=1";
+        if(!empty($division)){
+            $sql =$sql." and post.devision='$division'";
+        }if(!empty($city)){
+            $sql =$sql." and post.city='$city'";
+        }if(!empty($area)){
+            $sql =$sql." and post.area='$area'";
+        }if(!empty($areatype)){
+            $sql =$sql." and post.areatype='$areatype'";
+        }if(!empty($purpose)){
+            $sql =$sql." and post.adstype='$purpose'";
+        }if(!empty($min) && !empty($max)){
+            $sql =$sql." and post.rent between '$min' and '$max'";
+        }
+        $sql=$sql." group by postos.post_id ORDER BY post.id DESC";
+        $ads=DB::select($sql);
+        echo json_encode($ads);
+    }
     public function postAd(Request $req){
         $data=array('title'=>$req->input('title'),'category'=>$req->input('category'),'rent'=>$req->input('rent'),'size'=>$req->input('size'),'areatype'=>$req->input('areatype'),'floorno'=>$req->input('floor'),'postingdate'=>date('d-m-Y'),'adsfor'=>$req->input('adsfor'),'condit'=>$req->input('condition'),'facing'=>$req->input('facing'),'month'=>$req->input('handover'),'details'=>$req->input('details'),'maintanence'=>$req->input('maintain'),'electricity'=>$req->input('electricity'),'bedroom'=>$req->input('room'),'water'=>$req->input('water'),'washroom'=>$req->input('washroom'),'balcony'=>$req->input('balcony'),'generator'=>$req->input('generator'),'lift'=>$req->input('lift'),'internet'=>$req->input('internet'),'gas'=>$req->input('gas'),'parking'=>$req->input('parking'),'security'=>$req->input('security'),'kitchen'=>$req->input('kitchen'),'devision'=>$req->input('devision'),'city'=>$req->input('city'),'area'=>$req->input('area'),'sortaddress'=>$req->input('address'),'user_id'=>$req->input('userid'),'adstype'=>$req->input('adstype'),'status'=>0);
         $id = DB::table('post')->insertGetId($data);
@@ -111,7 +163,7 @@ class apiController extends Controller
         //$sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as adsfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.category='$id' and post.user_id=users.id and post.adsfor=toletfor.name and post.status=1 and post.category=category.name";
         //$sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
         //uporer code bad.
-       $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as toletfor from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.user_id=$id and post.adsfor=toletfor.name and post.category=category.name";
+       $sql="select post.id,post.title,post.month,post.rent,category.name as category,postos.id as image,post.postingdate,area.name as area,toletfor.name as toletfor,post.status from postos,post,users,area,category,toletfor where post.id=postos.post_id and post.area=area.name and post.user_id=$id and post.adsfor=toletfor.name and post.category=category.name";
        $sql=$sql." GROUP BY postos.post_id ORDER BY postos.id DESC";
        $tolet=DB::select($sql);
        echo json_encode($tolet);

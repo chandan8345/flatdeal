@@ -259,12 +259,12 @@ Home
 <div class="dashboard-wrapper">
 <div class="form-group mb-3">
 <label class="control-label">Tolet Title*</label>
-<input class="form-control input-md" name="title" placeholder="Title" type="text"  required>
+<input class="form-control input-md" name="title" id="title" placeholder="Title" type="text"  required>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Tolet Categories*</label>
 <div class="tg-select form-control">
-<select id="category" name="categories" onchange="myfunc()">
+<select id="category" name="categories" onchange="myfunc()" required>
 <option value="0">Select Categories</option>
 @foreach($category as $row)
  <option value="{{ $row->name }}">{{ $row->name }}</option>
@@ -274,24 +274,24 @@ Home
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Rent*</label>
-<input class="form-control input-md" name="rent" placeholder="Ad your Price" type="text">
+<input class="form-control input-md" id="rent" name="rent" placeholder="Ad your Price" type="text">
 <div class="tg-checkbox">
-<input id="tg-priceoncall" type="checkbox" name="rentoncall" value="1">
+<input id="tg-priceoncall" type="checkbox" id="rentoncall" name="rentoncall" value="1">
 <label for="tg-priceoncall">Call for Rent</label>
 </div>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Area Size</label>
-<input class="form-control input-md" name="size" placeholder="Ad your area size" type="text" required>
+<input class="form-control input-md" id="size" name="size" placeholder="Ad your area size" type="text" required>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Available Month*</label>
-<input class="form-control input-md" id="datepicker" name="month" type="text" required>
+<input class="form-control input-md" id="date" name="month" type="date" data-date-format="DD MMMM YYYY" required>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area Type*</label>
 <div class="tg-select form-control">
-<select name="areatype"  required>
+<select id="areatype" name="areatype" required>
 <option value="0">Select One</option>
 @foreach($areatype as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
@@ -302,7 +302,7 @@ Home
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Ads For*</label>
 <div class="tg-select form-control">
-<select name="adsfor" required>
+<select id="adsfor" name="adsfor" required>
 <option value="0">Select One</option>
 @foreach($toletfor as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
@@ -313,7 +313,7 @@ Home
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Condition*</label>
 <div class="tg-select form-control">
-<select name="condition"  required>
+<select id="condition" name="condition"  required>
 <option value="0">Select One</option>
 @foreach($condition as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
@@ -323,11 +323,11 @@ Home
 </div>
 <div id="floor" class="form-group mb-3">
 <label class="control-label">Floor No</label>
-<input class="form-control input-md" name="floor" type="text" placeholder="Ground Floor">
+<input id="floor" class="form-control input-md" name="floor" type="text" placeholder="Ground Floor">
 </div>
 <div class="form-group md-5">
 <label class="control-label">Details*</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"  required></textarea>
+<textarea id="details" style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"  required></textarea>
 </div>
 <!--<div class="form-group md-5">
 <label class="control-label">Location</label>
@@ -387,24 +387,24 @@ Home
 </div>
 <div id="room" class="form-group mb-3">
 <label class="control-label">Room*</label>
-<input class="form-control input-md" name="bedroom" type="number">
+<input id="bedroom" class="form-control input-md" name="bedroom" type="number">
 </div>
 <div id="washroom" class="form-group mb-3">
 <label class="control-label">Washroom*</label>
-<input class="form-control input-md" name="washroom" type="number">
+<input id="bath" class="form-control input-md" name="washroom" type="number">
 </div>
 <div id="kitchen" class="form-group mb-3">
 <label id="lblkitchen" class="control-label">Kitchen*</label>
-<input class="form-control input-md" name="kitchen" type="number">
+<input id="ranna" class="form-control input-md" name="kitchen" type="number">
 </div>
 <div id="balcony" class="form-group mb-3">
 <label id="lblbalcony" class="control-label">Balcony</label>
-<input class="form-control input-md" name="balcony" type="number">
+<input id="baranda" class="form-control input-md" name="balcony" type="number">
 </div>
 <div id="facing" class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Facing</label>
 <div class="tg-select form-control">
-<select name="facing">
+<select id="facing" name="facing">
 <option value="0">Select One</option>
 @foreach($facing as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
@@ -448,7 +448,7 @@ Home
 <div class="form-group mb-3 tg-inputwithicon">
   <label class="control-label">Purpose*</label>
   <div class="tg-select form-control">
-  <select id="" name="adstype" required>
+  <select id="adstype" name="adstype" required>
   <option value="Rent">Rent</option>
   <option value="Sell">Sell</option>
   </select>
@@ -456,7 +456,7 @@ Home
   </div>
 <div class="form-group md-5">
 <label class="control-label">Sort Address*</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required></textarea>
+<textarea id="sortaddress" style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required></textarea>
 </div>
 <label class="control-label">Photos</label>
 <div class="row">    
@@ -484,8 +484,27 @@ Home
 <input id="tg-agreetermsandrules" type="checkbox" name="rule" value="1">
 <label for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0);"   required>Terms of Use &amp; Posting Rules</a></label>
 </div>
-<button class="btn btn-common" type="submit">Post Ad</button>
+<button class="btn btn-common" id="done">Post Ad</button>
 <button class="btn btn-common" type="reset">Reset</button>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Notice Box</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are sure want to ad this post !
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="submit" type="sumbit" class="btn btn-common">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
 </form>
 </div>
 </div>
@@ -601,7 +620,6 @@ Home
 <div class="loader" id="loader-1"></div>
 </div>
 
-
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -616,6 +634,17 @@ Home
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
 <script>
+$(function() {
+   $("#done").click(function() {
+     if($("#rentoncall").val() == 1){
+         $("#rent").val(0); 
+       if($("#title").val() !="" && $("#rent").val() !="" && $("#date").val() !="" && $("#areatype").val() !=0 && $("#adsfor").val() !=0 && $("#condition").val() !=0 && $("#details").val() !="" && $("#bedroom").val() !=0 && $("#bedroom").val() !="" && $("#bath").val() !="" && $("#bath").val() !=0 && $("#ranna").val() !="" && $("#ranna").val() !=0 && $("#baranda").val() !="" && $("#baranda").val() !=0 && $("#devision").val() !=0 && $("#city").val() !=0 && $("#area").val() !=0 && $("#adstype").val() !=0 && $("#sortaddress").val() !="") {
+         $('#modal').modal('show');
+         $(this).closest("form").submit();
+       }
+      }
+   });
+});
 $(document).on('click', '#close-preview', function(){ 
     $('.image-preview').popover('hide');
     // Hover befor close the preview
@@ -693,6 +722,11 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
+         $('#ranna').val("");
+         $('#bath').val("");
+         $('#baranda').val("");
+         $('#floor').val("");
+         $('#bedroom').val("");
          $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
       }else if(category == "Office Space"){
@@ -703,6 +737,11 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show(); 
+         $('#ranna').val("");
+         $('#bath').val("");
+         $('#baranda').val("");
+         $('#floor').val("");
+         $('#bedroom').val("");
          $('#lblkitchen').text("Conference Room");
          $('#lblbalcony').text("Canteen");
       }else if(category == "Industry | Factory"){
@@ -714,7 +753,12 @@ $(function() {
          $('#floor').show();
          $('#room').show();
          $('#facility').show();
-         $('#facing').show(); 
+         $('#facing').show();
+         $('#ranna').val(0);
+         $('#bath').val(0);
+         $('#baranda').val(0);
+         $('#floor').val("");
+         $('#bedroom').val("");
       }else if(category == "Retail Space"){
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");  
@@ -725,6 +769,11 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').hide();
+          $('#ranna').val(0);
+         $('#bath').val("");
+         $('#baranda').val(0);
+         $('#floor').val("");
+         $('#bedroom').val("");
       }else if(category == "Plot | Land"){
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");  
@@ -735,6 +784,11 @@ $(function() {
          $('#room').hide();
          $('#facility').hide();
          $('#facing').show();
+         $('#ranna').val(0);
+         $('#bath').val(0);
+         $('#baranda').val(0);
+         $('#floor').val(0);
+         $('#bedroom').val(0);
       }else if(category == "Garage"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
@@ -745,6 +799,11 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
+         $('#ranna').val(0);
+         $('#bath').val(0);
+         $('#baranda').val(0);
+         $('#floor').val("");
+         $('#bedroom').val("");
       }else if(category == "Rooms"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
@@ -755,6 +814,11 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
+         $('#ranna').val("");
+         $('#bath').val("");
+         $('#baranda').val("");
+         $('#floor').val("");
+         $('#bedroom').val("");
       }else if(category == "Luxury House"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
@@ -765,6 +829,11 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
+         $('#ranna').val("");
+         $('#bath').val("");
+         $('#baranda').val("");
+         $('#floor').val("");
+         $('#bedroom').val("");
       }
   }
   </script>

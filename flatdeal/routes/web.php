@@ -1,5 +1,7 @@
 <?php
 //API
+Route::post('/updateProfile','apiController@updateProfile');
+Route::get('/getProfile','apiController@getProfile');
 Route::get('/cat','apiController@getpost');
 Route::get('/user','apiController@getuser');
 Route::get('/getuserpost','apiController@getuserpost');
@@ -16,6 +18,7 @@ Route::get('/pFacing','apiController@facing');
 Route::get('/pToletfor','apiController@toletfor');
 Route::get('/pDevision','apiController@devision');
 Route::post('/postAd','apiController@postAd');
+Route::post('/filterAds','apiController@filterAds');
 Route::post('/postAdImages','apiController@postAdImages');
 //Homepage
 Route::get('/','homeController@index');
