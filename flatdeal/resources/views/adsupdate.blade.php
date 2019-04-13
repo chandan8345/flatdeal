@@ -253,7 +253,7 @@ Home
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
 <div class="inner-box">
 <div class="dashboard-box">
-<h2 class="dashbord-title">Ad Detail</h2>
+<h2 class="dashbord-title">Ad Details</h2>
 </div>
 @foreach($data as $key)
 <form enctype="multipart/form-data" method="post" action="/updatepost">
@@ -261,11 +261,12 @@ Home
 <input type ="hidden" id="token" name="id" value ="{{ $key->id }}">
 <div class="dashboard-wrapper">
 <div class="form-group mb-3">
-<label class="control-label">Tolet Title*</label>
-<input class="form-control input-md" name="title" placeholder="Title" type="text" value="{{ $key->title }}" required>
+<label class="control-label">Title*</label>
+<input class="form-control input-md"  id="title"  name="title" placeholder="Title" type="text" value="{{ $key->title }}">
+<p  id="titlemsg" style="color:red;display:none;"> please fill out this field</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Tolet Categories*</label>
+<label class="control-label">Categories*</label>
 <div class="tg-select form-control">
 <select id="category" name="categories" onchange="myfunc()">
 <option value="0">Select Categories</option>
@@ -274,38 +275,43 @@ Home
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="categorymsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3">
-<label class="control-label">Rent*</label>
-<input class="form-control input-md" name="rent"  value="{{ $key->rent }}" placeholder="Ad your Price" type="text">
+<label class="control-label">Price*</label>
+<input class="form-control input-md"  id="rent"  name="rent"  value="{{ $key->rent }}" placeholder="Ad your Price" type="text">
+<p style="color:red;display:none;" id="rentmsg"> please fill out this field or check callforprice</p>
 <div class="tg-checkbox">
-<input id="tg-priceoncall" type="checkbox" name="rentoncall" value="1">
-<label for="tg-priceoncall">Call for Rent</label>
+<input type="checkbox" id="rentoncall" name="rentoncall" value="1" onchange="call()">
+<label for="rentoncall">Call for Price</label>
 </div>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Area Size</label>
-<input class="form-control input-md" name="size" value="{{ $key->size }}" placeholder="Ad your area size" type="text" required>
+<input  id="size" class="form-control input-md" name="size" value="{{ $key->size }}" placeholder="Ad your area size" type="text">
+<p style="color:red;display:none;" id="sizemsg"> please fill out this field</p>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Available Month*</label>
-<input class="form-control input-md" id="datepicker" value="{{ $key->month }}" name="month" type="text" required>
+<input  id="date" class="form-control input-md" value="{{ $key->month }}" name="month" type="date">
+<p style="color:red;display:none;" id="datemsg"> please fill out this field</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area Type*</label>
 <div class="tg-select form-control">
-<select name="areatype" required>
+<select id="areatype" name="areatype">
 <option value="0">Select One</option>
 @foreach($areatype as $row)
- <option value="{{ $row->name }}" <?php if($key->area == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
+ <option value="{{ $row->name }}" <?php if($key->areatype == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="areatypemsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Tolet For*</label>
+<label class="control-label">AdsFor*</label>
 <div class="tg-select form-control">
-<select name="adsfor" required>
+<select id="adsfor" name="adsfor">
 <option value="0">Select One</option>
 @foreach($toletfor as $row)
  <option value="{{ $row->id }}" <?php if($key->adsfor == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
@@ -313,25 +319,29 @@ Home
 </select>
 </select>
 </div>
+<p style="color:red;display:none;" id="adsformsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Condition*</label>
 <div class="tg-select form-control">
-<select name="condition"  required>
+<select id="condition" name="condition">
 <option value="0">Select One</option>
 @foreach($condition as $row)
  <option value="{{ $row->name }}" <?php if($key->condit == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="conditionmsg"> please select one item on this</p>
 </div>
 <div id="floor" class="form-group mb-3">
 <label class="control-label">Floor No</label>
-<input class="form-control input-md" name="floor" value="{{ $key->floorno }}" type="text" placeholder="Ground Floor">
+<input id="floorno" class="form-control input-md" name="floor" value="{{ $key->floorno }}" type="text" placeholder="Ground Floor">
+<p style="color:red;display:none;" id="floormsg"> please fill out this field</p>
 </div>
 <div class="form-group md-5">
 <label class="control-label">Details*</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"  required>{{ $key->details }}</textarea>
+<textarea id="details"  style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details">{{ $key->details }}</textarea>
+<p style="color:red;display:none;" id="detailsmsg"> please fill out this field</p>
 </div>
 <!--<div class="form-group md-5">
 <label class="control-label">Location</label>
@@ -391,72 +401,81 @@ Home
 </div>
 <div id="room" class="form-group mb-3">
 <label class="control-label">Room*</label>
-<input class="form-control input-md" name="bedroom" type="number"  value="{{ $key->bedroom }}">
+<input id="bedroom" class="form-control input-md" name="bedroom" type="number"  value="{{ $key->bedroom }}">
+<p style="color:red;display:none;" id="bedroommsg"> please fill out this field</p>
 </div>
 <div id="washroom" class="form-group mb-3">
 <label class="control-label">Washroom*</label>
-<input class="form-control input-md" name="washroom" type="number"  value="{{ $key->washroom }}">
+<input  id="bath" class="form-control input-md" name="washroom" type="number"  value="{{ $key->washroom }}">
+<p style="color:red;display:none;" id="bathmsg"> please fill out this field</p>
 </div>
 <div id="kitchen" class="form-group mb-3">
 <label id="lblkitchen" class="control-label">Kitchen*</label>
-<input class="form-control input-md" name="kitchen" type="number"  value="{{ $key->kitchen }}">
+<input  id="ranna" class="form-control input-md" name="kitchen" type="number"  value="{{ $key->kitchen }}">
+<p style="color:red;display:none;" id="rannamsg"> please fill out this field</p>
 </div>
 <div id="balcony" class="form-group mb-3">
 <label id="lblbalcony" class="control-label">Balcony</label>
-<input class="form-control input-md" name="balcony" type="number" value="{{ $key->balcony }}">
+<input  id="baranda"  class="form-control input-md" name="balcony" type="number" value="{{ $key->balcony }}">
+<p style="color:red;display:none;" id="barandamsg"> please fill out this field</p>
 </div>
 <div id="facing" class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Facing</label>
 <div class="tg-select form-control">
-<select name="facing">
+<select id="face" name="facing">
 <option value="0">Select One</option>
 @foreach($facing as $row)
  <option value="{{ $row->name }}" <?php if($key->facing == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="facemsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Devision*</label>
 <div class="tg-select form-control">
-<select id="devision" name="devision" onchange="getCity()" required>
+<select id="devision" name="devision" onchange="getCity()">
 <option value="0">Select One</option>
 @foreach($devision as $row)
-<option value="{{ $row->name }}"  <?php if($key->devision == $row->name) echo "selected";  ?>>{{ $row->name }}</option>
+<option value="{{ $row->name }}"  <?php if($key->devision == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="devisionmsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">City*</label>
 <div class="tg-select form-control">
-<select id="city" onchange="getArea()" name="city" required>
+<select id="city" onchange="getArea()" name="city">
 <option value="0">Select One</option>
 @foreach($city as $row)
-<option value="{{ $row->name }}" <?php if($key->city == $row->name) echo "selected";  ?> >{{ $row->name }}</option>
+<option value="{{ $row->name }}" <?php if($key->city == $row->name){ echo "selected";}  ?> >{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="citymsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area*</label>
 <div class="tg-select form-control">
-<select id="area" name="area" required>
+<select id="area" name="area">
 <option value="0">Select One</option>
 @foreach($area as $row)
 <option value="{{ $row->name }}"  <?php if($key->area == $row->name) echo "selected";  ?>>{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="areamsg"> please select one item on this</p>
 </div>
 <div class="form-group md-5">
 <label class="control-label">Sort Address*</label>
-<textarea style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required>{{ $key->sortaddress }}</textarea>
+<textarea id="sortaddress" style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress">{{ $key->sortaddress }}</textarea>
+<p style="color:red;display:none;" id="sortaddressmsg"> please fill out this field</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
   <label class="control-label">Purpose*</label>
   <div class="tg-select form-control">
-  <select id="" name="adstype" required>
+  <select  id="adstype" name="adstype">
   <option value="Rent" <?php if($key->adstype == 'Rent') echo "selected";  ?> >Rent</option>
   <option value="Sell" <?php if($key->adstype == 'Sell') echo "selected";  ?> >Sell</option>
   </select>
@@ -485,11 +504,31 @@ Home
     </div>
 </br>   
 <div class="tg-checkbox">
-<input id="tg-agreetermsandrules" type="checkbox" name="rule" value="1">
+<!--<input id="tg-agreetermsandrules" type="checkbox" name="rule" value="1">
 <label for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0);"   required>Terms of Use &amp; Posting Rules</a></label>
-</div>
-<button class="btn btn-common" type="submit">Update Ad</button>
+--></div>
+<button type="button" class="btn btn-common" id="done">Update Ad</button>
 <button class="btn btn-common" type="reset">Reset</button>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Notice Box</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to update this post ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="submit" type="sumbit" class="btn btn-common">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 </form>
 @endforeach
 </div>
@@ -606,7 +645,7 @@ Home
 <div class="loader" id="loader-1"></div>
 </div>
 
-
+<script  src="assets/js/valid.js"></script>
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -620,6 +659,7 @@ Home
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
+
 <script>
 $(document).on('click', '#close-preview', function(){ 
     $('.image-preview').popover('hide');
@@ -687,95 +727,10 @@ $(function() {
   } );
   </script>
   <script type="text/javascript">
-      var category=$("#category").val();
-      //console.log(category);
-      if(category == 1){
-         $('#kitchen').show();
-         $('#washroom').show();
-         $('#balcony').show();
-         $('#floor').show();
-         $('#room').show();
-         $('#facility').show();
-         $('#facing').show();
-         $('#lblkitchen').text("Kitchen");
-         $('#lblbalcony').text("Balcony");
-      }else if(category == 2){
-        $('#kitchen').show();
-         $('#washroom').show();
-         $('#balcony').show();
-         $('#floor').show();
-         $('#room').show();
-         $('#facility').show();
-         $('#facing').show(); 
-         $('#lblkitchen').text("Conference Room");
-         $('#lblbalcony').text("Canteen");
-      }else if(category == 3){
-        $('#lblkitchen').text("Kitchen");
-         $('#lblbalcony').text("Balcony");
-        $('#kitchen').hide();
-         $('#washroom').hide();
-         $('#balcony').hide();
-         $('#floor').show();
-         $('#room').show();
-         $('#facility').show();
-         $('#facing').show(); 
-      }else if(category == 4){
-        $('#lblkitchen').text("Kitchen");
-         $('#lblbalcony').text("Balcony");  
-        $('#kitchen').hide();
-         $('#washroom').show();
-         $('#balcony').hide();
-         $('#floor').show();
-         $('#room').show();
-         $('#facility').show();
-         $('#facing').hide();
-      }else if(category == 5){
-        $('#lblkitchen').text("Kitchen");
-         $('#lblbalcony').text("Balcony");  
-        $('#kitchen').hide();
-         $('#washroom').hide();
-         $('#balcony').hide();
-         $('#floor').hide();
-         $('#room').hide();
-         $('#facility').hide();
-         $('#facing').show();
-      }else if(category == 6){
-        $('#lblkithchen').text("Kitchen");
-         $('#lblbalcony').text("Balcony");
-        $('#kitchen').hide();
-         $('#washroom').hide();
-         $('#balcony').hide();
-         $('#floor').show();
-         $('#room').show();
-         $('#facility').show();
-         $('#facing').show();
-      }else if(category == 7){
-        $('#lblkithchen').text("Kitchen");
-         $('#lblbalcony').text("Balcony");
-        $('#kitchen').show();
-         $('#washroom').show();
-         $('#balcony').show();
-         $('#floor').show();
-         $('#room').show();
-         $('#facility').show();
-         $('#facing').show();
-      }else if(category == 8){
-        $('#lblkithchen').text("Kitchen");
-         $('#lblbalcony').text("Balcony");
-        $('#kitchen').show();
-         $('#washroom').show();
-         $('#balcony').show();
-         $('#floor').show();
-         $('#room').show();
-         $('#facility').show();
-         $('#facing').show();
-      }
-  </script>
-  <script type="text/javascript">
     function myfunc(){
       var category=$("#category").val();
       //console.log(category);
-      if(category == 1){
+      if(category == "Flat | Apartment"){
          $('#kitchen').show();
          $('#washroom').show();
          $('#balcony').show();
@@ -783,9 +738,14 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
+         $('#ranna').val("");
+         $('#bath').val("");
+         $('#baranda').val("");
+         $('#floor').val("");
+         $('#bedroom').val("");
          $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
-      }else if(category == 2){
+      }else if(category == "Office Space"){
         $('#kitchen').show();
          $('#washroom').show();
          $('#balcony').show();
@@ -793,19 +753,29 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show(); 
+         $('#ranna').val("");
+         $('#bath').val("");
+         $('#baranda').val("");
+         $('#floor').val("");
+         $('#bedroom').val("");
          $('#lblkitchen').text("Conference Room");
          $('#lblbalcony').text("Canteen");
-      }else if(category == 3){
+      }else if(category == "Industry | Factory"){
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').hide();
-         $('#washroom').hide();
+         $('#washroom').show();
          $('#balcony').hide();
          $('#floor').show();
          $('#room').show();
          $('#facility').show();
-         $('#facing').show(); 
-      }else if(category == 4){
+         $('#facing').show();
+         $('#ranna').val(0);
+         $('#bath').val("");
+         $('#baranda').val(0);
+         $('#floor').val("");
+         $('#bedroom').val("");
+      }else if(category == "Retail Space"){
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");  
         $('#kitchen').hide();
@@ -815,7 +785,12 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').hide();
-      }else if(category == 5){
+          $('#ranna').val(0);
+         $('#bath').val("");
+         $('#baranda').val(0);
+         $('#floor').val("");
+         $('#bedroom').val("");
+      }else if(category == "Plot | Land"){
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");  
         $('#kitchen').hide();
@@ -825,7 +800,12 @@ $(function() {
          $('#room').hide();
          $('#facility').hide();
          $('#facing').show();
-      }else if(category == 6){
+         $('#ranna').val(0);
+         $('#bath').val(0);
+         $('#baranda').val(0);
+         $('#floor').val(0);
+         $('#bedroom').val(0);
+      }else if(category == "Garage"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').hide();
@@ -835,7 +815,12 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
-      }else if(category == 7){
+         $('#ranna').val(0);
+         $('#bath').val(0);
+         $('#baranda').val(0);
+         $('#floor').val("");
+         $('#bedroom').val("");
+      }else if(category == "Rooms"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').show();
@@ -845,7 +830,12 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
-      }else if(category == 8){
+         $('#ranna').val("");
+         $('#bath').val("");
+         $('#baranda').val("");
+         $('#floor').val("");
+         $('#bedroom').val("");
+      }else if(category == "Luxury House"){
         $('#lblkithchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').show();
@@ -855,10 +845,15 @@ $(function() {
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
+         $('#ranna').val("");
+         $('#bath').val("");
+         $('#baranda').val("");
+         $('#floor').val("");
+         $('#bedroom').val("");
       }
   }
   </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   var c= $("#devision").val();
   //console.log(c);
   $.ajax({
@@ -873,7 +868,7 @@ $(function() {
           $("#city").html(response);
      }
 });
-</script>
+</script> -->
 
 <script type="text/javascript">
 function getCity(){
@@ -907,6 +902,19 @@ function getArea(){
 });
 }
 </script>
+<script type="text/javascript">
+function call(){
+    var call=$("#rentoncall").val();
+    var rent= $("#rent").val();
+    if(call == 1){
+      $("#rent").val(0);
+      $("#rentoncall").val(0);
+    }else{
+      $("#rent").val("");
+      $("#rentoncall").val(1);
+    }
+}
+  </script>
 </body>
 
 </html>

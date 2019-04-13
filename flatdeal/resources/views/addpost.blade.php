@@ -40,8 +40,7 @@
 }
 </style>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
 <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
@@ -59,8 +58,6 @@
 
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 <body>
@@ -156,9 +153,9 @@ Home
 <div class="col-md-12">
 <div class="breadcrumb-wrapper">
 @if (Session::has('msg'))
-<h2 class="product-title">{{ Session::get('msg') }}</h2>
+<h2 class="product-title" id="msg">{{ Session::get('msg') }}</h2>
 @else
-<h2 class="product-title">Post an Ad</h2>
+<h2 class="product-title" id="msg">Post an Ad</h2>
 @endif
 <ol class="breadcrumb">
 <li><a href="/">Home ></a></li>
@@ -252,82 +249,92 @@ Home
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
 <div class="inner-box">
 <div class="dashboard-box">
-<h2 class="dashbord-title">Ad Detail</h2>
+<h2 class="dashbord-title">Ad Details</h2>
 </div>
 <form enctype="multipart/form-data" method="post" action="/addpost">
 <input type ="hidden" id="token" name="_token" value ="<?php echo csrf_token(); ?>">
 <div class="dashboard-wrapper">
 <div class="form-group mb-3">
-<label class="control-label">Tolet Title*</label>
-<input class="form-control input-md" name="title" id="title" placeholder="Title" type="text"  required>
+<label class="control-label">Title*</label>
+<input class="form-control input-md" name="title" id="title" placeholder="Title" type="text">
+<p  id="titlemsg" style="color:red;display:none;"> please fill out this field</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
-<label class="control-label">Tolet Categories*</label>
+<label class="control-label">Categories*</label>
 <div class="tg-select form-control">
-<select id="category" name="categories" onchange="myfunc()" required>
+<select id="category" name="categories" onchange="myfunc()">
 <option value="0">Select Categories</option>
 @foreach($category as $row)
  <option value="{{ $row->name }}">{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="categorymsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3">
-<label class="control-label">Rent*</label>
-<input class="form-control input-md" id="rent" name="rent" placeholder="Ad your Price" type="text">
+<label class="control-label">Amount*</label>
+<input class="form-control input-md" id="rent" name="rent" placeholder="Ad your Price" type="number">
+<p style="color:red;display:none;" id="rentmsg"> please fill out this field or check callforprice</p>
 <div class="tg-checkbox">
-<input id="tg-priceoncall" type="checkbox" id="rentoncall" name="rentoncall" value="1">
-<label for="tg-priceoncall">Call for Rent</label>
+<input type="checkbox" id="rentoncall" name="rentoncall" value="1" onchange="call()">
+<label for="rentoncall">Call for Price</label>
 </div>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Area Size</label>
-<input class="form-control input-md" id="size" name="size" placeholder="Ad your area size" type="text" required>
+<input class="form-control input-md" id="size" name="size" placeholder="Ad your area size" type="text">
+<p style="color:red;display:none;" id="sizemsg"> please fill out this field</p>
 </div>
 <div class="form-group mb-3">
 <label class="control-label">Available Month*</label>
-<input class="form-control input-md" id="date" name="month" type="date" data-date-format="DD MMMM YYYY" required>
+<input class="form-control input-md" id="date" name="month" type="date" data-date-format="DD MMMM YYYY">
+<p style="color:red;display:none;" id="datemsg"> please fill out this field</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area Type*</label>
 <div class="tg-select form-control">
-<select id="areatype" name="areatype" required>
+<select id="areatype" name="areatype">
 <option value="0">Select One</option>
 @foreach($areatype as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="areatypemsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Ads For*</label>
 <div class="tg-select form-control">
-<select id="adsfor" name="adsfor" required>
+<select id="adsfor" name="adsfor">
 <option value="0">Select One</option>
 @foreach($toletfor as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="adsformsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Condition*</label>
 <div class="tg-select form-control">
-<select id="condition" name="condition"  required>
+<select id="condition" name="condition">
 <option value="0">Select One</option>
 @foreach($condition as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="conditionmsg"> please select one item on this</p>
 </div>
 <div id="floor" class="form-group mb-3">
 <label class="control-label">Floor No</label>
-<input id="floor" class="form-control input-md" name="floor" type="text" placeholder="Ground Floor">
+<input id="floorno" class="form-control input-md" name="floor" type="text" placeholder="Ground Floor">
+<p style="color:red;display:none;" id="floormsg"> please fill out this field</p>
 </div>
 <div class="form-group md-5">
 <label class="control-label">Details*</label>
-<textarea id="details" style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"  required></textarea>
+<textarea id="details" style="width:-webkit-fill-available;text-size:20px;" rows="7" placeholder=" write somthing about your tolet..." name="details"></textarea>
+<p style="color:red;display:none;" id="detailsmsg"> please fill out this field</p>
 </div>
 <!--<div class="form-group md-5">
 <label class="control-label">Location</label>
@@ -388,67 +395,75 @@ Home
 <div id="room" class="form-group mb-3">
 <label class="control-label">Room*</label>
 <input id="bedroom" class="form-control input-md" name="bedroom" type="number">
+<p style="color:red;display:none;" id="bedroommsg"> please fill out this field</p>
 </div>
 <div id="washroom" class="form-group mb-3">
 <label class="control-label">Washroom*</label>
 <input id="bath" class="form-control input-md" name="washroom" type="number">
+<p style="color:red;display:none;" id="bathmsg"> please fill out this field</p>
 </div>
 <div id="kitchen" class="form-group mb-3">
 <label id="lblkitchen" class="control-label">Kitchen*</label>
 <input id="ranna" class="form-control input-md" name="kitchen" type="number">
+<p style="color:red;display:none;" id="rannamsg"> please fill out this field</p>
 </div>
 <div id="balcony" class="form-group mb-3">
 <label id="lblbalcony" class="control-label">Balcony</label>
 <input id="baranda" class="form-control input-md" name="balcony" type="number">
+<p style="color:red;display:none;" id="barandamsg"> please fill out this field</p>
 </div>
 <div id="facing" class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Facing</label>
 <div class="tg-select form-control">
-<select id="facing" name="facing">
+<select name="face" id="face">
 <option value="0">Select One</option>
 @foreach($facing as $row)
  <option value="{{ $row->name }}" >{{ $row->name }}</option>
  @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="categorymsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Devision*</label>
 <div class="tg-select form-control">
-<select id="devision" name="devision" onchange="getCity()" required>
+<select id="devision" name="devision" onchange="getCity()">
 <option value="0">Select One</option>
 @foreach($devision as $row)
 <option value="{{ $row->name }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="devisionmsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">City*</label>
 <div class="tg-select form-control">
-<select id="city" onchange="getArea()" name="city" required>
+<select id="city" onchange="getArea()" name="city">
 <option value="0">Select One</option>
 @foreach($city as $row)
 <option value="{{ $row->name }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="citymsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
 <label class="control-label">Area*</label>
 <div class="tg-select form-control">
-<select id="area" name="area" required>
+<select id="area" name="area">
 <option value="0">Select One</option>
 @foreach($area as $row)
 <option value="{{ $row->name }}">{{ $row->name }}</option>
 @endforeach
 </select>
 </div>
+<p style="color:red;display:none;" id="areamsg"> please select one item on this</p>
 </div>
 <div class="form-group mb-3 tg-inputwithicon">
   <label class="control-label">Purpose*</label>
   <div class="tg-select form-control">
-  <select id="adstype" name="adstype" required>
+  <select id="purpose" name="purpose">
   <option value="Rent">Rent</option>
   <option value="Sell">Sell</option>
   </select>
@@ -456,7 +471,8 @@ Home
   </div>
 <div class="form-group md-5">
 <label class="control-label">Sort Address*</label>
-<textarea id="sortaddress" style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress" required></textarea>
+<textarea id="sortaddress" style="width:-webkit-fill-available;text-size:20px;" rows="2" placeholder=" write sort address.." name="sortaddress"></textarea>
+<p style="color:red;display:none;" id="sortaddressmsg"> please fill out this field</p>
 </div>
 <label class="control-label">Photos</label>
 <div class="row">    
@@ -475,18 +491,19 @@ Home
                         <span class="image-preview-input-title" style="background-color:#00cc67;padding:12px;color:white;">Browse</span>
                         <input type="file" id="image" name="image[]" accept="image/png, image/jpeg, image/gif" multiple/> <!-- rename it -->
                     </div>
+                    <p style="color:red;display:none;" id="imagemsg"> please upload photos</p>
                 </span>
             </div><!-- /input-group image-preview [TO HERE]-->
         </div>
     </div>
-</br>   
+</br>
 <div class="tg-checkbox">
-<input id="tg-agreetermsandrules" type="checkbox" name="rule" value="1">
-<label for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0);"   required>Terms of Use &amp; Posting Rules</a></label>
-</div>
+<!-- <input id="agree" type="checkbox" name="rule" value="1">
+<label for="agree">I agree to all <a href="javascript:void(0);"   required>Terms of Use &amp; Posting Rules</a></label>
+--></div>
 <button class="btn btn-common" id="done">Post Ad</button>
 <button class="btn btn-common" type="reset">Reset</button>
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -496,11 +513,11 @@ Home
         </button>
       </div>
       <div class="modal-body">
-        Are sure want to ad this post !
+        Are you sure wants to ad this ads ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="submit" type="sumbit" class="btn btn-common">Done</button>
+        <button type="submit" class="btn" style="background-color:#00cc67;color:white;">Confirm</button>
       </div>
     </div>
   </div>
@@ -515,7 +532,6 @@ Home
 </div>
 </div>
 </div>
-
 
 <footer>
 
@@ -619,7 +635,7 @@ Home
 <div id="preloader">
 <div class="loader" id="loader-1"></div>
 </div>
-
+<script  src="assets/js/validation.js"></script>
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -634,23 +650,13 @@ Home
 <script src="assets/js/contact-form-script.min.js"></script>
 <script src="assets/js/summernote.js"></script>
 <script>
-$(function() {
-   $("#done").click(function() {
-     if($("#rentoncall").val() == 1){
-         $("#rent").val(0); 
-       if($("#title").val() !="" && $("#rent").val() !="" && $("#date").val() !="" && $("#areatype").val() !=0 && $("#adsfor").val() !=0 && $("#condition").val() !=0 && $("#details").val() !="" && $("#bedroom").val() !=0 && $("#bedroom").val() !="" && $("#bath").val() !="" && $("#bath").val() !=0 && $("#ranna").val() !="" && $("#ranna").val() !=0 && $("#baranda").val() !="" && $("#baranda").val() !=0 && $("#devision").val() !=0 && $("#city").val() !=0 && $("#area").val() !=0 && $("#adstype").val() !=0 && $("#sortaddress").val() !="") {
-         $('#modal').modal('show');
-         $(this).closest("form").submit();
-       }
-      }
-   });
-});
 $(document).on('click', '#close-preview', function(){ 
     $('.image-preview').popover('hide');
     // Hover befor close the preview
     $('.image-preview').hover(
         function () {
            $('.image-preview').popover('show');
+          // $(this).closest("form").submit();
         }, 
          function () {
            $('.image-preview').popover('hide');
@@ -748,14 +754,14 @@ $(function() {
         $('#lblkitchen').text("Kitchen");
          $('#lblbalcony').text("Balcony");
         $('#kitchen').hide();
-         $('#washroom').hide();
+         $('#washroom').show();
          $('#balcony').hide();
          $('#floor').show();
          $('#room').show();
          $('#facility').show();
          $('#facing').show();
          $('#ranna').val(0);
-         $('#bath').val(0);
+         $('#bath').val("");
          $('#baranda').val(0);
          $('#floor').val("");
          $('#bedroom').val("");
@@ -886,6 +892,19 @@ function getArea(){
 });
 }
 </script>
+<script type="text/javascript">
+function call(){
+    var call=$("#rentoncall").val();
+    var rent= $("#rent").val();
+    if(call == 1){
+      $("#rent").val(0);
+      $("#rentoncall").val(0);
+    }else{
+      $("#rent").val("");
+      $("#rentoncall").val(1);
+    }
+}
+  </script>
 </body>
 
 </html>
