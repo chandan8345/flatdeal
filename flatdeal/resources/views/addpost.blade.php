@@ -491,9 +491,10 @@ Home
                         <span class="image-preview-input-title" style="background-color:#00cc67;padding:12px;color:white;">Browse</span>
                         <input type="file" id="image" name="image[]" accept="image/png, image/jpeg, image/gif" multiple/> <!-- rename it -->
                     </div>
-                    <p style="color:red;display:none;" id="imagemsg"> please upload photos</p>
+                    
                 </span>
             </div><!-- /input-group image-preview [TO HERE]-->
+            <p style="color:red;display:none;" id="imagemsg"> please upload photos</p>
         </div>
     </div>
 </br>

@@ -1,14 +1,17 @@
-<?php session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
 <meta charset="utf-8">
+<meta name="description" content="Bangladesh No.1 Best Property Dealing Marketplace, Sell | Rent | TO-LET your property very Smartly.">
+<meta name="keywords" content="Flatbasha">
+<meta name="author" content="Chandan Biswas">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>FlatBasha | Home</title>
-<link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png" />
+<title>FlatBasha</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/fb.jpg" />
+
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
 <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
@@ -57,12 +60,12 @@ img {
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
-<img src="assets/img/ak.png" style="width:80px;height:80px;" alt="">
+<img src="assets/img/ak.png" style="width:80px;height:80px;" alt="Sak Azad">
 </div>
 <div class="content">
-<h2><a href="#">Md. Abul Kalam Azad</a></h2>
-<h3>CEO of <a href="http://www.touchandsolve.com/">Touch and Solve IT</a></h3>
-<p class="description">SVP at Guardian Life Insurance</p>
+<h2><a href="#">Engr Abul Kalam Azad</a></h2>
+<h3>CEO of <a href="www.touchandsolve.com">Touch & Solve IT</a></h3>
+<p class="description">Adviser of Flatbasha</p>
 <h3>Owner at of <a href="#">FlatBasha</a></h3>
 </div>
 </div>
@@ -70,12 +73,12 @@ img {
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
-<img src="assets/img/testimonial/img1.png" alt="">
+<img src="assets/img/ck.png" style="width:80px;height:80px;" alt="chandan">
 </div>
 <div class="content">
-<h2><a href="#">Dr. Ashraful Haque</a></h2>
-<p class="description">Medical Consultant</p>
-<p class="description">SVP at Guardian Life Insurance</p>
+<h2><a href="#">Chandan Kuamr Biswas</a></h2>
+<h3>Founder of <a href="www.flatbasha.com">Flatbasha</a></h3>
+<p class="description">Android & Web Developer</p>
 <h3>Owner at of <a href="#">FlatBasha</a></h3>
 </div>
 </div>

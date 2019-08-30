@@ -38,7 +38,7 @@ Feature
 </li>-->
 <li class="nav-item">
 <a class="nav-link scroll" href="#why">
-why smart
+why here
 </a>
 </li>
 

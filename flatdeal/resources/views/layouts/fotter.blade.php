@@ -6,7 +6,8 @@
 <div class="widget">
 <h3 class="block-title">About Us</h3>
 <div class="textwidget">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis tincidunt est, et euismod purus suscipit quis. Etiam euismod ornare elementum. Sed ex est, consectetur eget facilisis sed, auctor ut purus.</p>
+<p>flatbasha is a property ads marketing website in Bangladesh, you can easily buy or sell property from flatbasha through ads.We have lot of property ads like flat,apartment,office spaces,luxurious house,retail space,factory,warehouse,rooms,land or plot, garage.
+</p>
 </div>
 </div>
 </div>
@@ -49,7 +50,7 @@
 </li>
 </ul>
 <ul class="footer-social">
-<li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
+<li><a class="facebook" href="https://www.facebook.com/flatbasha/"><i class="lni-facebook-filled"></i></a></li>
 <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
 <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
 <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
@@ -66,7 +67,7 @@
 <div class="row">
 <div class="col-md-12">
 <div class="site-info float-left">
-<p>All copyrights reserved &copy; 2018 - Developed by <a href="http://chandan.ga"  target="_blank" rel="nofollow">Chandan</a></p>
+<p>All copyrights reserved &copy; 2018 - Developed by <a href="https://www.facebook.com/itchandanbisawas"  target="_blank" rel="nofollow">Chandan</a></p>
 </div>
 <div class="float-right">
 <ul class="bottom-card">

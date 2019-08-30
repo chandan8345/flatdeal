@@ -270,7 +270,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, aspernatur of
 </div>
 </div>
 
-
+<!--
 <section class="testimonial section-padding">
 <div class="container">
 <div class="row">
@@ -301,7 +301,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, aspernatur of
 <h3>Owner at of <a href="#">Easy Tolet</a></h3>
 </div>
 </div>
-</div><!--
+</div>--><!--
 <div class="item">
 <div class="testimonial-item">
 <div class="img-thumb">
